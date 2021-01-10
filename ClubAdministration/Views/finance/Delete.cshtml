@@ -1,0 +1,75 @@
+﻿@model ClubAdministration.Models.club_deposite
+
+@{
+    ViewBag.Title = "حذف" + " " + Model.payment_item;
+}
+
+@widgets.common.ribbon.Show_Ribbon(Url, "finance.delete.default", "آيا از حذف" + (" " + Model.payment_item) + " مطمئن هستيد؟", new { id = Model.ID }, new { id = Model.bankaccount_id })
+
+<form method="post" name="financeform" id="financeform">
+    @Html.AntiForgeryToken()
+
+    <div class="mt-2 rounded-bottom shadow-sm mb-4">
+        <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+        <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+            <table class="table table-striped table-responsive-sm">
+                <tr>
+                    <th>
+                        كد شناسايي
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.ID)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        عنوان سند مالي
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.payment_item)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        مبلغ سند
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.payment_fee)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        نوع سند مالي
+                    </th>
+                    <td>
+                        @widgets.payment_type.Show_Payment_Type(Model.payment_type)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        حساب بانكي
+                    </th>
+                    <td>
+                        @Model.club_bankaccount.account_name
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        روش پرداخت
+                    </th>
+                    <td>
+                        @widgets.payment_method.Show_Payment_Method(Model.payment_method)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        تاريخ سند
+                    </th>
+                    <td>
+                        @Model.payment_date
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>

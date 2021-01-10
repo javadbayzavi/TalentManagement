@@ -1,0 +1,83 @@
+﻿@model ClubAdministration.Models.coach
+
+@{
+    ViewBag.Title = "پرونده مربي: " + " " + Model.FullName;
+}
+@widgets.common.ribbon.Show_Ribbon(Url, "coaches.details.default", "پرونده مربي" + (" " + Model.FullName), rootParams: new { id = Model.ID })
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4" id="accardion">
+    <div class="rounded-top px-2 py-3 border-bottom text-center bg-dark">
+        <img class="rounded-circle bg-light" style="width:200px;height:200px" />
+        <h3 class="pt-1 text-info">
+            @(Model.FullName)
+        </h3>
+    </div>
+    <ul class="nav nav-tabs pt-4 border border-top-0">
+        <li class="nav-item">
+            <a class="nav-link active" role="button" data-toggle="tab" data-parent="#accardion" aria-expanded="false" data-target="#tblBasicInfo" aria-controls="tblBasicInfo">اطلاعات پايه</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblContacts" aria-controls="tblContacts">اطلاعات تماس</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblPhysical" aria-controls="tblPhysical">مدارك مربي‌گري</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblMental" aria-controls="tblMental">دوره‌هاي آموزشي</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblIntelligence" aria-controls="tblIntelligence">جلسات تمرين</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblFitness" aria-controls="tblFitness">برنامه‌هفتگي</a>
+        </li>
+    </ul>
+
+    <div class="mt-2 rounded-bottom shadow-sm mb-4">
+        <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+        <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+            <table class="table table-striped table-responsive-sm">
+                <tr>
+                    <th>
+                        كد شناسايي
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.ID)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        نام مربي
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.FullName)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        تاريخ تولد
+                    </th>
+                    <td>
+                        @Model.coach_birthdate
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        جنسيت
+                    </th>
+                    <td>
+                        @widgets.gender_status.Show_Gender_Status(Model.coach_gender)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        تاريخ شروع همكاري
+                    </th>
+                    <td>
+                        @Model.registeration_date
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

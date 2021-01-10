@@ -1,0 +1,100 @@
+﻿@helper Show_Training_Fee_Type(int fee_type)
+{
+    switch (fee_type)
+    {
+        case 1:
+            <span>
+                ثابت ماهانه
+            </span>
+            break;
+        case 2:
+            <span>
+                ثابت كل دوره
+            </span>
+            break;
+        case 3:
+            <span>
+                ثابت جلسه‌اي
+            </span>
+            break;
+        case 4:
+            <span>
+                مشاركتي ماهانه
+            </span>
+            break;
+        case 5:
+            <span>
+                مشاركتي كل دوره
+            </span>
+            break;
+        case 6:
+            <span>
+                مشاركتي جلسه‌اي
+            </span>
+            break;
+        case 7:
+            <span>
+                مشاركتي جلسه‌ حضور
+            </span>
+            break;
+    }
+}
+
+@helper Entry_Training_Fee_Type(int selected)
+{
+    var fee_type = new List<SelectListItem>();
+    fee_type.Add(new SelectListItem()
+    {
+        Text = "ثابت ماهانه",
+        Value = "1"
+    });
+    fee_type.Add(new SelectListItem()
+    {
+        Text = "ثابت كل دوره",
+        Value = "2"
+    });
+    fee_type.Add(new SelectListItem()
+    {
+        Text = "ثابت جلسه‌اي",
+        Value = "3"
+    });
+    fee_type.Add(new SelectListItem()
+    {
+        Text = "مشاركتي ماهانه",
+        Value = "4"
+    });
+    fee_type.Add(new SelectListItem()
+    {
+        Text = "مشاركتي كل دوره",
+        Value = "5"
+    });
+    fee_type.Add(new SelectListItem()
+    {
+        Text = "مشاركتي جلسه‌اي",
+        Value = "6"
+    });
+    fee_type.Add(new SelectListItem()
+    {
+        Text = "مشاركتي جلسه‌ حضور",
+        Value = "7"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">شيوه محاسبه شهريه</label>
+            <select name="fee_type" id="fee_type" class="form-control">
+                @foreach (var item in fee_type)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

@@ -1,0 +1,15 @@
+﻿@helper Show_Notification()
+{
+    if (Session["TACTION_RESULT"] != null)
+    {
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">نتيجه</h4>
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>            
+            <hr>
+            <p class="mb-0">@Session["TACTION_RESULT"].</p>
+        </div>
+        Session["TACTION_RESULT"] = null;
+    }
+}

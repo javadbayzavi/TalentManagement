@@ -1,0 +1,49 @@
+﻿@helper Show_Technical_Foot(string active)
+{
+    switch (active)
+    {
+        case "1":
+            <span>
+                راست
+            </span>
+            break;
+        case "2":
+            <span>
+                چپ
+            </span>
+            break;
+    }
+}
+@helper Entry_Technical_Foot(string selected)
+{
+    var active = new List<SelectListItem>();
+    active.Add(new SelectListItem()
+    {
+        Text = "راست",
+        Value = "1"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "چپ",
+        Value = "2"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">پای تخصصی</label>
+            <select name="technical_foot" id="technical_foot" class="form-control">
+                @foreach (var item in active)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

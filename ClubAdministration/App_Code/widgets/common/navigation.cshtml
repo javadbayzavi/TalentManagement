@@ -1,0 +1,17 @@
+﻿@helper Show_Navigation(System.Web.Mvc.UrlHelper Url,ICollection<ClubAdministration.Models.ViewModels.navigations> navigations)
+{
+
+    <div class="breadcrumb bg-white pb-0 mb-0">
+        @if (navigations != null)
+        {
+            foreach (var navigation in navigations)
+            {
+                <a  class="breadcrumb-item"
+                    href="@Url.Action(navigation.action,navigation.controller)">
+                    @navigation.title
+                </a>
+            }
+        }
+        <input type="hidden" name="params" id="params" />
+    </div>
+}

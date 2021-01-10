@@ -1,0 +1,458 @@
+﻿@model ClubAdministration.Models.player
+
+@{
+    ViewBag.Title = "پرونده آموزشي " + " - " + Model.name + " " + Model.familiy;
+}
+
+
+@widgets.common.ribbon.Show_Ribbon(Url, "players.details.default", "پرونده آموزشي " + " - " + Model.name + " " + Model.familiy, rootParams: new { id = Model.ID })
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4" id="accardion">
+    <div class="rounded-top px-2 py-3 border-bottom text-center bg-dark">
+        <img class="rounded-circle bg-light" style="width:200px;height:200px" />
+        <h3 class="pt-1 text-info">
+            @(Model.name + " " + Model.familiy)
+        </h3>
+    </div>
+    <ul class="nav nav-tabs pt-4 border border-top-0">
+        <li class="nav-item">
+            <a class="nav-link active" role="button" data-toggle="tab" data-parent="#accardion" aria-expanded="false" data-target="#tblBasicInfo" aria-controls="tblBasicInfo">اطلاعات پايه</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblContacts" aria-controls="tblContacts">اطلاعات تماس</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblPhysical" aria-controls="tblPhysical">مشخصات فيزيكي</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblMental" aria-controls="tblMental">توانایی های ذهنی</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblIntelligence" aria-controls="tblIntelligence">هوش و استعداد</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblFitness" aria-controls="tblFitness">تناسب اندام</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblTechnique" aria-controls="tblTechnique">توانایی های تکنیکی</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblPosition" aria-controls="tblPosition">پست‌های تخصصی</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" role="button" data-toggle="collapse" data-parent="#accardion" aria-expanded="false" data-target="#tblTraining" aria-controls="tblTraining">دوره‌های ثبت نامی</a>
+        </li>
+    </ul>
+<div class="tab-content">
+    @*<h3 class="text-center d-sm-block rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0 tab-pane active" id="tblBasicInfo">
+        <table class="table table-striped table-responsive-sm">
+            <tr>
+                <td>
+                    كد شناسايي
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ID)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    نام
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    نام خانوادگي
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.familiy)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    سال تولد
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.birthyear)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ماه تولد
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.birthmonth)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    پاي تخصصي
+                </td>
+                <td>
+                    @widgets.technical_foot.Show_Technical_Foot(Model.Technical_Foot)
+                </td>
+            </tr>
+        </table>
+    </div>
+@*</div>
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">*@
+    @*<h3 class="text-center rounded-top p-3 border bg-light m-0" role="button" data-toggle="collapse" aria-expanded="false" data-target="#tblContacts" aria-controls="tblContacts">اطلاعات تماس</h3>*@
+    @*<button class="text-center rounded-top p-3 border bg-light m-0" role="button" data-toggle="collapse" aria-expanded="false" data-target="#tblContacts" aria-controls="tblContacts">اطلاعات تماس</button>
+    <button class="text-center rounded-top p-3 border bg-light m-0" role="button" data-toggle="collapse" aria-expanded="false" data-target="#tblContacts" aria-controls="tblContacts">اطلاعات تماس</button>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0 collapse " id="tblContacts">
+        <table class="table table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        تلفن
+                    </td>
+                    <td>
+                        آدرس
+                    </td>
+                </tr>
+            </thead>
+            @{
+                int index = 1;
+            }
+            @foreach (var item in Model.player_contacts)
+            {
+                <tr>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+@*</div>
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">مشخصات فیزیکی</h3>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0  collapse " id="tblPhysical">
+        <table class="table table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        قد
+                    </td>
+                    <td>
+                        وزن
+                    </td>
+                </tr>
+            </thead>
+            @{
+                index = 1;
+            }
+            @foreach (var item in Model.player_bodyshapes)
+            {
+                <tr>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.height)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.weight)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+@*</div>
+
+  
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">مشخصات توانایی های ذهنی</h3>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0 collapse " id="tblMental">
+        <table class="table table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        مصاحبت با فوتبال
+                    </td>
+                    <td>
+                        مربي‌پذيري
+                    </td>
+                    <td>
+                        علاقه‌مندي به فوتبال
+                    </td>
+                    <td>
+                        خودانگيزشي
+                    </td>
+                </tr>
+            </thead>
+            @{
+                index = 1;
+            }
+            @foreach (var item in Model.player_mindsets)
+            {
+                <tr>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.composure_mentalstrength)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.coachability)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.passion_love)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.self_motivation)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+@*</div>
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">مشخصات هوش و استعداد</h3>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0 collapse" id="tblIntelligence">
+        <table class="table table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        ارزيابي ريسك
+                    </td>
+                    <td>
+                        آگاهي محيطي
+                    </td>
+                    <td>
+                        دانش تاكتيكي
+                    </td>
+                </tr>
+            </thead>    
+            @{
+                index = 1;
+            }
+            @foreach (var item in Model.player_intelligences)
+            {
+                <tr>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.risk_assessment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.spatial_awareness)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tactical_knowledge)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+@*</div>
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">مشخصات توانایی تناسب اندام</h3>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0 collapse" id="tblFitness">
+        <table class="table table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        هماهنگي و تعادل
+                    </td>
+                    <td>
+                        تحمل
+                    </td>
+                    <td>
+                        سرعت
+                    </td>
+                    <td>
+                        قدرت و توان جسمي
+                    </td>
+                </tr>
+            </thead>
+            @{
+                index = 1;
+            }
+            @foreach (var item in Model.player_physical_fitness)
+            {
+                <tr>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.balance_coordination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.endurance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.speed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.stength_power)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+@*</div>
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">مشخصات توانایی های تکنیکی</h3>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0 collapse" id="tblTechnique">
+        <table class="table table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        كنترل توپ
+                    </td>
+                    <td>
+                        كنترل بدن
+                    </td>
+                    <td>
+                        مهارت دريبل زدن
+                    </td>
+                    <td>
+                        دقت پاس
+                    </td>
+                </tr>
+            </thead>
+            @{
+                index = 1;
+            }
+            @foreach (var item in Model.player_techniques)
+            {
+                <tr>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ball_control)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.body_control)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.driblling_skills)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pass_accuracy)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+@*</div>
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">مشخصات پست‌های تخصصی</h3>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0 collapse" id="tblPosition">
+        <table class="table table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        پست بازي
+                    </td>
+                    <td>
+                        ميزان علاقه‌مندي
+                    </td>
+                    <td>
+                        ميزان توانايي
+                    </td>
+                </tr>
+            </thead>
+            @{
+                index = 1;
+            }
+            @foreach (var item in Model.player_posts)
+            {
+                <tr>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.post)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.passion_motivation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.post_ability)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+@*</div>
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">لیست دوره‌های ثبت نامی</h3>*@
+    <div class="rounded-bottom px-2 py-2 border border-top-0 collapse" id="tblTraining">
+        <table class="table table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        عنوان دوره
+                    </td>
+                    <td>
+                        تاريخ ثبت نام
+                    </td>
+                </tr>
+            </thead>
+            @{
+                index = 1;
+            }
+            @foreach (var item in Model.player_registerations)
+            {
+                <tr>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        <a href="~/club/Details/@item.training_id">@item.training_terms.term_title</a>
+                    </td>
+                    <td>
+                        @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.registeration_date)*@
+                        @item.registeration_date
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+</div>
+

@@ -1,0 +1,37 @@
+﻿@model ClubAdministration.Models.coach_sessions
+@{
+    var session = (ClubAdministration.Models.training_sessions)ViewBag.session;
+    ViewBag.Title = "ثبت مربي جلسه تمرين" + session.training_terms.term_title;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">
+            افزودن مربيان تمرين <span style="color:darkgreen">@(session.training_terms.term_title)</span> مورخ  <span style="color:darkgreen">@session.session_date </span>
+        </h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            <input type="hidden" name="session_id" value="@session.ID" />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group row font-weight-bold">
+                <div class="col-4">
+                    @Html.Label("مربي", htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownList("coach_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.coach_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ثبت حضور  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به جلسه تمرین", "Coaches", new { id = session.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}

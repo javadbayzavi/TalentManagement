@@ -1,0 +1,49 @@
+﻿@helper Show_Payment_Method(int method)
+{
+    switch (method)
+    {
+        case 1:
+            <span style="color:dodgerblue">
+                نقدي
+            </span>
+            break;
+        case 2:
+            <span style="color: forestgreen">
+                غيرنقدي
+            </span>
+            break;
+    }
+}
+@helper Entry_Payment_Method(int selected)
+{
+    var payment_method = new List<SelectListItem>();
+    payment_method.Add(new SelectListItem()
+    {
+        Text = "نقدي",
+        Value = "1"
+    });
+    payment_method.Add(new SelectListItem()
+    {
+        Text = "غيرنقدي",
+        Value = "2"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-sm-12 col-md-6">
+            <label class="control-label col">شيوه پرداخت</label>
+            <select name="payment_method" id="payment_method" class="form-control">
+                @foreach (var item in payment_method)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

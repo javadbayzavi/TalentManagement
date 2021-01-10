@@ -1,0 +1,50 @@
+﻿@helper Show_Gender_Status(int gender)
+{
+    switch (gender)
+    {
+        case 1:
+            <span>
+                مرد
+            </span>
+            break;
+        case 2:
+            <span>
+                زن
+            </span>
+            break;
+    }
+}
+
+@helper Entery_Gender_Status(int selected)
+{
+    var fee_status = new List<SelectListItem>();
+    fee_status.Add(new SelectListItem()
+    {
+        Text = "مرد",
+        Value = "1"
+    });
+    fee_status.Add(new SelectListItem()
+    {
+        Text = "زن",
+        Value = "2"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">جنسيت</label>
+            <select name="gender_status" id="gender_status" class="form-control">
+                @foreach (var item in fee_status)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

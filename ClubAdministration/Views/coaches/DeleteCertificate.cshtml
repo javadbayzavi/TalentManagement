@@ -1,0 +1,59 @@
+﻿@model ClubAdministration.Models.coach_certificates
+
+@{
+    ViewBag.Title = "حذف مدرك مربي‌گري" + " " + Model.coach.FullName;
+}
+
+@using (Html.BeginForm("DeleteCertificate", "coaches", FormMethod.Post, new { name = "coachform", id = "coachform" }))
+{
+    @widgets.common.ribbon.Show_Ribbon(Url, "coaches.certificates.delete", "آيا از حذف مدرك مربي‌گري  " + (Model.coach.FullName + " مطمئن هستيد؟"), new { id = Model.ID }, new { id = Model.coach_id })
+    @Html.AntiForgeryToken()
+    <div class="mt-2 rounded-bottom shadow-sm mb-4">
+        <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات مدرك</h3>
+        <h3></h3>
+        <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+            <table class="table table-striped table-responsive-sm">
+                <tr>
+                    <td>
+                        كد شناسايي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ID)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        عنوان مدرك
+                    </td>
+                    <td>
+                        @Model.certificate_title
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        صادر كننده
+                    </td>
+                    <td>
+                        @Model.issuer.title
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        تاريخ اخذ مدرك
+                    </td>
+                    <td>
+                        @Model.certificate_date
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        تاريخ انقضاي مدرك
+                    </td>
+                    <td>
+                        @Model.certificate_expiredate
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}

@@ -1,0 +1,59 @@
+﻿@helper Show_Level_Play(int level)
+{
+    switch (level)
+    {
+        case 1:
+            <span style="color:aqua">
+                مقدماتي
+            </span>
+            break;
+        case 2:
+            <span style="color:forestgreen">
+                متوسط
+            </span>
+            break;
+        case 3:
+            <span style="color:darkcyan">
+                پيشرفته
+            </span>
+            break;
+    }
+}
+@helper Entry_Level_Play(int selected)
+{
+    var active = new List<SelectListItem>();
+    active.Add(new SelectListItem()
+    {
+        Text = "مقدماتي",
+        Value = "1"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "متوسط",
+        Value = "2"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "پيشرفته",
+        Value = "3"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-sm-12">
+            <label class="control-label">سطح تمرين</label>
+            <select name="drill_levelplay" id="drill_levelplay" class="form-control">
+                @foreach (var item in active)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

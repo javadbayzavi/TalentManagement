@@ -1,0 +1,50 @@
+﻿@helper Show_Fee_Status(int feeStatus)
+{
+    switch (feeStatus)
+    {
+        case 1:
+            <span style="color:forestgreen">
+                وصول شده
+            </span>
+            break;
+        case 2:
+            <span style="color:red">
+                وصول نشده
+            </span>
+            break;
+    }
+}
+
+@helper Entery_Fee_Status(int selected)
+{
+    var fee_status = new List<SelectListItem>();
+    fee_status.Add(new SelectListItem()
+    {
+        Text = "وصول شده",
+        Value = "1"
+    });
+    fee_status.Add(new SelectListItem()
+    {
+        Text = "وصول نشده",
+        Value = "2"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">وضعیت پرداخت</label>
+            <select name="fee_status" id="fee_status" class="form-control">
+                @foreach (var item in fee_status)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

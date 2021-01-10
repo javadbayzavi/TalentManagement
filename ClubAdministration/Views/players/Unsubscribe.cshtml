@@ -1,0 +1,52 @@
+﻿@model ClubAdministration.Models.player_registerations
+
+@{
+    ViewBag.Title = "انصراف" + " " + Model.player.name + " " + Model.player.familiy;
+}
+
+@using (Html.BeginForm("Unsubscribe", "players", FormMethod.Post, new { name = "playersform", id = "playersform" }))
+{
+    @widgets.common.ribbon.Show_Ribbon(Url, "players.subscriptions.delete", "آيا از حذف " + (Model.player.name + " " + Model.player.familiy) + "از کلاس " + Model.training_terms.term_title + "مطمئن هستيد؟", new { id = Model.ID }, new { id = Model.player_id })
+    @Html.AntiForgeryToken()
+    <div class="mt-2 rounded-bottom shadow-sm mb-4">
+        <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+        <h3></h3>
+        <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+            <table class="table table-striped table-responsive-sm">
+                <tr>
+                    <td>
+                        كد شناسايي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ID)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        نام و نام خانوادگي
+                    </td>
+                    <td>
+                        @(Model.player.name + " " + Model.player.familiy)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        کلاس آموزشی
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.training_terms.term_title)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        تاریخ ثبت نام
+                    </td>
+                    <td>
+                        @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(Model.registeration_date)*@
+                        @Model.registeration_date
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}

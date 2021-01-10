@@ -1,0 +1,92 @@
+﻿@model ICollection<ClubAdministration.Models.ViewModels.player_invoices>
+@{
+    //TODO: This view need to be refurbished totally
+    var player = (ClubAdministration.Models.player)ViewBag.player;
+    ViewBag.Title = "صورتحساب هزینه‌های " + player.name + " " + player.familiy;
+    var payouts = (List<ClubAdministration.Models.player_payouts>)ViewBag.payouts;
+    var pay = payouts.Where(a => a.club_deposite.payment_type == 1 && ClubAdministration.Library.Utilities.DateCompare.Compare(a.billed_date, DateTime.Today.ToString()) < 2).Sum(a => a.club_deposite.payment_fee);
+    var invo = Model.Sum(a => a.overallcost);
+    invo = Math.Round(invo);
+}
+@widgets.common.ribbon.Show_Ribbon(Url, "finance.player.invoices", "صورتحساب كلي " + player.name + " " + player.familiy, new { id = player.ID })
+
+
+<table class="table mt-3 table-responsive-sm border shadow-sm">
+    <thead>
+        <tr>
+            <th class="text-center table-danger">
+                <h2>
+                    هزينه‌ها
+                </h2>
+            </th>
+            <th class="text-center table-success">
+                <h2>
+                    پرداختي‌ها
+                </h2>
+            </th>
+        </tr>
+    </thead>
+    <tr>
+        <td>
+            @foreach (var item in Model)
+            {
+                <div class="col mb-1 text-center border-bottom">
+                    <h3>صورتحساب شركت در كلاس  "@item.training_term.term_title"</h3>
+                    <h2>
+                        <span style="color:lightcoral">
+                            @Math.Round(item.overallcost)
+                            ريال
+                        </span>
+                    </h2>
+                </div>
+            }
+            <div class="col mb-1 text-center border-bottom">
+                <h3>سایر هزینه‌ها</h3>
+                <h2>
+                    <span style="color:lightcoral">
+                        @{
+                            var otherinvoices = payouts.Where(a => a.club_deposite.payment_type == 2 && ClubAdministration.Library.Utilities.DateCompare.Compare(a.billed_date, DateTime.Today.ToString()) < 2).Sum(a => a.club_deposite.payment_fee);
+                        }
+                        @otherinvoices
+                        ریال
+                    </span>
+                </h2>
+            </div>
+            <div class="col mb-1 text-center mt-2">
+                <h2>
+                    مجموع هزينه‌ها
+                </h2>
+                <h1>
+                    <span class="text-danger">
+                        @(invo + otherinvoices)
+                        ريال
+                    </span>
+                </h1>
+            </div>
+        </td>
+        <td class="border">
+            <div class="col text-center">
+                <h3>
+                    پرداختی های وصول شده
+                </h3>
+                <h2>
+                    <span style="color:darkgreen">
+                        @payouts.Where(a => a.club_deposite.payment_type == 1 && ClubAdministration.Library.Utilities.DateCompare.Compare(a.billed_date, DateTime.Today.ToString()) < 2).Sum(a => a.club_deposite.payment_fee)
+                        ريال
+                    </span>
+                </h2>
+            </div>
+        </td>
+    <tr>
+        <td colspan="2" class="text-center">
+            <div class="col text-center border-top">
+                <h3>
+                    میزان باقیمانده
+                </h3>
+                <h2>
+                    @widgets.invoice_status.Show_Invoice_Status((pay - (invo + otherinvoices)))
+                </h2>
+            </div>
+        </td>
+    </tr>
+</table>

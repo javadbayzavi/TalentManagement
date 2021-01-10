@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ClubAdministration.Models.training_sessions>
+
+@{
+    var training = (ClubAdministration.Models.training_terms)ViewBag.training;
+    ViewBag.Title = "لیست جلسات تمرینی  " + training.term_title;
+}
+@using (Html.BeginForm("Sessions", "club",new { id=  training.ID }, FormMethod.Post, new { id = "trainingform", name = "trainingform" }))
+{
+    @widgets.common.ribbon.Show_Ribbon(Url, "training.list.sessions", "لیست جلسات تمرینی  " + training.term_title)
+
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+    @Html.AntiForgeryToken()
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3 text-center">ليست جلسات تمرين برگزار شده</h2>
+        <div class="px-2">
+            <table class="table text-center table-bordered table-hover w-100 table-responsive-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDSessions", new { @id = "chkwhole" })
+                        </th>
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            تاريخ برگزاري
+                        </th>
+                        <th class="text-center">
+                            ساعت شروع
+                        </th>
+                        <th class="text-center">
+                            ساعت پايان
+                        </th>
+                        <th class="text-center">
+                            تعداد شركت كننده‌گان
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int index = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("IDS", new { @value = item.ID, @class = "chkitem", @id = "chkitem" + (index) })
+                        </td>
+                        <td>
+                            @Html.Label((index++).ToString())
+                        </td>
+                        <td>
+                            @Html.ActionLink(
+                            @item.session_date.Substring(0,10),
+                            "Participants", "sessions", new { id = item.ID }, null)
+                        </td>
+                        <td>
+                            @item.start_time
+                        </td>
+                        <td>
+                            @item.end_time
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.participants.Count)
+                            بازیکن
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

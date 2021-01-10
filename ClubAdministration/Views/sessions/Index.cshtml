@@ -1,0 +1,209 @@
+﻿@model IEnumerable<ClubAdministration.Models.training_sessions>
+
+@{
+    ViewBag.Title = "جلسات تمرين";
+}
+
+@using (Html.BeginForm("Index", "sessions", FormMethod.Post, new { id = "sessionform", name = "sessionform" }))
+{
+    @Html.AntiForgeryToken()
+    @widgets.common.ribbon.Show_Ribbon(Url, "sessions.list.default", "مديريت جلسات تمرين")
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">جلسات تمرين بسته نشده</h2>
+        <div class="px-2">
+            <table class=" table table-responsive-sm text-center w-100">
+                @{
+                    int index = 1;
+                    var grouped = Model.OrderByDescending(e => e.se_date).GroupBy(a => a.training_terms).ToList();
+                }
+
+                    @foreach (var grp in grouped)
+                    {
+                        if (grp.Where(a => a.session_closed < 1).Count() > 0)
+                        {
+                            <tr class="table-borderless">
+                                <td class="">
+                                    <h3 class="table-light border border-bottom-0 accordion py-2 m-0 rounded-top shadow-sm">
+                                        @grp.First().training_terms.term_title
+                                    </h3>
+                                    <div class="border rounded-bottom p-2 text-center">
+                                        <table class="table text-center table-hover table-bordered table-responsive-sm py-0 m-0">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>
+                                                        @Html.CheckBox("IDSession", new { @id = "chkwhole" })
+                                                    </th>
+                                                    <th class="text-center">
+                                                        #
+                                                    </th>
+                                                    <th class="text-center">
+                                                        كلاس آموزشي
+                                                    </th>
+                                                    <th class="text-center">
+                                                        تاريخ برگزاري
+                                                    </th>
+                                                    <th class="d-none d-md-table-cell text-center">
+                                                        تعداد شركت كننده
+                                                    </th>
+                                                    <th class="d-none d-md-table-cell text-center">
+                                                        جلسه جمع بندي شده
+                                                    </th>
+                                                    <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                                                        عمليات
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            @foreach (var item in grp)
+                                            {
+
+                                                if (item.session_closed < 1)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
+                                                        </td>
+                                                        <td>
+                                                            @Html.Label((index++).ToString())
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.training_terms.term_title)
+                                                        </td>
+                                                        <td>
+                                                            @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.session_date)*@
+                                                            @item.session_date
+                                                        </td>
+                                                        <td class="d-none d-md-table-cell text-center">
+                                                            @item.participants.Count.ToString()
+                                                        </td>
+                                                        <td class="d-none d-md-table-cell text-center">
+                                                            @widgets.session_closed.Show_Session_Closed(item.session_closed.GetValueOrDefault())
+                                                        </td>
+                                                        <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                                                            @Html.ActionLink("شرکت ‌کنندگان", "Participants", new { id = item.ID }) |
+                                                            @Html.ActionLink("ويرايش", "Edit", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">آخرين جلسات تمرين برگزار شده</h2>
+        <div class="px-2">
+            <table class=" table table-responsive-sm text-center w-100">
+                @{
+                    index = 1;
+                }
+
+                    @foreach (var grp in grouped)
+                    {
+                        if (grp.Count() > 0)
+                        {
+                            <tr>
+                                <td>
+                                    <h3 class="table-light border border-bottom-0 accordion py-2 m-0 rounded-top shadow-sm">
+                                        @grp.First().training_terms.term_title
+                                    </h3>
+                                    <div class="border rounded-bottom p-2 text-center">
+                                        <table class="table text-center table-hover table-bordered table-responsive-sm py-0 m-0">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>
+                                                        @Html.CheckBox("IDSession", new { @id = "chkwhole" })
+                                                    </th>
+                                                    <th class="text-center">
+                                                        #
+                                                    </th>
+                                                    <th class="text-center">
+                                                        كلاس آموزشي
+                                                    </th>
+                                                    <th class="text-center">
+                                                        تاريخ برگزاري
+                                                    </th>
+                                                    <th class="d-none d-md-table-cell text-center">
+                                                        تعداد شركت كننده
+                                                    </th>
+                                                    <th class="d-none d-md-table-cell text-center">
+                                                        جلسه جمع بندي شده
+                                                    </th>
+                                                    <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                                                        عمليات
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            @foreach (var item in grp)
+                                            {
+
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
+                                                    </td>
+                                                    <td>
+                                                        @Html.Label((index++).ToString())
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.training_terms.term_title)
+                                                    </td>
+                                                    <td>
+                                                        @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.session_date)*@
+                                                        @item.session_date
+                                                    </td>
+                                                    <td class="d-none d-md-table-cell text-center">
+                                                        @item.participants.Count.ToString()
+                                                    </td>
+                                                    <td class="d-none d-md-table-cell text-center">
+                                                        @widgets.session_closed.Show_Session_Closed(item.session_closed.GetValueOrDefault())
+                                                    </td>
+                                                    <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                                                        @Html.ActionLink("شرکت ‌کنندگان", "Participants", new { id = item.ID }) |
+                                                        @Html.ActionLink("ويرايش", "Edit", new { id = item.ID }) |
+                                                        @Html.ActionLink("جزئيات", "Details", new { id = item.ID }) |
+                                                        @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+}    
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

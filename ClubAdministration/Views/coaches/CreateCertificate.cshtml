@@ -1,0 +1,74 @@
+﻿@model ClubAdministration.Models.coach_certificates
+@{
+    var coach = (ClubAdministration.Models.coach)ViewBag.coach;
+    ViewBag.Title = "ثبت مدرك مربي‌گري براي " + coach.FullName;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">ثبت مدرك مربي‌گري @coach.FullName</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.Hidden("coach_id", coach.ID)
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("عنوان مدرك", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.certificate_title, new { htmlAttributes = new { @id = "registeration_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.certificate_title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("سازمان / اعطاكننده", htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownList("issuer_id", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.issuer_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ اخذ مدرك", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.certificate_date, new { htmlAttributes = new { @id = "certificate_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.certificate_date, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ انقضاي مدرك", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.certificate_expiredate, new { htmlAttributes = new { @id = "certificate_expiredate", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.certificate_expiredate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ايجاد  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "Certificates", new { id = coach.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
+<script type="text/javascript">
+    $('#certificate_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#certificate_date',
+    });
+    $('#certificate_expiredate').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#certificate_expiredate',
+    });
+</script>

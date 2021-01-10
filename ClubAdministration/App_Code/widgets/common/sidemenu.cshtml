@@ -1,0 +1,26 @@
+﻿@helper Show_SideMenu(System.Web.Mvc.UrlHelper Url,ICollection<ClubAdministration.Models.ViewModels.menuitems> menuitems)
+{
+    <div class="row pt-2">
+        <div class="col">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                @if (menuitems != null)
+                {
+                    foreach (var menuitem in menuitems)
+                    {
+                        if (menuitem.active)
+                        {
+                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">كلاس‌ها فوتبال</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" role="tab" aria-controls="v-pills-home" aria-selected="true"
+                               href="@Url.Action(menuitem.controller, menuitem.action)">
+                                @menuitem.title
+                            </a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}

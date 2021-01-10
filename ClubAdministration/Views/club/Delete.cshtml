@@ -1,0 +1,82 @@
+﻿@model ClubAdministration.Models.training_terms
+
+@{
+    ViewBag.Title = "حذف کلاس آموزشی" + " " + Model.term_title;
+}
+
+@widgets.common.ribbon.Show_Ribbon(Url, "training.delete.default", "آیا از حذف کلاس " + (" " + Model.term_title) + "اطمینان دارید؟", rootParams: new { id = Model.ID })
+    <form action="/" method="post" id="trainingform" name="trainingform">
+        @Html.AntiForgeryToken()
+
+    <div class="mt-2 rounded-bottom shadow-sm mb-4">
+        <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+        <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+            <table class="table table-striped table-responsive-sm">
+                <tr>
+                    <td>
+                        كد شناسايي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ID)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        عنوان كلاس آموزشي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.term_title)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        تاريخ شروع كلاس
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.start_date)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ظرفيت كلاس
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.max_player)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        تعداد جلسات در هفته
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.session_per_week)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        روزهاي هفته
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.weekdays)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        وضعيت برگزاري كلاس
+                    </td>
+                    <td>
+                        @widgets.training_active.Show_Training_Active(Model.active.GetValueOrDefault())
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        شيوه محاسبه شهريه
+                    </td>
+                    <td>
+                        @widgets.fee_type.Show_Training_Fee_Type(Model.fee_type.GetValueOrDefault())
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,100 @@
+﻿@model ClubAdministration.Models.training_sessions
+
+@{
+    ViewBag.Title = "ویرایش جلسه تمرين";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">جزئيات جلسه</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("كلاس آموزش", htmlAttributes: new { @class = "control-label col" })
+                    @Html.DropDownList("trainingterms_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.trainingterms_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("تاريخ برگزاري", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.session_date, new { htmlAttributes = new { @id = "session_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.session_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("ساعت شروع", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.start_time, new { htmlAttributes = new { @id = "start_time", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.start_time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("ساعت پايان", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.end_time, new { htmlAttributes = new { @id = "end_time", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.end_time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("تعداد شركت كننده‌گان", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.attendance_number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.attendance_number, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @widgets.session_closed.Entry_Session_Closed(Model.session_closed.GetValueOrDefault())
+
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ذخیره  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "Index", null, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<link rel="stylesheet" href="~/Scripts/timepicker/jquery.timepicker.min.css">
+<script src="~/Scripts/timepicker/jquery.timepicker.min.js"></script>
+<script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
+<script type="text/javascript">
+    $('#session_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#session_date',
+    });
+    $('#start_time').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: '6:00am',
+        maxTime: '23:59pm',
+        startTime: '6:00am',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+    $('#end_time').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: '6:00am',
+        maxTime: '23:59pm',
+        startTime: '6:00am',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+</script>

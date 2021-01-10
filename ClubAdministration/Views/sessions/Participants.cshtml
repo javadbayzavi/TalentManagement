@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ClubAdministration.Models.player_sessions>
+@{
+    var session = (ClubAdministration.Models.training_sessions)ViewBag.session;
+}
+
+@{
+    ViewBag.Title = "حاضران در جلسه تمرين" + session.training_terms.term_title;
+
+}
+@using (Html.BeginForm("Participants", "sessions", new { id = session.ID }, FormMethod.Post, new { id = "Participantsform", name = "Participantsform" }))
+{
+    @Html.AntiForgeryToken()
+    @widgets.common.ribbon.Show_Ribbon(Url, "sessions.participants.default", "حاضران جلسات تمرين", new { id = session.ID })
+
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3 text-center">
+            ليست شركت كنند‌گان در تمرين <span style="color:darkgreen">@(session.training_terms.term_title)</span> مورخ  <span style="color:darkgreen">@session.session_date</span>
+        </h2>
+        <div class="px-2">
+            <table class="table text-center table-bordered table-hover w-100 table-responsive-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDParticipants", new { @id = "chkwhole" })
+                        </th>
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th>
+                            نام بازيكن
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                            نام كلاس تمرين
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                            تاريخ جلسه تمرين
+                        </th>
+                        <th class="d-none d-md-table-cell text-center">
+                            ساعت ورود
+                        </th>
+                        <th class="d-none d-md-table-cell text-center">
+                            ساعت ورود
+                        </th>
+                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            عمليات
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int index = 1;
+                }
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
+                        </td>
+                        <th scope="row">
+                            @Html.Label((index++).ToString())
+                        </th>
+                        <td>
+                            @Html.ActionLink((item.player.name + " " + item.player.familiy), "Details", "players", new { id = item.player_id }, null)
+                        </td>
+                        <td class="d-none d-lg-table-cell text-center">
+                            @Html.ActionLink(item.session.training_terms.term_title, "Details", "club", new { id = item.session.trainingterms_id }, null)
+                        </td>
+                        <td class="d-none d-lg-table-cell text-center">
+                            @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.session.session_date)*@
+                            @item.session.session_date
+                        </td>
+                        <td class="d-none d-md-table-cell text-center">
+                            @Html.DisplayFor(modelItem => item.hour_in)
+                        </td>
+                        <td class="d-none d-md-table-cell text-center">
+                            @Html.DisplayFor(modelItem => item.hour_out)
+                        </td>
+                        <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            @Html.ActionLink("ويرايش", "EditParticipant", new { id = item.ID }) |
+                            @Html.ActionLink("جزئيات", "DetailsParticipant", new { id = item.ID }) |
+                            @Html.ActionLink("حذف", "DeleteParticipant", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+}
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

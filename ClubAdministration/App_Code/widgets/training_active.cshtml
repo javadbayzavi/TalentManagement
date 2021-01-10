@@ -1,0 +1,69 @@
+﻿@helper Show_Training_Active(int active)
+{
+    switch (active)
+    {
+        case 1:
+            <span style="color:aqua">
+                در حال برنامه‌ريزي
+            </span>
+            break;
+        case 2:
+            <span style="color:forestgreen">
+                در حال اجرا
+            </span>
+            break;
+        case 3:
+            <span style="color:darkcyan">
+                به پايان رسيده
+            </span>
+            break;
+        case 4:
+            <span style="color:red">
+                لغو شده
+            </span>
+            break;
+    }
+}
+@helper Entry_Training_Active(int selected)
+{
+    var active = new List<SelectListItem>();
+    active.Add(new SelectListItem()
+    {
+        Text = "در حال برنامه‌ريزي",
+        Value = "1"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "در حال اجرا",
+        Value = "2"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "به پايان رسيده",
+        Value = "3"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "لغو شده",
+        Value = "4"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">وضعيت اجراي كلاس</label>
+            <select name="active" id="active" class="form-control">
+                @foreach (var item in active)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

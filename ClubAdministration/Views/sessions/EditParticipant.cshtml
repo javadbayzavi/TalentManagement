@@ -1,0 +1,59 @@
+﻿@model ClubAdministration.Models.player_sessions
+
+@{
+    ViewBag.Title = "ويرايش شركت كنندگان جلسه تمرين" + Model.session.training_terms.term_title;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">
+            ويرايش شركت كنند‌گان در تمرين <span style="color:darkgreen">@(Model.session.training_terms.term_title)</span> مورخ  <span style="color:darkgreen">@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(Model.session.session_date) </span>
+        </h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+            @Html.HiddenFor(model => model.player_id)
+            @Html.HiddenFor(model => model.session_id)
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("بازيكن", htmlAttributes: new { @class = "control-label col" })
+                    @Html.TextBox("player_name", Model.player.name + " " + Model.player.familiy, htmlAttributes: new { @class = "form-control", @disabled = "disable" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("جلسه تمرين", htmlAttributes: new { @class = "control-label col" })
+                    @Html.TextBox("session_name", Model.session.training_terms.term_title, htmlAttributes: new { @class = "form-control", @disabled = "disable" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("ساعت ورود", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.hour_in, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.hour_in, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col">
+                    @Html.Label("ساعت خروج", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.hour_out, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.hour_out, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ذخيره  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به جلسه تمرین", "Participants", new { id = Model.session.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}

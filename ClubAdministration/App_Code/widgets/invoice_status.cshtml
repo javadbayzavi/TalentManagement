@@ -1,0 +1,20 @@
+﻿@helper Show_Invoice_Status(double feeStatus)
+{
+    if (feeStatus >= 0)
+    {
+        <span style="color:forestgreen">
+            @feeStatus
+            ريال - بستانكار
+        </span>
+    }
+
+    if (feeStatus < 0)
+    {
+        <span style="color:red">
+            @( Math.Abs(feeStatus))
+            ريال - بدهكار
+        </span>
+    }
+
+}
+

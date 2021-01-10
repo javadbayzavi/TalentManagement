@@ -1,0 +1,20 @@
+﻿@helper Show_Search_Form(string searchPattern)
+{
+    <div class="col-sm-12 border rounded mt-2 p-2 shadow-sm" style="border-color:lightgray">
+        <div class="form-inline">
+            <div class="form-group mr-1">
+                <div class="form-row">
+                    <div class="d-none d-md-block col-auto my-1">
+                        <label class="">جستجو:‌</label>
+                    </div>
+                    <div class="col-auto my-1">
+                        <input class="form-control" type="text" value="@searchPattern" name="search" id="search" placeholder="جستجو..." />
+                    </div>
+                    <div class="col-auto my-1">
+                        <input type="submit" class="form-control btn-primary" value=" جستجو " name="searchbtn" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

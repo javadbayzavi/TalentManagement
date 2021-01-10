@@ -1,0 +1,38 @@
+﻿@model ClubAdministration.Models.payment_category
+
+@widgets.common.ribbon.Show_Ribbon(Url, "finance.categories.details", "جزئيات دسته‌بندي " + (" " + Model.category_title), rootParams: new { id = Model.ID })
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+    <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+        <table class="table table-striped table-responsive-sm">
+            <tr>
+                <td>
+                    كد شناسايي
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ID)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    دسته‌بندي
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.category_title)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    دسته‌بندي بالاسري
+                </td>
+                <td>
+                    @if(ViewBag.parent != "")
+                    {
+                        @Html.ActionLink((string)ViewBag.parent, "DetailsCategory", new { id = Model.parent_id });
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

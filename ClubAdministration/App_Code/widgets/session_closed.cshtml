@@ -1,0 +1,42 @@
+﻿@helper Show_Session_Closed(int closed)
+{
+
+    string red = "red";
+    string green = "green";
+
+    <span style="color:@((closed > 0) ? green : red)">@((closed > 0) ? "بله" : "خير")</span>
+}
+
+@helper Entry_Session_Closed(int selected)
+{
+    var sessionClosed = new List<SelectListItem>();
+    sessionClosed.Add(new SelectListItem()
+    {
+        Text = "خیر",
+        Value = "0"
+    });
+    sessionClosed.Add(new SelectListItem()
+    {
+        Text = "بله",
+        Value = "1"
+    });
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">جلسه جمع بندی شده؟</label>
+            <select name="session_closed" id="session_closed" class="form-control">
+                @foreach (var item in sessionClosed)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,171 @@
+﻿@model IEnumerable<ClubAdministration.Models.club_deposite>
+
+@{
+    ViewBag.Title = "مديريت مالي";
+}
+
+@using (Html.BeginForm("Index", "finance", FormMethod.Post, new { id = "financeform", name = "financeform" }))
+{
+    @Html.AntiForgeryToken()
+    @widgets.common.ribbon.Show_Ribbon(Url, "finance.list.default", "مديريت مالي باشگاه")
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+
+    <div class="container-fluid text-center border rounded shadow-sm mt-2 mb-2 p-0">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">وضعيت موجود</h2>
+        <div class="row m-0 px-sm-1">
+            <div class="col-sm-12 col-md-4">
+                <div class="border rounded my-2">
+                    <h3 class="bg-success py-1">مجموع دریافتی</h3>
+                    <h2 style="color:darkgreen">
+                        @{
+                            var sumincome = ViewBag.sumincome;
+                        }
+                        @sumincome
+                        ریال
+                    </h2>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class=" border rounded my-2">
+                    <h3 class="bg-warning py-1">مجموع پرداختی</h3>
+                    <h2 style="color:orangered">
+                        @{
+                            var sumoutpay = ViewBag.sumoutpay;
+                        }
+                        @sumoutpay
+                        ریال
+                    </h2>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="border rounded my-2">
+                    <h3 class="py-1 bg-info">موجودي فعلي</h3>
+                    <h2>
+                        @{
+                            var balance = sumincome - sumoutpay;
+                            widgets.fee_status.Show_Fee_Status(balance);
+                        }
+                        @balance
+                        ریال
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">آخرين تراكنش‌هاي مالي</h2>
+        <div class="px-2">
+            <table class=" table table-responsive-sm text-center w-100">
+                @{
+                    int index = 1;
+                    int tblcnt = 1;
+                }
+
+                @foreach (var account in Model.GroupBy(a => a.club_bankaccount).ToList())
+                {
+                    <tr>
+                        <td>
+                            <h3 class="table-light border border-bottom-0 accordion py-2 m-0 rounded-top shadow-sm">
+                                @account.First().club_bankaccount.account_name
+                            </h3>
+                            <div class="border rounded-bottom p-2 text-center">
+                                <table class="table text-center table-hover table-bordered table-responsive-sm py-0 m-0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>
+                                                @Html.CheckBox("IDFinance", new { @id = "chkwhole" + tblcnt.ToString() })
+                                            </th>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+                                            <th class="text-center">
+                                                آيتم پرداختي
+                                            </th>
+                                            <th class="d-none d-lg-table-cell text-center">
+                                                دسته بندي سند
+                                            </th>
+                                            <th class="text-center">
+                                                مبلغ پرداختي (ريال)
+                                            </th>
+                                            <th class="d-none d-md-table-cell text-center">
+                                                نوع سند
+                                            </th>
+                                            <th class="d-none d-md-table-cell text-center">
+                                                روش پرداخت
+                                            </th>
+                                            <th class="text-center">
+                                                تاريخ پرداخت
+                                            </th>
+                                            <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                                                عمليات
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in account.OrderByDescending(a => a.pa_date))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
+                                            </td>
+                                            <th scope="row">
+                                                @Html.Label((index++).ToString())
+                                            </th>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.payment_item)
+                                            </td>
+                                            <td class="d-none d-lg-table-cell text-center">
+                                                @Html.DisplayFor(modelItem => item.payment_category.category_title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.payment_fee)
+                                            </td>
+                                            <td class="d-none d-md-table-cell text-center">
+                                                @widgets.payment_type.Show_Payment_Type(item.payment_type)
+                                            </td>
+                                            <td class="d-none d-md-table-cell text-center">
+                                                @widgets.payment_method.Show_Payment_Method(item.payment_method)
+                                            </td>
+                                            <td>
+                                                @ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.payment_date)
+                                            </td>
+                                            <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                                                @Html.ActionLink("ويرايش", "Edit", new { id = item.ID }) |
+                                                @Html.ActionLink("جزئيات", "Details", new { id = item.ID }) |
+                                                @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+    <script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

@@ -1,0 +1,102 @@
+﻿@model ClubAdministration.Models.training_terms
+
+@{
+    ViewBag.Title = "ويرايش اطلاعات " + " - " + Model.term_title;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-info text-center p-2 m-0 rounded-top">اطلاعات کلاس آموزشی</h4>
+        <div class="container-fluid border-info border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger bg-warning" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group row">
+                <div class="col">
+                    @Html.Label("عنوان كلاس آموزشي", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.term_title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.term_title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ شروع كلاس", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @id = "start_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ پايان كلاس", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.end_date, new { htmlAttributes = new { @id = "end_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.end_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("ساعت شروع كلاس", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.start_time, new { htmlAttributes = new { @id = "start_time", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.start_time, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("ساعت پايان كلاس", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.end_time, new { htmlAttributes = new { @id = "end_time", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.end_time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4 col-sm-12">
+                    @Html.Label("ظرفيت كلاس", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.max_player, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.max_player, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    @Html.Label("تعداد جلسات در هفته", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.session_per_week, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.session_per_week, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    @Html.Label("روزهاي هفته", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.weekdays, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.weekdays, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @widgets.training_active.Entry_Training_Active(Model.active.GetValueOrDefault())
+
+            @widgets.fee_type.Entry_Training_Fee_Type(Model.fee_type.GetValueOrDefault())
+
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="‌‌‌  ذخیره  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "Index", null, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
+<script type="text/javascript">
+    $('#start_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#start_date',
+        fromDate: true,
+    });
+    $('#end_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        targetTextSelector: '#end_date',
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        toDate: true,
+    });
+</script>

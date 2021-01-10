@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ClubAdministration.Models.player_payouts>
+@{
+    //TODO: This view need to be refurbished totally
+    ViewBag.Title = "ليست پرداختي‌ها و دريافتي هاي " + ViewBag.fullname;
+}
+
+@using (Html.BeginForm("PlayerPayments","finance",FormMethod.Post))
+{
+    @widgets.common.ribbon.Show_Ribbon(Url, "finance.playerpayments.default", "مدیریت مالی: پرداختی بازیکنان", new { id = ViewBag.pl_id })
+
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+    
+    @Html.AntiForgeryToken()
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3 text-center">لیست پرداختی های و هزینه‌های @(ViewBag.fullname)</h2>
+        <div class="px-2">
+            <table class="table text-center table-bordered table-hover w-100 table-responsive-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDPlayers", new { @id = "chkwhole" })
+                        </th>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            آيتم پرداختي
+                        </th>
+                        <th>
+                            مبلغ پرداختي (ريال)
+                        </th>
+                        <th>
+                            نوع سند
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                            روش پرداخت
+                        </th>
+                        <th class="d-none d-md-table-cell text-center">
+                            تاريخ پرداخت
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                            وصول شده؟
+                        </th>
+                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            عمليات
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int index = 1;
+                }
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
+                        </td>
+                        <th scope="row">
+                            @Html.Label((index++).ToString())
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.club_deposite.payment_item)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.club_deposite.payment_fee)
+                        </td>
+                        <td>
+                            @widgets.payment_type.Show_Payment_Type(item.club_deposite.payment_type)
+                        </td>
+                        <td class="d-none d-lg-table-cell text-center">
+                            @widgets.payment_method.Show_Payment_Method(item.club_deposite.payment_method)
+                        </td>
+                        <td class="d-none d-md-table-cell text-center">
+                            @item.club_deposite.payment_date
+                        </td>
+                        <td class="d-none d-lg-table-cell text-center">
+                            @widgets.fee_status.Show_Fee_Status(item.fee_status.GetValueOrDefault())
+                        </td>
+                        <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            @Html.ActionLink("ويرايش پرداخت", "EditPLayerPayment", new { id = item.ID }) |
+                            @Html.ActionLink("جزئيات پرداخت", "DetailsPlayerPayment", new { id = item.ID }) |
+                            @Html.ActionLink("حذف سند پرداخت", "DeletePlayerPayment", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

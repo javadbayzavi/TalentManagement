@@ -1,0 +1,140 @@
+﻿@*@model IEnumerable<ClubAdministration.Models.player_registerations>*@
+
+@{
+    //TODO: This view need to be refurbished totally
+    var session = (ClubAdministration.Models.training_sessions)ViewBag.session;
+    var price = (System.Double)ViewBag.price;
+    var players = (List<ClubAdministration.Models.player_registerations>)ViewBag.players;
+    var priceperplayer = (players != null && players.Count() > 0) ? price / players.Count() : 0;
+    ViewBag.Title = "هزينه جلسه تمرين " + session.training_terms.term_title;
+}
+
+@widgets.common.ribbon.Show_Ribbon(Url, "finance.sessioncost.default", "مديريت مالي:‌ جلسه تمرين " + session.training_terms.term_title, new { id = session.trainingterms_id })
+@widgets.common.search.Show_Search_Form(ViewBag.search)
+
+<div class="px-0 border rounded-bottom shadow-sm my-2">
+    <h2 class="bg-light py-3 shadow-sm text-center">جزئیات هزينه‌هاي جلسه تمرین @session.training_terms.term_title</h2>
+    <div class="px-2 mt-3">
+        <table class="table table-bordered">
+            <tr>
+                <th class="table-active">
+                    كد شناسايي
+                </th>
+                <td>
+                    @session.ID
+                </td>
+                <th class="table-active">
+                    عنوان كلاس آموزشي
+                </th>
+                <td>
+                    @Html.ActionLink(
+                    @session.training_terms.term_title,
+                    "Details", "club", new { id = session.trainingterms_id }, new { @title = "مشاهده جزئيات كلاس آموزشي" + session.training_terms.term_title })
+                </td>
+            </tr>
+            <tr>
+                <th class="table-active">
+                    تاریخ جلسه تمرین
+                </th>
+                <td>
+                    @ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(session.session_date)
+                </td>
+                <th class="table-active">
+                    تعداد شرکت کنندگان
+                </th> 
+                <td>
+                    @Html.ActionLink(
+                    @session.participants.Count.ToString() + " بازيكن",
+                    "Participants", "sessions", new { id = session.ID }, new { @title = "مشاهده شركت كنندگان در جلسه تمرين " + session.training_terms.term_title })
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+    <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top py-3">بازيكنان ثبت‌نامي تا اين جلسه</h2>
+    <div class="px-2">
+        <table class=" table table-hover table-responsive-sm text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.CheckBox("IDSessionCosts", new { @id = "chkwhole" })
+                    </th>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        نام و نام خانوادگي بازيكن
+                    </th>
+                    <th class="d-none d-lg-table-cell text-center">
+                        تاريخ ثبت نام
+                    </th>
+                    <th class="d-none d-md-table-cell text-center">
+                        ميزان شهريه جلسه تمرين
+                    </th>
+                    <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                        عمليات
+                    </th>
+                </tr>
+            </thead>
+            @{
+                int index = 1;
+            }
+
+            @foreach (var item in players)
+            {
+                <tr>
+                    <td>
+                        @Html.CheckBox("IDS", new { @value = item.player_id, @class = "chkitem", @id = "chkitem" + (index) })
+                    </td>
+                    <td>
+                        @Html.Label((index++).ToString())
+                    </td>
+                    <td>
+                        @Html.ActionLink(
+                        (item.player.name + " " + item.player.familiy),
+                        "Details", "players", new { id = item.player_id }, new { @title = "مشاهده پرونده بازيكن" })
+                    </td>
+                    <td class="d-none d-lg-table-cell text-center">
+                        @item.registeration_date
+                    </td>
+                    <td class="d-none d-md-table-cell text-center">
+                        @Math.Round(priceperplayer)
+                        ريال
+                    </td>
+                    <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                        @Html.ActionLink("صورتحساب بازيكن", "PlayerInvoices", new { id = item.player_id }) |
+                        @Html.ActionLink("شهريه‌هاي بازيكن", "PlayerCosts", new { id = item.player_id })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

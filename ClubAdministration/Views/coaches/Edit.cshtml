@@ -1,0 +1,75 @@
+﻿@model ClubAdministration.Models.coach
+
+@{
+    ViewBag.Title = "ويرايش اطلاعات " + " - " + Model.FullName;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">مشخصات مربي</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger bg-warning" })
+            @Html.HiddenFor(model => model.ID)
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("نام", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.coach_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.coach_name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("نام خانوادگي", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.coach_family, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.coach_family, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ تولد", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.coach_birthdate, new { htmlAttributes = new { @id = "coach_birthdate", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.coach_birthdate, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ شروع فعاليت", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.registeration_date, new { htmlAttributes = new { @id = "registeration_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.registeration_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @widgets.gender_status.Entery_Gender_Status(Model.coach_gender)
+
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="‌‌‌  ذخيره  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "Index", null, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<link rel="stylesheet" href="~/Scripts/timepicker/jquery.timepicker.min.css">
+<script src="~/Scripts/timepicker/jquery.timepicker.min.js"></script>
+<script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
+<script type="text/javascript">
+    $('#coach_birthdate').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#coach_birthdate',
+    });
+    $('#registeration_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#registeration_date',
+    });
+</script>
+

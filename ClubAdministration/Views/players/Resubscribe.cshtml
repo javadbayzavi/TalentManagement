@@ -1,0 +1,85 @@
+﻿@model ClubAdministration.Models.player_registerations
+@{
+    ViewBag.Title = "ویرایش ثبت نام در کلاس";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">ویرایش ثبت نام @Model.player.fullname در کلاس</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.player_id)
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("كلاس آموزشي", htmlAttributes: new { @class = "control-label " })
+                    @Html.Label(Model.training_terms.term_title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.training_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.training_id)
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ ثبت‌ نام", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.registeration_date, new { htmlAttributes = new { @id = "registeration_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.registeration_date, "", new { @class = "text-danger" })
+                    @Html.Hidden("training_sdate", Model.training_terms.start_date, new { @id = "tstart_date" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ خاتمه کلاس", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.resignation_date, new { htmlAttributes = new { @id = "resignation_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.registeration_date, "", new { @class = "text-danger" })
+                    @Html.Hidden("training_edate", Model.training_terms.end_date, new { @id = "tend_date" })
+                </div>
+            </div>
+
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ذخیره  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "Subscriptions", new { id = Model.player_id }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
+<script type="text/javascript">
+        $('#tstart_date').MdPersianDateTimePicker({
+            englishNumber: true,
+            enableTimePicker: true,
+            groupId: 'datesel',
+            fromDate : true,
+            dateFormat : 'yyyy/MM/dd-HH:mm:ss',
+            targetTextSelector: '#tstart_date',
+        });
+        $('#registeration_date').MdPersianDateTimePicker({
+            englishNumber: true,
+            enableTimePicker: true,
+            groupId : 'datesel',
+            dateFormat : 'yyyy/MM/dd-HH:mm:ss',
+            targetTextSelector: '#registeration_date',
+        });
+        $('#resignation_date').MdPersianDateTimePicker({
+            englishNumber: true,
+            enableTimePicker: true,
+            groupId : 'datesel',
+            dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+            targetTextSelector: '#resignation_date',
+        });
+        $('#tend_date').MdPersianDateTimePicker({
+            englishNumber: true,
+            enableTimePicker: true,
+            groupId: 'datesel',
+            toDate : true,
+            dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+            targetTextSelector: '#tend_date',
+        });
+</script>

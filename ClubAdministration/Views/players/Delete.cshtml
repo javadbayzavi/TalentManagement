@@ -1,0 +1,67 @@
+﻿@model ClubAdministration.Models.player
+
+@{
+    ViewBag.Title = "حذف" + " " + Model.name + " " + Model.familiy;
+}
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { @name = "playerform", @id = "playerform" }))
+{
+    @widgets.common.ribbon.Show_Ribbon(Url, "players.delete.default", "آیا از حذف" + " " + Model.name + " " + Model.familiy + "اطمینان دارید؟", new { id = Model.ID})
+    @Html.AntiForgeryToken()
+
+    <div class="mt-2 rounded-bottom shadow-sm mb-4">
+        <h3 class="text-center rounded-top p-3 border bg-light m-0">مشخصات بازیکن</h3>
+        <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+            <table class="table table-striped table-responsive-sm">
+                <tr>
+                    <td>
+                        كد شناسايي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ID)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        نام
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        نام خانوادگي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.familiy)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        سال تولد
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.birthyear)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ماه تولد
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.birthmonth)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        پاي تخصصي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Technical_Foot)
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}

@@ -1,0 +1,104 @@
+﻿@model ClubAdministration.Models.training_terms
+
+@{
+    ViewBag.Title = "پوشه كلاس آموزشي" + " " + Model.term_title;
+}
+@widgets.common.ribbon.Show_Ribbon(Url, "training.details.default", "پوشه دوره آموزشي" + (" " + Model.term_title),rootParams: new { id = Model.ID })
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+    <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+        <table class="table table-striped table-responsive-sm">
+            <tr>
+                <th>
+                    كد شناسايي
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.ID)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    عنوان كلاس آموزشي
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.term_title)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    تاريخ شروع كلاس
+                </th>
+                <td>
+                    @Model.start_date
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    تاريخ پايان كلاس
+                </th>
+                <td>
+                    @Model.end_date
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    ساعت شروع كلاس
+                </th>
+                <td>
+                    @Model.start_date
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    ساعت پايان كلاس
+                </th>
+                <td>
+                    @Model.end_date
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    ظرفيت كلاس
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.max_player)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    تعداد جلسات در هفته
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.session_per_week)
+                    جلسه
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    روزهاي هفته
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.weekdays)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    وضعيت برگزاري كلاس
+                </th>
+                <td>
+                    @widgets.training_active.Show_Training_Active(Model.active.GetValueOrDefault())
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    شيوه محاسبه شهريه
+                </th>
+                <td>
+                    @widgets.fee_type.Show_Training_Fee_Type(Model.fee_type.GetValueOrDefault())
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+

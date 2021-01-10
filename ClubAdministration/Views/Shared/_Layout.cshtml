@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - سامانه متمركز مديريت باشگاه</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>    
+    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" type="text/css" href="~/Content/datepicker/jquery.md.bootstrap.datetimepicker.style.css" />
+    <link type="text/css" href="~/fonts/SiteFont.css" />
+    <style>
+        body {
+            font-family: W_yekan;
+        }
+    </style>
+</head>
+<body dir="rtl" class="text-right ">
+    <div class="navbar sticky-top bg-dark navbar-light navbar-expand-md navbar-inverse border-bottom shadow-sm p-2 bg-white" role="navigation">
+        <div class="container-fluid">
+            @Html.ActionLink("سامانه مديريت باشگاه", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavbarMain" aria-controls="appNavbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class=" collapse navbar-collapse" id="appNavbarMain">
+                <ul class="navbar-nav  ml-md-auto">
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("خانه", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("باشگاه", "Index", "club", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("بازيكنان", "Index", "players", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("مربيان", "Index", "coaches", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("كاركنان", "Index", "staff", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("دارايي‌ها", "Index", "assets", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("تمرينات", "Index", "sessions", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("مالي", "Index", "finance", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item p-md-3 p-sm-0">@Html.ActionLink("اخبار و اطلاعيه‌ها", "Index", "news", null, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content m-0 p-0 ">
+        <div class="row p-0 m-0">
+            <div class="col-lg-2 border-left border-info text-right">
+                @{
+                    var menuitems = (ICollection<ClubAdministration.Models.ViewModels.menuitems>)ViewBag.menuitems;
+                }
+                @widgets.common.sidemenu.Show_SideMenu(Url, menuitems)
+            </div>
+            <div class="col-lg-10 p-0 border-info">
+                @{ 
+                    @widgets.notification.Show_Notification()
+                }
+                <div class="col-sm-12 mt-1">
+                    @{
+                        var navigations = (ICollection<ClubAdministration.Models.ViewModels.navigations>)ViewBag.navigations;
+                    }
+                    @widgets.common.navigation.Show_Navigation(Url, navigations)
+                </div>
+                <div class="col-sm-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 text-center p-3 border-top border-info">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - سامانه مديريت باشگاه من</p>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

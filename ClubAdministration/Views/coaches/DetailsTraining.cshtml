@@ -1,0 +1,56 @@
+﻿@model ClubAdministration.Models.coach_training
+@{
+    ViewBag.Title = " : ‌جزئيات مربيگري دوره" + " " + Model.coach.FullName;
+}
+
+@widgets.common.ribbon.Show_Ribbon(Url, "coaches.trainings.details", "جزئيات مربيگري " + " " + Model.coach.FullName, new { id = Model.ID }, new { id = Model.coach_id })
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+    <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+        <table class="table table-striped table-responsive-sm">
+            <tr>
+                <td>
+                    كد شناسايي
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ID)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    نام و نام خانوادگي
+                </td>
+                <td>
+                    @(Model.coach.FullName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    کلاس آموزشی
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.training_terms.term_title)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    تاریخ ثبت نام
+                </td>
+                <td>
+                    @Model.registeration_date
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    تاریخ خاتمه فعاليت
+                </td>
+                <td>
+                    @Model.resignation_date
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+

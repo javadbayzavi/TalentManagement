@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClubAdministration", "ClubAdministration\ClubAdministration.csproj", "{FCEF1131-F699-4AFD-A734-17C8DCB32CC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{D083A0AC-5AA7-4781-90C1-5F73348AA80B}"
+	ProjectSection(SolutionItems) = preProject
+		..\management_products\backlog(AutoRecovered).xlsx = ..\management_products\backlog(AutoRecovered).xlsx
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCEF1131-F699-4AFD-A734-17C8DCB32CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCEF1131-F699-4AFD-A734-17C8DCB32CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCEF1131-F699-4AFD-A734-17C8DCB32CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCEF1131-F699-4AFD-A734-17C8DCB32CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC939955-DEE2-49EA-B158-7A2C85059166}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/clubtalentmanagement
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ClubAdministration\\ClubAdministration.csproj
+		SccProjectName1 = ClubAdministration
+		SccLocalPath1 = ClubAdministration
+	EndGlobalSection
+EndGlobal

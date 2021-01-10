@@ -1,0 +1,75 @@
+﻿@model ClubAdministration.Models.club_deposite
+
+@{
+    List<SelectListItem> categories = (List<SelectListItem>)ViewBag.categories;
+    ViewBag.Title = "ويرايش سند مالي";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">اطلاعات سند مالي</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+            <div class="form-group row">
+                <div class="col font-weight-bold">
+                    @Html.Label("عنوان سند", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.payment_item, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.payment_item, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("مبلغ سند", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.payment_fee, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.payment_fee, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("دسته بندي سند", htmlAttributes: new { @class = "control-label col" })
+                    @Html.DropDownListFor(model => model.category_id, categories, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.payment_type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("حساب بانكي", htmlAttributes: new { @class = "control-label col" })
+                    @Html.DropDownList("bankaccount_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.payment_type, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ سند", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.payment_date, new { htmlAttributes = new { @id = "payment_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.payment_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @widgets.payment_type.Entry_Payment_Type(Model.payment_type)
+            @widgets.payment_method.Entry_Payment_Method(Model.payment_method)
+
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ذخيره  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "AccountTransactions", new { id = Model.bankaccount_id }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
+<script type="text/javascript">
+        $('#payment_date').MdPersianDateTimePicker({
+            englishNumber: true,
+            enableTimePicker: true,
+            groupId : 'dateselectorMain',
+            dateFormat : 'yyyy/MM/dd-HH:mm:ss',
+            targetTextSelector: '#payment_date',
+        });
+</script>

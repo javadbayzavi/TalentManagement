@@ -1,0 +1,49 @@
+﻿@helper Show_Payment_Type(int type)
+{
+    switch (type)
+    {
+        case 1:
+            <span style="color:dodgerblue">
+                دريافت
+            </span>
+            break;
+        case 2:
+            <span style="color:forestgreen">
+                پرداخت
+            </span>
+            break;
+    }
+}
+@helper Entry_Payment_Type(int selected)
+{
+    var payment_type = new List<SelectListItem>();
+    payment_type.Add(new SelectListItem()
+    {
+        Text = "دريافت",
+        Value = "1"
+    });
+    payment_type.Add(new SelectListItem()
+    {
+        Text = "پرداخت",
+        Value = "2"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-sm-12 col-md-6">
+            <label class="control-label col">نوع سند</label>
+            <select name="payment_type" id="payment_type" class="form-control">
+                @foreach (var item in payment_type)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

@@ -1,0 +1,67 @@
+﻿@model ClubAdministration.Models.player_registerations
+@{
+    var player = (ClubAdministration.Models.player)ViewBag.player;
+    //var s = Model.re_date.ToString();
+    ViewBag.Title = "ثبت نام " + player.fullname + " در کلاس  جدید";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">ثبت نام @player.fullname در کلاس  جدید</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.Hidden("player_id", player.ID)
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("كلاس آموزشي", htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownList("training_id", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.training_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ ثبت‌ نام", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.registeration_date, new { htmlAttributes = new { @id = "registeration_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.registeration_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاريخ خاتمه", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.resignation_date, new { htmlAttributes = new { @id = "resignation_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.resignation_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ثبت نام  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "Subscriptions", new { id = player.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
+<script type="text/javascript">
+    $('#registeration_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#registeration_date',
+    });
+    $('#resignation_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#resignation_date',
+    });
+</script>

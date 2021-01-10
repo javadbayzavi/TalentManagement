@@ -1,0 +1,87 @@
+﻿
+@model ICollection<ClubAdministration.Models.ViewModels.players_invoices>
+@{
+    //TODO: This view need to be refurbished totally
+    ViewBag.Title = "صورتحساب هزینه‌‌های بازيكنان ";
+}
+@using (Html.BeginForm("PlayersInvoices", "finance", FormMethod.Post, new { id = "financefrm" }))
+{
+
+    @widgets.common.ribbon.Show_Ribbon(Url, "finance.players.invoices", "مديريت مالي: بازيكنان ")
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+    @Html.AntiForgeryToken()
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top py-3">ليست وضعيت مالي بازيكنان</h2>
+        <div class="px-2">
+            <table class=" table table-hover table-responsive-sm text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDPlayersInvoices", new { @id = "chkwhole" })
+                        </th>
+                        <th style="text-align:center">
+                            #
+                        </th>
+                        <th style="text-align:center">
+                            نام و نام خانوادگي
+                        </th>
+                        <th class="d-none d-md-table-cell text-center">
+                            وضعيت مالي
+                        </th>
+                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            عمليات
+                        </th>
+                    </tr>
+                    @{
+                        int index = 1;
+                        foreach (var invoice in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.CheckBox("IDS", new { @value = invoice.player.ID, @class = "chkitem", @id = "chkitem" + (index) })
+                                </td>
+                                <td>
+                                    @(index++)
+                                </td>
+                                <td>
+                                    @(invoice.player.name + " " + invoice.player.familiy)
+                                </td>
+                                <td class="d-none d-md-table-cell text-center">
+                                    @widgets.invoice_status.Show_Invoice_Status(Math.Round(invoice.invoice_balance))
+                                </td>
+                                <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                                    @Html.ActionLink("جزئيات صورتحساب", "PlayerInvoices", new { id = invoice.player.ID })
+                                </td>
+                            </tr>
+                        }
+                    }
+            </table>
+        </div>
+    </div>
+}
+    <script>
+        $("#chkwhole").change(function chang() {
+            $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+            if (this.checked) {
+                $(".chkitem").parent().parent().addClass("table-primary");
+                $(".chkitem").parent().parent().removeClass("table-light");
+            }
+            else {
+                $(".chkitem").parent().parent().removeClass("table-primary");
+                $(".chkitem").parent().parent().addClass("table-light");
+            }
+        });
+
+        $(".chkitem").change(function chng() {
+            if (this.checked) {
+                $(this.parentElement.parentElement).addClass("table-primary");
+                $(this.parentElement.parentElement).removeClass("table-light");
+            }
+            else {
+                $(this.parentElement.parentElement).removeClass("table-primary");
+                $(this.parentElement.parentElement).addClass("table-light");
+            }
+        });
+
+    </script>

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ClubAdministration.Models.ViewModels.session_costs>
+
+@{
+    //TODO: This view need to be refurbished totally
+    var training = (ClubAdministration.Models.training_terms)ViewBag.training;
+    ViewBag.Title = "هزينه جلسات تمرين " + training.term_title;
+}
+
+@using (Html.BeginForm("TrainingCosts", "finance", FormMethod.Post, new { id = training.ID }))
+{
+    @Html.AntiForgeryToken()
+    @widgets.common.ribbon.Show_Ribbon(Url, "finance.trainingcost.default", "مديريت مالي: كلاس( " + training.term_title + ")")
+
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">ليست جلسات تمرين برگزار شده</h2>
+        <div class="px-2">
+            <table class=" table table-hover table-responsive-sm text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDTrainingCosts", new { @id = "chkwhole" })
+                        </th>
+                        <th style="text-align:center">
+                            #
+                        </th>
+                        <th style="text-align:center">
+                            كلاس آموزشي
+                        </th>
+                        <th style="text-align:center">
+                            تاريخ برگزاري
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                            تعداد ثبت نامي تا این جلسه
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                            جلسه جمع بندي شده
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                            هزینه جلسه تمرین (ریال)
+                        </th>
+                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            عمليات
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int index = 1;
+                }
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("IDS", new { @value = item.session_id.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
+                        </td>
+                        <td>
+                            @Html.Label((index++).ToString())
+                        </td>
+                        <td>
+                            <a href="/sessions/Details/@item.session_id"> @Html.DisplayFor(modelItem => item.training_terms.term_title) </a>
+                        </td>
+                        <td>
+                            @item.session_date
+                        </td>
+                        <td class="d-none d-lg-table-cell text-center">
+                            @item.registerantscount.ToString()
+                        </td>
+                        <td class="d-none d-lg-table-cell text-center">
+                            @widgets.session_closed.Show_Session_Closed(item.session_closed)
+                        </td>
+                        <td class="d-none d-lg-table-cell text-center">
+                            @item.baseprice.ToString()
+                        </td>
+                        <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            @Html.ActionLink("جزئیات هزینه‌های جلسه", "SessionCosts", new { id = item.session_id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+}
+    <script>
+        $("#chkwhole").change(function chang() {
+            $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+            if (this.checked) {
+                $(".chkitem").parent().parent().addClass("table-primary");
+                $(".chkitem").parent().parent().removeClass("table-light");
+            }
+            else {
+                $(".chkitem").parent().parent().removeClass("table-primary");
+                $(".chkitem").parent().parent().addClass("table-light");
+            }
+        });
+
+        $(".chkitem").change(function chng() {
+            if (this.checked) {
+                $(this.parentElement.parentElement).addClass("table-primary");
+                $(this.parentElement.parentElement).removeClass("table-light");
+            }
+            else {
+                $(this.parentElement.parentElement).removeClass("table-primary");
+                $(this.parentElement.parentElement).addClass("table-light");
+            }
+        });
+
+    </script>

@@ -1,0 +1,150 @@
+﻿@model IEnumerable<ClubAdministration.Models.payment_category>
+
+@{
+    ViewBag.Title = "مديريت دسته‌بندي‌ پرداخت";
+}
+@using (Html.BeginForm("Categories","finance",FormMethod.Post,new { id="financefrm" }))
+{
+    @widgets.common.ribbon.Show_Ribbon(Url, "finance.categories.default", "مديريت دسته‌ّبندي پرداخت")
+
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+
+    @Html.AntiForgeryToken();
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">دسته‌بندي پرداخت</h2>
+        <div class="px-2">
+            <table class=" table table-hover table-responsive-sm text-center w-100">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDCategories", new { @id = "chkwhole" })
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            #
+                        </th>
+                        <th class="d-sm-table-cell text-center">
+                            دسته‌بندي پرداخت
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                            مجموعه بالادستي
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            واريزي‌ها
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            برداشتي‌ها
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            موجودي
+                        </th>
+                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            عمليات
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int indexe = 1;
+                    int sumsum = 0;
+                    int paypay = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (indexe) })
+                        </td>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            @(indexe++)
+                        </th>
+                        <td class="d-sm-table-cell text-center">
+                            @Html.ActionLink(item.category_title,
+                            "CategoryTransactions",
+                            "finance",
+                            new { id = item.ID },null)
+                        </td>
+                        <td class="d-none d-lg-table-cell text-center">
+                        </td>
+                        <td class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            @{ 
+                                var rec = item.payments.Where(a => a.payment_type == 1).Sum(a => a.payment_fee);
+                                sumsum += rec;
+                            }
+                            @widgets.invoice_status.Show_Invoice_Status(rec)
+                        </td>
+                        <td class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            @{ 
+                                var pay = item.payments.Where(a => a.payment_type == 2).Sum(a => a.payment_fee);
+                                paypay += pay;
+                            }
+                            @widgets.invoice_status.Show_Invoice_Status(-pay)
+                        </td>
+                        <td class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            @{ 
+                                var sum = rec - pay;
+                            }
+                            @widgets.invoice_status.Show_Invoice_Status(sum)
+                        </td>
+                        <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            @Html.ActionLink("تراکنش‌ها", "CategoryTransactions", new { id = item.ID }) |
+                            @Html.ActionLink("ويرايش", "EditCategory", new { id = item.ID }) |
+                            @Html.ActionLink("نمايش", "DetailsCategory", new { id = item.ID }) |
+                            @Html.ActionLink("حذف", "DeleteCategory", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+                    <tr class="table-success">
+                        <th>
+
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+
+                        </th>
+                        <th class="d-sm-table-cell text-center">
+                            مجموع
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
+                                
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            @widgets.invoice_status.Show_Invoice_Status(sumsum)
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            @widgets.invoice_status.Show_Invoice_Status(-paypay)
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            @widgets.invoice_status.Show_Invoice_Status(sumsum - paypay)
+                        </th>
+                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            @widgets.invoice_status.Show_Invoice_Status(sumsum - paypay)
+                        </th>
+                    </tr>
+            </table>
+        </div>
+    </div>
+}
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

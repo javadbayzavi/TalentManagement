@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ClubAdministration.Models.coach_certificates>
+@{
+    var coach = (ClubAdministration.Models.coach)ViewBag.coach;
+    ViewBag.Title = "ليست مدرك‌هاي مربي‌گري  " + coach.FullName;
+}
+
+@using (Html.BeginForm("Certificates", "coaches", new { id = coach.ID }, FormMethod.Post, new { id = "coachform", name = "coachform" }))
+{
+    @Html.AntiForgeryToken()
+    @widgets.common.ribbon.Show_Ribbon(Url, "coaches.certificates.default", "مديريت مدارك مربي‌گري", new { id = coach.ID })
+
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">مدارك مربيگري <span style="font-weight:bold;color:brown">@coach.FullName</span></h2>
+        <div class="px-2">
+            <table class=" table table-hover table-responsive-sm text-center w-100">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDSubscription", new { @id = "chkwhole" })
+                        </th>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            عنوان مدرك
+                        </th>
+                        <th>
+                            تاريخ اخذ مدرك
+                        </th>
+                        <th>
+                            تاريخ انقضا
+                        </th>
+                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            عمليات
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int index = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
+                        </td>
+                        <th>
+                            @Html.Label((index++).ToString())
+                        </th>
+                        <td>
+                            @item.certificate_title
+                        </td>
+                        <td>
+                            @item.certificate_date
+                        </td>
+                        <td>
+                            @item.certificate_expiredate
+                        </td>
+                        <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            @Html.ActionLink("انصراف مربي", "DeleteCertificate", new { id = item.ID }) |
+                            @Html.ActionLink("ويرايش عضويت", "EditCertificate", new { id = item.ID }) |
+                            @Html.ActionLink("جزئيات", "DetailsCertificate", new { id = item.ID })
+
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+<script>
+        $("#chkwhole").change(function chang() {
+            $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+            if (this.checked) {
+                $(".chkitem").parent().parent().addClass("table-primary");
+                $(".chkitem").parent().parent().removeClass("table-light");
+            }
+            else {
+                $(".chkitem").parent().parent().removeClass("table-primary");
+                $(".chkitem").parent().parent().addClass("table-light");
+            }
+        });
+
+        $(".chkitem").change(function chng() {
+            if (this.checked) {
+                $(this.parentElement.parentElement).addClass("table-primary");
+                $(this.parentElement.parentElement).removeClass("table-light");
+            }
+            else {
+                $(this.parentElement.parentElement).removeClass("table-primary");
+                $(this.parentElement.parentElement).addClass("table-light");
+            }
+        });
+
+</script>
+
+
