@@ -77,7 +77,6 @@ namespace ClubAdministration.Models
         [Required]
         public int participating_positionsid { get; set; }
 
-        [Required]
         [ForeignKey("participating_positionsid")]
         public position participating_positions { get; set; }
 

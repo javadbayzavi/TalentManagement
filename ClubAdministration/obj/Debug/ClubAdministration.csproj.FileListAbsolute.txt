@@ -393,3 +393,6 @@ E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.Text.Json.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.Threading.Tasks.Extensions.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.ValueTuple.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.Router.Mvc4.dll
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.Router.Mvc4.pdb
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.Router.Mvc4.xml

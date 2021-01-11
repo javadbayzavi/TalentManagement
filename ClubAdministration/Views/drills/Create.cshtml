@@ -203,9 +203,16 @@
                     <ul class="list-group p-1 scrollablecontainer" id="drillmat">
                         @foreach (SelectListItem item in Model.drillmaterials)
                         {
-                            <li class="list-group-item list-group-item-action">
-                                @Html.CheckBox("drillmaterials", item.Selected, new { value = item.Value }) @(item.Text)
-                            </li>
+                        <li class="list-group-item list-group-item-action">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    @Html.CheckBox("drillmaterialsid", item.Selected, new { value = item.Value }) @(item.Text)
+                                </div>
+                                <div class="col-sm-6 d-none">
+                                    @Html.TextBox("drillmaterialsnum", null, new { placeholder = "تعداد"})
+                                </div>
+                            </div>
+                        </li>
                         }
                     </ul>
                 </div>
@@ -220,7 +227,7 @@
                         @foreach (SelectListItem item in Model.drillskills)
                         {
                             <li class="list-group-item list-group-item-action">
-                                @Html.CheckBox("drillskills", item.Selected, new { value = item.Value }) @(item.Text)
+                                @Html.CheckBox("drillskillsid", item.Selected, new { value = item.Value }) @(item.Text)
                             </li>
                         }
                     </ul>
@@ -252,10 +259,12 @@
         $("input[type=checkbox]").each(function () {
             $(this).on("change", function () {
                 if (this.checked) {
-                    $(this).parent().addClass("bg-info");
+                    $(this).parent().parent().parent().addClass("bg-info");
+                    $(this).parent().next().addClass("d-block").removeClass("d-none");
                 }
                 else {
-                    $(this).parent().removeClass("bg-info");
+                    $(this).parent().parent().parent().removeClass("bg-info");
+                    $(this).parent().next().addClass("d-none").removeClass("d-block");
                 }
             });
         });

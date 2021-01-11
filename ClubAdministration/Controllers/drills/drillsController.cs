@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using ClubAdministration.Library.Core.Pages;
@@ -90,11 +91,19 @@ namespace ClubAdministration.Controllers
             "drill_structure,drill_typeid,drill_playernumbers,participating_positionsid,drill_locationid," +
             "drill_duration,drill_fieldsize")] drillinputmodel drillentry)
         {
+            string[] skillids = this.Request["drillskillsid"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(a => a != "false").ToArray();
+            string[] materialids = this.Request["drillmaterialsid"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(a => a != "false").ToArray();
+            string[] materialnum = this.Request["drillmaterialsnum"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(a => a != "false").ToArray();
+
             //1. Convert the entry to Db Model
-            if (ModelState.IsValid)
+            if (ModelState.IsValid == false)
             {
                 drill dbdrill = new drill 
                 {
+                    drill_competition = drillentry.drill_competition,
                     agelevel_id = drillentry.agelevel_id,
                     drill_coachingtips = drillentry.drill_coachingtips,
                     drill_duration = drillentry.drill_duration,
@@ -114,15 +123,39 @@ namespace ClubAdministration.Controllers
                     drill_variations = drillentry.drill_variations,
                     participating_positionsid = drillentry.participating_positionsid
                 };
-            //2. Check for validity of all entries
-            //3. Save the drill
-            //4. Save drill related objects
+                //2. Check for validity of all entries
+                //3. Save the drill
+                //4. Save drill related objects
+                using (TransactionScope trans = new TransactionScope())
+                {
+                    //TODO: This action need to be deeply reviewed
+                    db.drills.Add(dbdrill);
+                    //db.SaveChanges();
+                    //TODO: insert materials list
+                    for (int index = 0; index < materialids.Length; index++)
+                    {
+                        drill_materials mat = new drill_materials()
+                        {
+                            drill_id = dbdrill.ID,
+                            material_id = System.Convert.ToInt32(materialids[index]),
+                            number = System.Convert.ToInt32(materialnum[index])
+                        };
+                        db.drill_materials.Add(mat);
 
-            //TODO: This action need to be deeply reviewed
-                db.drills.Add(dbdrill);
-                //db.SaveChanges();
-                //TODO: insert materials list
-                //TODO: inser skills list
+                    }
+                    //TODO: inser skills list
+                    for (int index = 0; index < skillids.Length; index++)
+                    {
+                        drill_skills skl = new drill_skills()
+                        {
+                            drill_id = dbdrill.ID,
+                            skill_id = System.Convert.ToInt32(skillids[index])
+                        };
+                        db.drillskills.Add(skl);
+                    }
+                    db.SaveChanges();
+                    trans.Complete();
+                }   
                 return RedirectToAction("Index");
             }
 

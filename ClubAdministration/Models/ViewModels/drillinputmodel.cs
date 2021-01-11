@@ -93,5 +93,7 @@ namespace ClubAdministration.Models.ViewModels
         public string drill_fieldsize { get; set; }
         public SelectList drillmaterials { get; set; }
         public SelectList drillskills { get; set; }
+        public string drillmaterialsid { get; set; }
+        public string drillskillsid { get; set; }
     }
 }
