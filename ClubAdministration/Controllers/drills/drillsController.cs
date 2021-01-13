@@ -44,7 +44,9 @@ namespace ClubAdministration.Controllers
                 Session["TACTION_RESULT"] = "مشكل در نمايش تمرينات وجود دارد";
                 return this.RedirectToAction("Index");
             }
-            drill drill = db.drills.Find(id);
+            //drill drill = db.drills.Find(id);
+            var drill = db.drills.Where(a => a.ID == id).Include(a => a.participating_positions).Include(a => a.agelevel)
+                .Include(a => a.drill_emphasis).Include(a => a.drill_location)
             if (drill == null)
             {
                 Session["TACTION_RESULT"] = "تمرين درخواستي در سيستم ثبت نشده است";
