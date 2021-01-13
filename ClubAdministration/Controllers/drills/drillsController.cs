@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -46,7 +46,9 @@ namespace ClubAdministration.Controllers
             }
             //drill drill = db.drills.Find(id);
             var drill = db.drills.Where(a => a.ID == id).Include(a => a.participating_positions).Include(a => a.agelevel)
-                .Include(a => a.drill_emphasis).Include(a => a.drill_location)
+                .Include(a => a.drill_emphasis).Include(a => a.drill_location).Include(a => a.drill_type).Include(a => a.drill_materials)
+                .First();
+                
             if (drill == null)
             {
                 Session["TACTION_RESULT"] = "تمرين درخواستي در سيستم ثبت نشده است";
