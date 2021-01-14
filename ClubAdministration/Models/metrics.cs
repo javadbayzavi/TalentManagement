@@ -19,5 +19,9 @@ namespace ClubAdministration.Models
         public string name { get; set; }
         // some description about this metric
         public string tips { get; set; }
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<metric_instances> instances { get; set; }
+        
     }
 }

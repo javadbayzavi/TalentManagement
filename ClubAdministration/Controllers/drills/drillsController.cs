@@ -46,7 +46,7 @@ namespace ClubAdministration.Controllers
             }
             //drill drill = db.drills.Find(id);
             var drill = db.drills.Where(a => a.ID == id).Include(a => a.participating_positions).Include(a => a.agelevel)
-                .Include(a => a.drill_emphasis).Include(a => a.drill_location).Include(a => a.drill_type).Include(a => a.drill_materials)
+                .Include(a => a.drill_emphasis).Include(a => a.drill_location).Include(a => a.drill_type).Include(a => a.drillmaterials).Include(a => a.drillskills)
                 .First();
                 
             if (drill == null)

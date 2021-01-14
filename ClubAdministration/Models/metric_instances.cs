@@ -8,16 +8,21 @@ namespace ClubAdministration.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class metrics
+    public partial class metric_instances
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        //Things like number of passes
-        [Required]
+        //The alias to the name of metric
         [StringLength(150)]
-        public string name { get; set; }
-        // some description about this metric
-        public string tips { get; set; }
+        public string alias { get; set; }
+        
+        public int metric_id { get; set; }
+        [ForeignKey("metric_id")]
+        public metric metric { get; set; }
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<metric_values> values { get; set; }
+        
     }
 }
