@@ -20,6 +20,15 @@ namespace ClubAdministration.Models
         // some description about this metric
         public string tips { get; set; }
         
+        // Direction of the metric (Asc , Desc)
+        public int direction { get; set; }
+        
+        // The Upper Bound of the metric definition
+        public string upperBound { get; set;}
+
+        // The Lower Bound of the metric definition
+        public string lowerBound { get; set;}
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<metric_instances> instances { get; set; }
         

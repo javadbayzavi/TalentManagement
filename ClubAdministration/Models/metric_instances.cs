@@ -17,6 +17,18 @@ namespace ClubAdministration.Models
         [StringLength(150)]
         public string alias { get; set; }
         
+        // The baseline of the metric object
+        public string baseline { get; set;}
+
+        // The target of the metric object
+        public string target { get; set;}
+
+        // The frequency of the metric object
+        public int frequency { get; set;}
+
+        // The Lower Bound of the metric object
+        public string lowerBound { get; set;}  
+        
         public int metric_id { get; set; }
         [ForeignKey("metric_id")]
         public metric metric { get; set; }
