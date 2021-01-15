@@ -64,7 +64,6 @@ namespace ClubAdministration.Controllers
         }
 
         // POST: metrics/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,name,tips " metrics metricentry)
@@ -82,7 +81,7 @@ namespace ClubAdministration.Controllers
             return View(drillentry);
         }
 
-        // GET: drills/Edit/5
+        // GET: metrics/Edit/5
         public ActionResult Edit(int? id)
         {
             //TODO: This action need to be deeply reviewed
@@ -90,52 +89,31 @@ namespace ClubAdministration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            drill drill = db.drills.Find(id);
+            metrics metric = db.metrics.Find(id);
 
-            if (drill == null)
+            if (metric == null)
             {
                 return HttpNotFound();
             }
-            //TODO: This action need to be deeply reviewed
-            //1. Load Age level
-            this.ViewBag.age_levelid = new SelectList(db.agelevels.ToList(), "ID", "level",drill.agelevel_id);
-            //2. Load Drill Type
-            //this.ViewBag.drill_typeid = new SelectList(db.drill_types.ToList(), "ID", "title",drill.drill_typeid);
-            //3. Load Drill Emphasis
-            this.ViewBag.drill_emphasisid = new SelectList(db.drill_emphasises.ToList(), "ID", "emphasis",drill.drill_emphasisid);
-            //4. Load Drill Positions
-            this.ViewBag.participating_positionsid = new SelectList(db.positions.ToList(), "ID", "title", drill.participating_positionsid);
-            //5. Load Drill Locations
-            this.ViewBag.drill_locationid = new SelectList(db.drill_locations.ToList(), "ID", "title",drill.drill_location);
-            //6. Load Drill required Materials
-            //7. Load Drill target skills
-
-            return View(drill);
+            return View(metric);
         }
 
-        // POST: drills/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: metrics/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,drill_target,drill_title,goals,execution," +
-            "variations,progression,coachingtips,organization,competition,drill_emphasisid,agelevel_id,level_play," +
-            "drill_structure,drill_typeid,playernumbers,participating_positionsid,drill_locationid," +
-            "drill_duration,fieldsize")] drill drill)
+        public ActionResult Edit([Bind(Include = "ID,name,tips " metrics metricentry)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
             {
-                //TODO: Update material lists
-                //TODO: Update skills list
-                db.Entry(drill).State = EntityState.Modified;
+                db.Entry(metricentry).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(drill);
+            return View(metricentry);
         }
 
-        // GET: club/Delete/5
+        // GET: metrics/Delete/5
         public ActionResult Delete(int? id)
         {
             //TODO: This action need to be deeply reviewed
@@ -143,22 +121,22 @@ namespace ClubAdministration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            drill drill = db.drills.Find(id);
-            if (drill == null)
+            metrics metric = db.metrics.Find(id);
+            if (metric == null)
             {
                 return HttpNotFound();
             }
-            return View(drill);
+            return View(metric);
         }
 
-        // POST: drills/Delete/5
+        // POST: metrics/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             //TODO: This action need to be deeply reviewed
-            drill drill = db.drills.Find(id);
-            db.drills.Remove(drill);
+            metrics metric = db.metrics.Find(id);
+            db.metrics.Remove(metric);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
