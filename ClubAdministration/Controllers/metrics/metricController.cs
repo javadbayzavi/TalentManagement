@@ -24,7 +24,7 @@ namespace ClubAdministration.Controllers
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
             return View(db.metrics
                 .Where(a => a.name.Contains(this.Setting.PageSetting.SearchItem) || 
-                a.tips.Contains(this.Setting.PageSetting.SearchItem)) ;
+                a.tips.Contains(this.Setting.PageSetting.SearchItem))) ;
         }
 
         [HttpPost]
@@ -40,17 +40,15 @@ namespace ClubAdministration.Controllers
         {
             if (id == null)
             {
-                // TODO: error text must be changed accordinglly
-                Session["TACTION_RESULT"] = "مشكل در نمايش تمرينات وجود دارد";
+                Session["TACTION_RESULT"] = "مشكل در نمايش معيار وجود دارد";
                 return this.RedirectToAction("Index");
             }
         
-            var metric = db.metrics.Where(a => a.ID == id).;
+            var metric = db.metrics.Find(id);
                 
             if (metric == null)
             {
-                // TODO: error text must be changed accordinglly
-                Session["TACTION_RESULT"] = "تمرين درخواستي در سيستم ثبت نشده است";
+                Session["TACTION_RESULT"] = "معيار درخواستي در سيستم ثبت نشده است";
                 return this.RedirectToAction("Index");
             }
 

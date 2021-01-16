@@ -423,6 +423,7 @@
     <Compile Include="Controllers\finance\financeControllerPlayer.cs" />
     <Compile Include="Controllers\finance\financeControllerTraining.cs" />
     <Compile Include="Controllers\growth\growthController.cs" />
+    <Compile Include="Controllers\metrics\metricController.cs" />
     <Compile Include="Controllers\players\playersControllerContacts.cs" />
     <Compile Include="Controllers\players\playersControllerBodyshape.cs" />
     <Compile Include="Controllers\players\playersControllerMain.cs" />
@@ -460,6 +461,9 @@
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\drill_skills.cs" />
     <Compile Include="Models\drill_materials.cs" />
+    <Compile Include="Models\metrics.cs" />
+    <Compile Include="Models\metric_instances.cs" />
+    <Compile Include="Models\metric_values.cs" />
     <Compile Include="Models\skills.cs" />
     <Compile Include="Models\material.cs" />
     <Compile Include="Models\drill_locations.cs" />
@@ -629,7 +633,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Views\drills\Details.jsx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -741,6 +744,7 @@
     <Content Include="Views\drills\Index.cshtml" />
     <Content Include="Views\drills\Create.cshtml" />
     <Content Include="Views\drills\Details.cshtml" />
+    <Content Include="Views\drills\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -176,21 +176,21 @@ namespace ClubAdministration.Controllers
             }
 
             //Load the drill entry
-            drillinputmodel entry = db.drills.Where(a => a.ID == id).Select(a => new drillinputmodel 
+            drillinputmodel entry = db.drills.Where(a => a.ID == id).ToList().Select(a => new drillinputmodel 
             { 
                 ID = a.ID,
-                agelevel = new SelectList(db.agelevels.ToList(), "ID", "level" , a.agelevel_id),
+                agelevel = new SelectList(db.agelevels.ToList(), "ID", "level", a.agelevel_id),
                 agelevel_id = a.agelevel_id,
                 drill_coachingtips = a.drill_coachingtips,
                 drill_competition = a.drill_competition,
                 drill_duration = a.drill_duration,
-                drill_emphasis = new SelectList(db.agelevels.ToList(), "ID", "level", a.drill_emphasisid),
+                drill_emphasis = new SelectList(db.agelevels.ToList(), "ID", "title", a.drill_emphasisid),
                 drill_emphasisid = a.drill_emphasisid,
                 drill_execution = a.drill_execution,
                 drill_fieldsize = a.drill_fieldsize,
                 drill_goals = a.drill_goals,
                 drill_levelplay = a.drill_levelplay,
-                drill_location = new SelectList(db.agelevels.ToList(), "ID", "level", a.drill_locationid),
+                drill_location = new SelectList(db.agelevels.ToList(), "ID", "emphasis", a.drill_locationid),
                 drill_locationid = a.drill_locationid,
                 drill_organization = a.drill_organization,
                 drill_playernumbers = a.drill_playernumbers,
@@ -198,11 +198,13 @@ namespace ClubAdministration.Controllers
                 drill_structure = a.drill_structure,
                 drill_target = a.drill_target,
                 drill_title = a.drill_title,
-                drill_type = new SelectList(db.agelevels.ToList(), "ID", "level", a.drill_typeid),
+                drill_type = new SelectList(db.agelevels.ToList(), "ID", "title", a.drill_typeid),
                 drill_typeid = a.drill_typeid,
                 drill_variations = a.drill_variations,
                 participating_positions = new SelectList(db.agelevels.ToList(), "ID", "level", a.participating_positionsid),
-                participating_positionsid = a.participating_positionsid
+                participating_positionsid = a.participating_positionsid,
+                drillmaterials = new SelectList(db.materials.ToList(), "ID", "name"),
+                drillskills = new SelectList(db.skills.ToList(), "ID", "name")
             }).FirstOrDefault();
 
             //In case of not matching the reuquested drill
@@ -211,11 +213,23 @@ namespace ClubAdministration.Controllers
                 return HttpNotFound();
             }
 
+            //TODO: need to be reviewed for optimization
             //6. Load Drill required Materials
-            entry.drillmaterials = new SelectList(db.materials.ToList(), "ID", "name");
-            entry.drillmaterials.Where(a => )
+            foreach (var item in entry.drillmaterials)
+            {
+                if(db.drill_materials.Any(b => b.drill_id == id && b.material_id.ToString() == item.Value))
+                {
+                    item.Selected = true;
+                }
+            }
             //7. Load Drill target skills
-            entry.drillskills = new SelectList(db.skills.ToList(), "ID", "name");
+            foreach (var item in entry.drillskills)
+            {
+                if (db.drillskills.Any(b => b.drill_id == id && b.skill_id.ToString() == item.Value))
+                {
+                    item.Selected = true;
+                }
+            }
 
             return View(entry);
         }
