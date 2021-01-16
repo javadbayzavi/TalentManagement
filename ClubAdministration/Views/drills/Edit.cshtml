@@ -1,0 +1,278 @@
+﻿@model ClubAdministration.Models.ViewModels.drillinputmodel
+@{
+    ViewBag.Title = "ويرايش برنامه تمرين ";
+}
+
+<style>
+    .scrollablecontainer
+    {
+        overflow-y:scroll;
+        height:150px;
+    }
+    .editor
+    {
+        height: 260px;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">ويرايش برنامه تمرين </h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("عنوان تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.drill_title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drill_title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("نتيجه تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_target, new { @id = "drill_target", @class = "form-control editor" })
+                    @Html.ValidationMessageFor(model => model.drill_target, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("اهداف تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_goals, new { @id = "drill_goals", @class = "form-control editor" })
+                    @Html.ValidationMessageFor(model => model.drill_goals, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("روش اجرا", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_execution, new { @id = "drill_execution", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.drill_execution, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تنوع اجرا", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_variations, new { @id = "drill_variations", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.drill_variations, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("توسعه تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_progression, new { @id = "drill_progression", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.drill_progression, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("نكات مربي‌گري", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_coachingtips, new { @id = "drill_coachingtips", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.drill_coachingtips, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("رقابتي‌سازي", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_competition, new { @id = "drill_competition", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.drill_competition, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("سازماندهي", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_organization, new { @id = "drill_organization", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.drill_organization, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("ساختار اجرايي", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextAreaFor(model => model.drill_structure, new { @id = "drill_structure", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.drill_structure, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @widgets.level_play.Entry_Level_Play(0)
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تعداد بازيكنان", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.drill_playernumbers, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drill_playernumbers, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("ابعاد زمين", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.drill_fieldsize, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drill_fieldsize, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("مدت زمان اجرا", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.drill_duration, new { htmlAttributes = new {  @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drill_duration, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row font-weight-bold">
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("گروه سني", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBox("txtagesrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#agelevel')" })
+                    <ul class="list-group p-1 scrollablecontainer" id="agelevel">
+                        @foreach (SelectListItem item in Model.agelevel)
+                        {
+                            <li class="list-group-item list-group-item-action">
+                                @Html.RadioButton("agelevel_id", item.Value, item.Selected) @(item.Text)
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("نوع تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBox("txttypsrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#drilltyp')" })
+                    <ul class="list-group p-1 scrollablecontainer" id="drilltyp">
+                        @foreach (SelectListItem item in Model.drill_type)
+                        {
+                            <li class="list-group-item list-group-item-action">
+                                @Html.RadioButton("drill_typeid", item.Value, item.Selected) @(item.Text)
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group row font-weight-bold">
+            </div>
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تاكيد تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBox("txtempsrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#drill_emphasis')" })
+                    <ul class="list-group p-1 scrollablecontainer" id="drill_emphasis">
+                        @foreach (SelectListItem item in Model.drill_emphasis)
+                        {
+                            <li class="list-group-item list-group-item-action">
+                                @Html.RadioButton("drill_emphasisid", item.Value, item.Selected) @(item.Text)
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("پست بازيكن", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBox("txtpossrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#drillpos')" })
+                    <ul class="list-group p-1 scrollablecontainer" id="drillpos">
+                        @foreach (SelectListItem item in Model.participating_positions)
+                        {
+                            <li class="list-group-item list-group-item-action">
+                                @Html.RadioButton("participating_positionsid", item.Value, item.Selected) @(item.Text)
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group row font-weight-bold">
+            </div>
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("محل تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBox("txtlocsrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#drill_location')" })
+                    <ul class="list-group p-1 scrollablecontainer" id="drill_location">
+                        @foreach (SelectListItem item in Model.drill_location)
+                        {
+                            <li class="list-group-item list-group-item-action">
+                                @Html.RadioButton("drill_locationid", item.Value, item.Selected) @(item.Text)
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("لوازم تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBox("txtmatsrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#drillmat')" })
+                    <ul class="list-group p-1 scrollablecontainer" id="drillmat">
+                        @foreach (SelectListItem item in Model.drillmaterials)
+                        {
+                        <li class="list-group-item list-group-item-action">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    @Html.CheckBox("drillmaterialsid", item.Selected, new { value = item.Value }) @(item.Text)
+                                </div>
+                                <div class="col-sm-6 d-none">
+                                    @Html.TextBox("drillmaterialsnum", null, new { placeholder = "تعداد"})
+                                </div>
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group row font-weight-bold">
+            </div>
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("مهارت‌ها", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBox("txtsksrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#drillskilss')" })
+                    <ul class="list-group p-1 scrollablecontainer" id="drillskilss">
+                        @foreach (SelectListItem item in Model.drillskills)
+                        {
+                            <li class="list-group-item list-group-item-action">
+                                @Html.CheckBox("drillskillsid", item.Selected, new { value = item.Value }) @(item.Text)
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+            </div>
+
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ذخيره  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "Index", new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $("input[type=radio]").each(function () {
+            $(this).on("change", function () {
+                $(this).parent().addClass("bg-info");
+                $(this).parent().siblings().removeClass("bg-info");
+            });
+        });
+        $("input[type=checkbox]").each(function () {
+            $(this).on("change", function () {
+                if (this.checked) {
+                    $(this).parent().parent().parent().addClass("bg-info");
+                    $(this).parent().next().addClass("d-block").removeClass("d-none");
+                }
+                else {
+                    $(this).parent().parent().parent().removeClass("bg-info");
+                    $(this).parent().next().addClass("d-none").removeClass("d-block");
+                }
+            });
+        });
+    });
+    function searchAPI(target, list) {
+        var value = $(target).val().toLowerCase();
+        $(list + " > li").each(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    }
+</script>

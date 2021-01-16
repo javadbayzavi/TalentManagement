@@ -25,13 +25,10 @@ namespace ClubAdministration.Models
 
         // The frequency of the metric object
         public int frequency { get; set;}
-
-        // The Lower Bound of the metric object
-        public string lowerBound { get; set;}  
-        
+       
         public int metric_id { get; set; }
         [ForeignKey("metric_id")]
-        public metric metric { get; set; }
+        public metrics metric { get; set; }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<metric_values> values { get; set; }

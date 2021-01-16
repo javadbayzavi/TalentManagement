@@ -20,7 +20,7 @@ namespace ClubAdministration.Models
         // the date that metric value has updated / initiated
         public int modified_date { get; set; }
         [ForeignKey("instance_id")]
-        public metric_instance instance { get; set; }
+        public metric_instances instance { get; set; }
         public int instance_id { get; set; }
         
     }

@@ -46,6 +46,9 @@ namespace ClubAdministration.Models
         public virtual DbSet<skill> skills { get; set; }
         public virtual DbSet<drill_skills> drillskills { get; set; }
 
+        public virtual DbSet<metrics> metrics { get; set; }
+        public virtual DbSet<metric_instances> metric_instances { get; set; }
+        public virtual DbSet<metric_values> metric_values { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -66,7 +66,7 @@ namespace ClubAdministration.Controllers
         // POST: metrics/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,name,tips " metrics metricentry)
+        public ActionResult Create([Bind(Include = "ID,name,tips, direction, upperBound, lowerBound ")] metrics metricentry)
         {
 
 
@@ -78,7 +78,7 @@ namespace ClubAdministration.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(drillentry);
+            return View(metricentry);
         }
 
         // GET: metrics/Edit/5
@@ -101,7 +101,7 @@ namespace ClubAdministration.Controllers
         // POST: metrics/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,name,tips " metrics metricentry)
+        public ActionResult Edit([Bind(Include = "ID,name,tips, direction, upperBound, lowerBound ")] metrics metricentry)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)

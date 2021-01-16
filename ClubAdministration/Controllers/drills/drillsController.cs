@@ -174,27 +174,50 @@ namespace ClubAdministration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            drill drill = db.drills.Find(id);
 
-            if (drill == null)
+            //Load the drill entry
+            drillinputmodel entry = db.drills.Where(a => a.ID == id).Select(a => new drillinputmodel 
+            { 
+                ID = a.ID,
+                agelevel = new SelectList(db.agelevels.ToList(), "ID", "level" , a.agelevel_id),
+                agelevel_id = a.agelevel_id,
+                drill_coachingtips = a.drill_coachingtips,
+                drill_competition = a.drill_competition,
+                drill_duration = a.drill_duration,
+                drill_emphasis = new SelectList(db.agelevels.ToList(), "ID", "level", a.drill_emphasisid),
+                drill_emphasisid = a.drill_emphasisid,
+                drill_execution = a.drill_execution,
+                drill_fieldsize = a.drill_fieldsize,
+                drill_goals = a.drill_goals,
+                drill_levelplay = a.drill_levelplay,
+                drill_location = new SelectList(db.agelevels.ToList(), "ID", "level", a.drill_locationid),
+                drill_locationid = a.drill_locationid,
+                drill_organization = a.drill_organization,
+                drill_playernumbers = a.drill_playernumbers,
+                drill_progression = a.drill_progression,
+                drill_structure = a.drill_structure,
+                drill_target = a.drill_target,
+                drill_title = a.drill_title,
+                drill_type = new SelectList(db.agelevels.ToList(), "ID", "level", a.drill_typeid),
+                drill_typeid = a.drill_typeid,
+                drill_variations = a.drill_variations,
+                participating_positions = new SelectList(db.agelevels.ToList(), "ID", "level", a.participating_positionsid),
+                participating_positionsid = a.participating_positionsid
+            }).FirstOrDefault();
+
+            //In case of not matching the reuquested drill
+            if (entry == null)
             {
                 return HttpNotFound();
             }
-            //TODO: This action need to be deeply reviewed
-            //1. Load Age level
-            this.ViewBag.age_levelid = new SelectList(db.agelevels.ToList(), "ID", "level",drill.agelevel_id);
-            //2. Load Drill Type
-            //this.ViewBag.drill_typeid = new SelectList(db.drill_types.ToList(), "ID", "title",drill.drill_typeid);
-            //3. Load Drill Emphasis
-            this.ViewBag.drill_emphasisid = new SelectList(db.drill_emphasises.ToList(), "ID", "emphasis",drill.drill_emphasisid);
-            //4. Load Drill Positions
-            this.ViewBag.participating_positionsid = new SelectList(db.positions.ToList(), "ID", "title", drill.participating_positionsid);
-            //5. Load Drill Locations
-            this.ViewBag.drill_locationid = new SelectList(db.drill_locations.ToList(), "ID", "title",drill.drill_location);
-            //6. Load Drill required Materials
-            //7. Load Drill target skills
 
-            return View(drill);
+            //6. Load Drill required Materials
+            entry.drillmaterials = new SelectList(db.materials.ToList(), "ID", "name");
+            entry.drillmaterials.Where(a => )
+            //7. Load Drill target skills
+            entry.drillskills = new SelectList(db.skills.ToList(), "ID", "name");
+
+            return View(entry);
         }
 
         // POST: drills/Edit/5
