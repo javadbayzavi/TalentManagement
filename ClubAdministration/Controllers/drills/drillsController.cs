@@ -203,8 +203,8 @@ namespace ClubAdministration.Controllers
                 drill_variations = a.drill_variations,
                 participating_positions = new SelectList(db.positions.ToList(), "ID", "title", a.participating_positionsid),
                 participating_positionsid = a.participating_positionsid,
-                drillmaterials = new SelectList(db.materials.ToList(), "ID", "name"),
-                drillskills = new SelectList(db.skills.ToList(), "ID", "name")
+                //drillmaterials = new SelectList(db.materials.ToList(), "ID", "name"),
+                //drillskills = new SelectList(db.skills.ToList(), "ID", "name")
             }).FirstOrDefault();
 
             //In case of not matching the reuquested drill
@@ -215,29 +215,35 @@ namespace ClubAdministration.Controllers
 
             //TODO: need to be reviewed for optimization
             //6. Load Drill required Materials
-            var ss = db.materials.Select(item => new SelectListItem
+            entry.drillmaterials = new SelectList(db.materials.Select(item => new SelectListItem
             {
                 Value = item.ID.ToString(),
                 Text = item.name,
                 Selected = item.drills.Any(b => b.material_id == item.ID)
-            });
+            }).ToList());
 
-            foreach (var item in entry.drillmaterials)
-            {
-                if(db.drill_materials.Any(b => b.drill_id == id && b.material_id.ToString() == item.Value))
-                {
-                    item.Selected = true;
-                }
-            }
+            //foreach (var item in entry.drillmaterials)
+            //{
+            //  if(db.drill_materials.Any(b => b.drill_id == id && b.material_id.ToString() == item.Value))
+            // {
+            //  item.Selected = true;
+            // }
+            //}
 
             //7. Load Drill target skills
-            foreach (var item in entry.drillskills)
+            entry.drillskills = new SelectList(db.skills.Select(item => new SelectListItem
             {
-                if (db.drillskills.Any(b => b.drill_id == id && b.skill_id.ToString() == item.Value))
-                {
-                    item.Selected = true;
-                }
-            }
+                Value = item.ID.ToString(),
+                Text = item.name,
+                Selected = item.drills.Any(b => b.skill_id == item.ID)
+            }).ToList());
+            //foreach (var item in entry.drillskills)
+            //{
+                //if (db.drillskills.Any(b => b.drill_id == id && b.skill_id.ToString() == item.Value))
+                //{
+                    //item.Selected = true;
+                //}
+            //}
 
             return View(entry);
         }
