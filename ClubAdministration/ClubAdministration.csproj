@@ -547,6 +547,7 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="App_Code\widgets\gender_status.cshtml" />
     <Content Include="App_Code\widgets\level_play.cshtml" />
+    <Content Include="App_Code\widgets\metric_direction.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -745,6 +746,12 @@
     <Content Include="Views\drills\Create.cshtml" />
     <Content Include="Views\drills\Details.cshtml" />
     <Content Include="Views\drills\Edit.cshtml" />
+    <Content Include="Views\metrics\Create.cshtml" />
+    <Content Include="Views\metrics\Delete.cshtml" />
+    <Content Include="Views\metrics\Details.cshtml" />
+    <Content Include="Views\metrics\Edit.cshtml" />
+    <Content Include="Views\metrics\Index.cshtml" />
+    <Content Include="Views\metrics\instances.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
