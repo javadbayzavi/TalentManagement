@@ -215,6 +215,13 @@ namespace ClubAdministration.Controllers
 
             //TODO: need to be reviewed for optimization
             //6. Load Drill required Materials
+            var ss = db.materials.Select(item => new SelectListItem
+            {
+                Value = item.ID.ToString(),
+                Text = item.name,
+                Selected = item.drills.Any(b => b.material_id == item.ID)
+            });
+
             foreach (var item in entry.drillmaterials)
             {
                 if(db.drill_materials.Any(b => b.drill_id == id && b.material_id.ToString() == item.Value))
