@@ -1,0 +1,49 @@
+﻿@helper Show_Metric_Direction(int active)
+{
+    switch (active)
+    {
+        case 1:
+            <span>
+                افزايشي
+            </span>
+            break;
+        case 2:
+            <span>
+                كاهشي
+            </span>
+            break;
+    }
+}
+@helper Entry_Metric_Direction(int selected)
+{
+    var active = new List<SelectListItem>();
+    active.Add(new SelectListItem()
+    {
+        Text = "افزايشي",
+        Value = "1"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "كاهشي",
+        Value = "2"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">جهت ارزيابي</label>
+            <select name="direction" id="direction" class="form-control">
+                @foreach (var item in active)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}
