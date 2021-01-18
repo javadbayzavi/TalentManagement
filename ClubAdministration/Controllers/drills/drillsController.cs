@@ -184,13 +184,13 @@ namespace ClubAdministration.Controllers
                 drill_coachingtips = a.drill_coachingtips,
                 drill_competition = a.drill_competition,
                 drill_duration = a.drill_duration,
-                drill_emphasis = new SelectList(db.agelevels.ToList(), "ID", "title", a.drill_emphasisid),
+                drill_emphasis = new SelectList(db.drill_emphasises.ToList(), "ID", "emphasis", a.drill_emphasisid),
                 drill_emphasisid = a.drill_emphasisid,
                 drill_execution = a.drill_execution,
                 drill_fieldsize = a.drill_fieldsize,
                 drill_goals = a.drill_goals,
                 drill_levelplay = a.drill_levelplay,
-                drill_location = new SelectList(db.agelevels.ToList(), "ID", "emphasis", a.drill_locationid),
+                drill_location = new SelectList(db.drill_locations.ToList(), "ID", "location", a.drill_locationid),
                 drill_locationid = a.drill_locationid,
                 drill_organization = a.drill_organization,
                 drill_playernumbers = a.drill_playernumbers,
@@ -198,10 +198,10 @@ namespace ClubAdministration.Controllers
                 drill_structure = a.drill_structure,
                 drill_target = a.drill_target,
                 drill_title = a.drill_title,
-                drill_type = new SelectList(db.agelevels.ToList(), "ID", "title", a.drill_typeid),
+                drill_type = new SelectList(db.drill_types.ToList(), "ID", "title", a.drill_typeid),
                 drill_typeid = a.drill_typeid,
                 drill_variations = a.drill_variations,
-                participating_positions = new SelectList(db.agelevels.ToList(), "ID", "level", a.participating_positionsid),
+                participating_positions = new SelectList(db.positions.ToList(), "ID", "title", a.participating_positionsid),
                 participating_positionsid = a.participating_positionsid,
                 drillmaterials = new SelectList(db.materials.ToList(), "ID", "name"),
                 drillskills = new SelectList(db.skills.ToList(), "ID", "name")
@@ -222,6 +222,7 @@ namespace ClubAdministration.Controllers
                     item.Selected = true;
                 }
             }
+
             //7. Load Drill target skills
             foreach (var item in entry.drillskills)
             {
