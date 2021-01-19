@@ -459,6 +459,7 @@
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Sessions.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator.cs" />
     <Compile Include="Models\club_assets.cs" />
+    <Compile Include="Models\drill_kpis.cs" />
     <Compile Include="Models\drill_skills.cs" />
     <Compile Include="Models\drill_materials.cs" />
     <Compile Include="Models\metrics.cs" />
