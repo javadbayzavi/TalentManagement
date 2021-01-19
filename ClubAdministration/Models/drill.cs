@@ -103,6 +103,6 @@ namespace ClubAdministration.Models
         public virtual ICollection<drill_skills> drillskills { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<drill_kpis> kpis { get; set; }
+        public virtual ICollection<drill_kpis> drill_kpis { get; set; }
     }
 }

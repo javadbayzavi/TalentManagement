@@ -227,7 +227,8 @@
                         @foreach (SelectListItem item in Model.drillskills)
                         {
                             <li class="list-group-item list-group-item-action">
-                                @Html.CheckBox("drillskillsid", item.Selected, new { value = item.Value }) @(item.Text)
+                                <input type="checkbox" id="" name="" value="@item.Value" checked='@((item.Selected)? "checked" : "")'  /> @(item.Text)
+                                @*@Html.CheckBox("drillskillsid", item.Selected, new { value = item.Value }) @(item.Text)*@
                             </li>
                         }
                     </ul>
