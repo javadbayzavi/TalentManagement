@@ -423,6 +423,8 @@
     <Compile Include="Controllers\finance\financeControllerPlayer.cs" />
     <Compile Include="Controllers\finance\financeControllerTraining.cs" />
     <Compile Include="Controllers\growth\growthController.cs" />
+    <Compile Include="Controllers\metrics\valuesController.cs" />
+    <Compile Include="Controllers\metrics\instancesController.cs" />
     <Compile Include="Controllers\metrics\metricController.cs" />
     <Compile Include="Controllers\players\playersControllerContacts.cs" />
     <Compile Include="Controllers\players\playersControllerBodyshape.cs" />
@@ -753,6 +755,7 @@
     <Content Include="Views\metrics\Edit.cshtml" />
     <Content Include="Views\metrics\Index.cshtml" />
     <Content Include="Views\metrics\instances.cshtml" />
+    <Content Include="Views\drills\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
