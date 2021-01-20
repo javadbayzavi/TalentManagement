@@ -1,10 +1,10 @@
 ﻿@model ClubAdministration.Models.metrics
 
 @{
-    ViewBag.Title = "حذف" + " " + Model.title;
+    ViewBag.Title = "حذف" + " " + Model.name;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "metrics.default.delete", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "metrics.default.delete", "آيا از حذف" + (" " + Model.name) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
 @using (Html.BeginForm("DeleteMetric", "metrics", FormMethod.Post, new { @name = "metricform" }))
 {
     @Html.AntiForgeryToken()
@@ -22,10 +22,34 @@
                 </tr>
                 <tr>
                     <td>
-                        دسته‌بندي
+                        عنوان
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.title)
+                        @Html.DisplayFor(model => model.name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        شرح
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.tips)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        محدوده پاييني
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.lowerBound)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        محدوده بالايي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.upperBound)
                     </td>
                 </tr>
             </table>
