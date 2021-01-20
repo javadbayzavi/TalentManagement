@@ -99,7 +99,7 @@
                     سطح تمرين
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.drill_levelplay)
+                    @widgets.level_play.Show_Level_Play(Model.drill_levelplay)
                 </td>
             </tr>
             <tr>
@@ -131,7 +131,7 @@
                     گروه سني
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.agelevel)
+                    @Html.DisplayFor(model => model.agelevel.level)
                 </td>
             </tr>
             <tr>
@@ -139,7 +139,10 @@
                     تجهيزات تمرين
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.drillmaterials)
+                    @foreach (var item in Model.drillmaterials)
+                    {
+                        @Html.ActionLink(item.material.name + "(" + item.number + ")","") 
+                    }
                 </td>
             </tr>
             <tr>
@@ -147,7 +150,10 @@
                     مهارت‌هاي تمرين
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.drillskills)
+                    @foreach (var item in Model.drillskills)
+                    {
+                        @Html.Display(item.skill.name)
+                    }
                 </td>
             </tr>
             <tr>
