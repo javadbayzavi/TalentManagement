@@ -1,11 +1,11 @@
-﻿@model ClubAdministration.Models.certificates_issuer
+﻿@model ClubAdministration.Models.metrics
 
 @{
     ViewBag.Title = "حذف" + " " + Model.title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "coaches.issuers.delete", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
-@using (Html.BeginForm("DeleteIssuer", "coaches", FormMethod.Post, new { @name = "issuerform" }))
+@widgets.common.ribbon.Show_Ribbon(Url, "metrics.default.delete", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
+@using (Html.BeginForm("DeleteMetric", "metrics", FormMethod.Post, new { @name = "metricform" }))
 {
     @Html.AntiForgeryToken()
     <div class="mt-2 rounded-bottom shadow-sm mb-4">
