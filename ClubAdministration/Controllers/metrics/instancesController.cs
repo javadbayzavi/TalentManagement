@@ -22,9 +22,9 @@ namespace ClubAdministration.Controllers
         public ActionResult Index()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.metrics
-                .Where(a => a.name.Contains(this.Setting.PageSetting.SearchItem) || 
-                a.tips.Contains(this.Setting.PageSetting.SearchItem))) ;
+            return View(db.metric_instances
+                .Where(a => a.alias.Contains(this.Setting.PageSetting.SearchItem) || 
+                a.metric.name.Contains(this.Setting.PageSetting.SearchItem))) ;
         }
 
         [HttpPost]
@@ -44,7 +44,7 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("Index");
             }
         
-            var metric = db.metrics.Find(id);
+            var metric = db.metric_instances.Find(id);
                 
             if (metric == null)
             {
@@ -64,14 +64,14 @@ namespace ClubAdministration.Controllers
         // POST: metrics/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,name,tips, direction, upperBound, lowerBound ")] metrics metricentry)
+        public ActionResult Create([Bind(Include = "ID,alias,tips, direction, upperBound, lowerBound ")] metric_instances metricentry)
         {
 
 
             //1. Convert the entry to Db Model
             if (ModelState.IsValid == false)
             {
-                db.metrics.Add(metricentry);
+                db.metric_instances.Add(metricentry);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
