@@ -4,6 +4,11 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClubAdministration", "ClubAdministration\ClubAdministration.csproj", "{FCEF1131-F699-4AFD-A734-17C8DCB32CC2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "planning", "planning", "{7C190BC3-2B8E-48DE-A21A-B12735545418}"
+	ProjectSection(SolutionItems) = preProject
+		planning\backlog(AutoRecovered).xlsx = planning\backlog(AutoRecovered).xlsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

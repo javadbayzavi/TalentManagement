@@ -1,5 +1,7 @@
 ﻿@model ClubAdministration.Models.drill
-
+@{
+    //var materials = (List<ClubAdministration.Models.drill_materials>)ViewBag.materials;
+}
 @widgets.common.ribbon.Show_Ribbon(Url, "drills.details.default", "جزئيات تمرين " + (" " + Model.drill_title), rootParams: new { id = Model.ID })
 
 <div class="mt-2 rounded-bottom shadow-sm mb-4">
@@ -161,7 +163,7 @@
                     تاكيد تمرين
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.drill_emphasis)
+                    @Html.DisplayFor(model => model.drill_emphasis.emphasis)
                 </td>
             </tr>
             <tr>
@@ -177,7 +179,7 @@
                     عنوان تمرين
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.drill_location)
+                    @Html.DisplayFor(model => model.drill_location.location)
                 </td>
             </tr>
             <tr>
@@ -185,7 +187,7 @@
                     نوع تمرين
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.drill_type)
+                    @Html.DisplayFor(model => model.drill_type.title)
                 </td>
             </tr>
         </table>
