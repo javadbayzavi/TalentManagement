@@ -13,81 +13,79 @@ using ClubAdministration.Models.ViewModels;
 
 namespace ClubAdministration.Controllers
 {
-    public partial class valuesController : BaseController
+    public partial class metricsController : BaseController
     {
-        private clubAdminProxy db = new clubAdminProxy();
 
-        // GET: metricsController
+        // GET: metrics/values/5
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult values(int id)
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.metrics
-                .Where(a => a.name.Contains(this.Setting.PageSetting.SearchItem) || 
-                a.tips.Contains(this.Setting.PageSetting.SearchItem))) ;
+            return View(db.metric_values
+                .Where(a => a.value.Contains(this.Setting.PageSetting.SearchItem) ||
+                a.instance.alias.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
         [HttpPost]
-        [ActionName("Index")]
+        [ActionName("values")]
         [ValidateAntiForgeryToken]
-        public ActionResult IndexPostBack()
+        public ActionResult valuesPostBack(int id)
         {
-            return this.Index();
+            return this.values(id);
         }
 
-        // GET: metrics/Details/5
-        public ActionResult Details(int? id)
+        // GET: metrics/values/Detailsinstance/5
+        public ActionResult Detailsvalues(int? id)
         {
             if (id == null)
             {
-                Session["TACTION_RESULT"] = "مشكل در نمايش معيار وجود دارد";
-                return this.RedirectToAction("Index");
-            }
-        
-            var metric = db.metrics.Find(id);
-                
-            if (metric == null)
-            {
-                Session["TACTION_RESULT"] = "معيار درخواستي در سيستم ثبت نشده است";
-                return this.RedirectToAction("Index");
+                Session["TACTION_RESULT"] = "مشكل در نمايش مقادير وجود دارد";
+                return this.RedirectToAction("values");
             }
 
-            return View(metric);
+            var value = db.metric_values.Find(id);
+
+            if (value == null)
+            {
+                Session["TACTION_RESULT"] = "مقادير درخواستي در سيستم ثبت نشده است";
+                return this.RedirectToAction("values");
+            }
+
+            return View(value);
         }
 
-        // GET: metrics/Create
-        public ActionResult Create()
+        // GET: metrics/values/Createinstance
+        public ActionResult Createvalue()
         {
             return View();
         }
 
-        // POST: metrics/Create
+        // POST: metrics/values/Createinstance
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,name,tips, direction, upperBound, lowerBound ")] metrics metricentry)
+        public ActionResult Createvalue([Bind(Include = "ID,value,modified_date, instance_id")] metric_values metricentry)
         {
-
 
             //1. Convert the entry to Db Model
             if (ModelState.IsValid == false)
             {
-                db.metrics.Add(metricentry);
+                db.metric_values.Add(metricentry);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("values");
             }
 
             return View(metricentry);
         }
 
-        // GET: metrics/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: metrics/values/Editinstance/5
+        public ActionResult Editvalue(int? id)
         {
             //TODO: This action need to be deeply reviewed
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            metrics metric = db.metrics.Find(id);
+            metric_values metric = db.metric_values.Find(id);
 
             if (metric == null)
             {
@@ -96,30 +94,30 @@ namespace ClubAdministration.Controllers
             return View(metric);
         }
 
-        // POST: metrics/Edit/5
+        // POST: metrics/values/Editinstance/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,name,tips, direction, upperBound, lowerBound ")] metrics metricentry)
+        public ActionResult Editvalue([Bind(Include = "ID,alias,baseline, target, frequency, metric_id")] metric_values metricentry)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
             {
                 db.Entry(metricentry).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("instance");
             }
             return View(metricentry);
         }
 
-        // GET: metrics/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: metrics/values/Deleteinstance/5
+        public ActionResult Deletevalue(int? id)
         {
             //TODO: This action need to be deeply reviewed
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            metrics metric = db.metrics.Find(id);
+            metric_values metric = db.metric_values.Find(id);
             if (metric == null)
             {
                 return HttpNotFound();
@@ -127,26 +125,16 @@ namespace ClubAdministration.Controllers
             return View(metric);
         }
 
-        // POST: metrics/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: metrics/values/Deleteinstance/5
+        [HttpPost, ActionName("Deletevalue")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeletevalueConfirmed(int id)
         {
             //TODO: This action need to be deeply reviewed
-            metrics metric = db.metrics.Find(id);
-            db.metrics.Remove(metric);
+            metric_values metric = db.metric_values.Find(id);
+            db.metric_values.Remove(metric);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("value");
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
     }
 }

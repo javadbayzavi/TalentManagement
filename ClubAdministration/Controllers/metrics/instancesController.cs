@@ -13,13 +13,12 @@ using ClubAdministration.Models.ViewModels;
 
 namespace ClubAdministration.Controllers
 {
-    public partial class instancesController : BaseController
+    public partial class metricsController : BaseController
     {
-        private clubAdminProxy db = new clubAdminProxy();
 
-        // GET: metricsController
+        // GET: metrics/instances/
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult instances()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
             return View(db.metric_instances
@@ -28,20 +27,20 @@ namespace ClubAdministration.Controllers
         }
 
         [HttpPost]
-        [ActionName("Index")]
+        [ActionName("instance")]
         [ValidateAntiForgeryToken]
-        public ActionResult IndexPostBack()
+        public ActionResult instancePostBack()
         {
-            return this.Index();
+            return this.instances();
         }
 
-        // GET: metrics/Details/5
-        public ActionResult Details(int? id)
+        // GET: metrics/instances/Detailsinstance/5
+        public ActionResult Detailsinstance(int? id)
         {
             if (id == null)
             {
                 Session["TACTION_RESULT"] = "مشكل در نمايش معيار وجود دارد";
-                return this.RedirectToAction("Index");
+                return this.RedirectToAction("instances");
             }
         
             var metric = db.metric_instances.Find(id);
@@ -49,22 +48,22 @@ namespace ClubAdministration.Controllers
             if (metric == null)
             {
                 Session["TACTION_RESULT"] = "معيار درخواستي در سيستم ثبت نشده است";
-                return this.RedirectToAction("Index");
+                return this.RedirectToAction("instances");
             }
 
             return View(metric);
         }
 
-        // GET: metrics/Create
-        public ActionResult Create()
+        // GET: metrics/instances/Createinstance
+        public ActionResult Createinstance()
         {
             return View();
         }
 
-        // POST: metrics/Create
+        // POST: metrics/instances/Createinstance
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,alias,tips, direction, upperBound, lowerBound ")] metric_instances metricentry)
+        public ActionResult Createinstance([Bind(Include = "ID,alias,baseline, target, frequency, metric_id")] metric_instances metricentry)
         {
 
 
@@ -73,21 +72,21 @@ namespace ClubAdministration.Controllers
             {
                 db.metric_instances.Add(metricentry);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("instances");
             }
 
             return View(metricentry);
         }
 
-        // GET: metrics/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: metrics/instances/Editinstance/5
+        public ActionResult Editinstance(int? id)
         {
             //TODO: This action need to be deeply reviewed
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            metrics metric = db.metrics.Find(id);
+            metric_instances metric = db.metric_instances.Find(id);
 
             if (metric == null)
             {
@@ -96,30 +95,30 @@ namespace ClubAdministration.Controllers
             return View(metric);
         }
 
-        // POST: metrics/Edit/5
+        // POST: metrics/instances/Editinstance/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,name,tips, direction, upperBound, lowerBound ")] metrics metricentry)
+        public ActionResult Editinstance([Bind(Include = "ID,alias,baseline, target, frequency, metric_id")] metric_instances metricentry)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
             {
                 db.Entry(metricentry).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("instances");
             }
             return View(metricentry);
         }
 
-        // GET: metrics/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: metrics/instances/Deleteinstance/5
+        public ActionResult Deleteinstance(int? id)
         {
             //TODO: This action need to be deeply reviewed
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            metrics metric = db.metrics.Find(id);
+            metric_instances metric = db.metric_instances.Find(id);
             if (metric == null)
             {
                 return HttpNotFound();
@@ -127,25 +126,16 @@ namespace ClubAdministration.Controllers
             return View(metric);
         }
 
-        // POST: metrics/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: metrics/instances/Deleteinstance/5
+        [HttpPost, ActionName("Deleteinstance")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteinstanceConfirmed(int id)
         {
             //TODO: This action need to be deeply reviewed
-            metrics metric = db.metrics.Find(id);
-            db.metrics.Remove(metric);
+            metric_instances metric = db.metric_instances.Find(id);
+            db.metric_instances.Remove(metric);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return RedirectToAction("instances");
         }
 
     }
