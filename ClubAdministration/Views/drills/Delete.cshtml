@@ -3,7 +3,7 @@
     ViewBag.Title = "حذف" + " " + Model.drill_title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "drills.default.delete", "آيا از حذف" + (" " + Model.drill_title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "drills.delete.default", "آيا از حذف" + (" " + Model.drill_title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
 @using (Html.BeginForm("DeleteDrill", "drills", FormMethod.Post, new { @name = "drillform" }))
 {
     @Html.AntiForgeryToken()

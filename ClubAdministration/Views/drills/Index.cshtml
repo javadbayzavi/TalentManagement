@@ -8,7 +8,7 @@
 
 @using (Html.BeginForm("Index", "drills", FormMethod.Post, new { id = "drillform", name = "drillform" }))
 {
-    @widgets.common.ribbon.Show_Ribbon(Url, "drill.list.default", "مديريت تمرينات")
+    @widgets.common.ribbon.Show_Ribbon(Url, "drills.list.default", "مديريت تمرينات")
 
     @widgets.common.search.Show_Search_Form(ViewBag.search)
     @Html.AntiForgeryToken()
