@@ -232,7 +232,6 @@ E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.Web.Razor.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.Web.WebPages.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.Web.WebPages.Deployment.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.Web.WebPages.Razor.xml
-E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Newtonsoft.Json.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Antlr3.Runtime.pdb
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.Net.Http.Formatting.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\System.Web.Http.xml
