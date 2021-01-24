@@ -159,6 +159,13 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "skills.details.default":
                     return skills_details_default(rootParams);
 
+                case "materials.list.default":
+                    return materials_list_default(rootParams);
+                case "materials.delete.default":
+                    return materials_delete_default(rootParams);
+                case "materials.details.default":
+                    return materials_details_default(rootParams);
+
 
                 default:
                     return new List<Models.ViewModels.ribbons>();
@@ -367,16 +374,26 @@ namespace ClubAdministration.Library.widgets.ribbons
                     selectionneeded = false,
                 });
 
-            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
-            {
-                action = "Index",
-                controller = "skills",
-                title = "مهارت‌ها",
-                placeholder = "بخش برنامه‌ريزي مهارت‌ها",
-                postback = false,
-                rootparam = null,
-                selectionneeded = false,
-            });
+                ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+                {
+                    action = "Index",
+                    controller = "skills",
+                    title = "مهارت‌ها",
+                    placeholder = "بخش برنامه‌ريزي مهارت‌ها",
+                    postback = false,
+                    rootparam = null,
+                    selectionneeded = false,
+                });
+                ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+                {
+                    action = "Index",
+                    controller = "materials",
+                    title = "تجهيزات",
+                    placeholder = "بخش برنامه‌ريزي تجهيزات",
+                    postback = false,
+                    rootparam = null,
+                    selectionneeded = false,
+                });
             return ribbons;
             }
     }
