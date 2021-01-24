@@ -133,6 +133,17 @@ namespace ClubAdministration.Library.widgets.ribbons
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "locations",
+                placeholder = "گروه سني",
+                controller = "drills",
+                title = "گروه سني",
+                hostform = "",
+                postback = false,
+                rootparam = null,
+                selectionneeded = true
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "locations",
                 placeholder = "محل‌هاي تمرين",
                 controller = "drills",
                 title = "محل‌ها",

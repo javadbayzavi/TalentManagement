@@ -412,6 +412,9 @@
     <Compile Include="Controllers\coaches\coachesControllerCertificates.cs" />
     <Compile Include="Controllers\coaches\coachesController.cs" />
     <Compile Include="Controllers\coaches\coachesControllerIssuers.cs" />
+    <Compile Include="Controllers\drills\drillsControllerEmphasis.cs" />
+    <Compile Include="Controllers\club\drillsControllerAgelevels.cs" />
+    <Compile Include="Controllers\drills\drillsControllerType.cs" />
     <Compile Include="Controllers\drills\drillsController.cs" />
     <Compile Include="Controllers\finance\financeControllerCategory.cs" />
     <Compile Include="Controllers\finance\financeControllerPlayer.cs" />

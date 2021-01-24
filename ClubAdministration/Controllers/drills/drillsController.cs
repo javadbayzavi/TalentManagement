@@ -17,6 +17,13 @@ namespace ClubAdministration.Controllers
     {
         private clubAdminProxy db = new clubAdminProxy();
 
+        // GET: drills/typeId/emphasisId/materialId/skillId/agelevelId/positionId/locationId
+        [HttpPost]
+        public ActionResult Index(int? tid, int? eid, int? mid, int? sid, int? aid, int? pid,int? lid)
+        {
+            //TODO : define a new api to filter list based on user selections
+            return null;
+        }
         // GET: drillsController
         [HttpGet]
         public ActionResult Index()
