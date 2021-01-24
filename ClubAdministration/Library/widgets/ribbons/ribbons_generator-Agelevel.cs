@@ -48,7 +48,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 rootparam = rootParams[0],
                 selectionneeded = false,
                 hostform = "agelevelsform",
-                placeholder = "حذف گروه صادركننده",
+                placeholder = "حذف گروه سني",
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {

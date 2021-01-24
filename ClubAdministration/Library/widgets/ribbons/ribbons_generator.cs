@@ -145,13 +145,19 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "drills.delete.default":
                     return drills_delete(rootParams);
 
-
                 case "agelevels.list.default":
                     return agelevels_list_default(rootParams);
                 case "agelevels.delete.default":
                     return agelevels_delete_default(rootParams);
                 case "agelevels.details.default":
                     return agelevels_details_default(rootParams);
+
+                case "skills.list.default":
+                    return skills_list_default(rootParams);
+                case "skills.delete.default":
+                    return skills_delete_default(rootParams);
+                case "skills.details.default":
+                    return skills_details_default(rootParams);
 
 
                 default:
@@ -360,7 +366,18 @@ namespace ClubAdministration.Library.widgets.ribbons
                     rootparam = null,
                     selectionneeded = false,
                 });
-                return ribbons;
+
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Index",
+                controller = "skills",
+                title = "مهارت‌ها",
+                placeholder = "بخش برنامه‌ريزي مهارت‌ها",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+            });
+            return ribbons;
             }
     }
 }
