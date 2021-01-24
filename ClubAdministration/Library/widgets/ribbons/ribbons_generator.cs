@@ -145,6 +145,15 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "drills.delete.default":
                     return drills_delete(rootParams);
 
+
+                case "agelevels.list.default":
+                    return agelevels_list_default(rootParams);
+                case "agelevels.delete.default":
+                    return agelevels_delete_default(rootParams);
+                case "agelevels.details.default":
+                    return agelevels_details_default(rootParams);
+
+
                 default:
                     return new List<Models.ViewModels.ribbons>();
             }
@@ -341,6 +350,16 @@ namespace ClubAdministration.Library.widgets.ribbons
                     selectionneeded = false,
                 });
 
+                ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+                {
+                    action = "Index",
+                    controller = "agelevels",
+                    title = "گروه‌هاي سني",
+                    placeholder = "بخش برنامه‌ريزي گروه‌هاي سني",
+                    postback = false,
+                    rootparam = null,
+                    selectionneeded = false,
+                });
                 return ribbons;
             }
     }
