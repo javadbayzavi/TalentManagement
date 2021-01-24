@@ -405,6 +405,8 @@
     <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\club\materialsController.cs" />
+    <Compile Include="Controllers\club\skillsController.cs" />
     <Compile Include="Controllers\club\seasonController.cs" />
     <Compile Include="Controllers\coaches\coachesControllerTraining.cs" />
     <Compile Include="Controllers\coaches\coachesControllerSessions.cs" />
@@ -413,7 +415,8 @@
     <Compile Include="Controllers\coaches\coachesController.cs" />
     <Compile Include="Controllers\coaches\coachesControllerIssuers.cs" />
     <Compile Include="Controllers\drills\drillsControllerEmphasis.cs" />
-    <Compile Include="Controllers\club\drillsControllerAgelevels.cs" />
+    <Compile Include="Controllers\club\agelevelsController.cs" />
+    <Compile Include="Controllers\drills\drillsControllerLocation.cs" />
     <Compile Include="Controllers\drills\drillsControllerType.cs" />
     <Compile Include="Controllers\drills\drillsController.cs" />
     <Compile Include="Controllers\finance\financeControllerCategory.cs" />
@@ -754,6 +757,7 @@
     <Content Include="Views\metrics\Index.cshtml" />
     <Content Include="Views\metrics\instances.cshtml" />
     <Content Include="Views\drills\Delete.cshtml" />
+    <Content Include="Views\agelevels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
