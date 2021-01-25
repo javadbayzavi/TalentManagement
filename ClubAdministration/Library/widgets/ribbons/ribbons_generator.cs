@@ -154,6 +154,15 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "drills.types.typedrills":
                     return drills_types_typedrills(rootParams);
 
+                case "drills.emphasises.default":
+                    return drills_emphasises_default(rootParams);
+                case "drills.emphasises.details":
+                    return drills_emphasises_details(rootParams);
+                case "drills.emphasises.delete":
+                    return drills_emphasises_delete(rootParams);
+                case "drills.emphasises.emphasisdrills":
+                    return drills_emphasises_typedrills(rootParams);
+
                 case "agelevels.list.default":
                     return agelevels_list_default(rootParams);
                 case "agelevels.delete.default":

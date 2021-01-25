@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ClubAdministration.Models.drill_emphasises>
+
+@{
+    ViewBag.Title = "تاكيدهاي تمرينات";
+}
+@using (Html.BeginForm("drills","emphasises",FormMethod.Post,new { id="drillsfrm" }))
+{
+    @widgets.common.ribbon.Show_Ribbon(Url, "drills.emphasises.default", "مديريت تاكيدات تمرين")
+
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+
+    @Html.AntiForgeryToken();
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">تاكيدات تمرين</h2>
+        <div class="px-2">
+            <table class=" table table-hover table-responsive-sm text-center w-100">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDEmphasis", new { @id = "chkwhole" })
+                        </th>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            #
+                        </th>
+                        <th class="d-sm-table-cell text-center">
+                            تاكيد تمرين
+                        </th>
+                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            عمليات
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int indexe = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (indexe) })
+                        </td>
+                        <th class="d-none d-lg-table-cell d-md-table-cell text-center">
+                            @(indexe++)
+                        </th>
+                        <td class="d-sm-table-cell text-center">
+                            @Html.ActionLink(item.emphasis,
+                            "emphasisdrills",
+                            "drills",
+                            new { id = item.ID }, null)
+                        </td>
+                        <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
+                            @Html.ActionLink("تمرينات", "emphasisdrills", new { id = item.ID }) |
+                            @Html.ActionLink("ويرايش", "Editemphasis", new { id = item.ID }) |
+                            @Html.ActionLink("نمايش", "Detailsemphasis", new { id = item.ID }) |
+                            @Html.ActionLink("حذف", "Deleteemphasis", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

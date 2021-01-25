@@ -21,8 +21,8 @@ namespace ClubAdministration.Controllers
         public ActionResult emphasises()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.drill_types
-                .Where(a => a.title.Contains(this.Setting.PageSetting.SearchItem)));
+            return View(db.drill_emphasises
+                .Where(a => a.emphasis.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
         [HttpPost]
@@ -31,6 +31,31 @@ namespace ClubAdministration.Controllers
         public ActionResult emphasisesPostBack()
         {
             return this.emphasises();
+        }
+
+        // GET: drills/emphasisdrills
+        [HttpGet]
+        public ActionResult emphasisdrills(int id)
+        {
+            ViewBag.type = db.drill_emphasises.Find(id);
+
+            if (ViewBag.type == null)
+            {
+                Session["TACTION_RESULT"] = "مشكل در نمايش تاكيد تمرين وجود دارد";
+                return this.RedirectToAction("emphasises");
+            }
+
+            //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
+            return View(db.drills
+                .Where(a => a.drill_emphasisid == id && a.drill_title.Contains(this.Setting.PageSetting.SearchItem)).ToList());
+        }
+
+        [HttpPost]
+        [ActionName("emphasisdrills")]
+        [ValidateAntiForgeryToken]
+        public ActionResult emphasisdrillsPostBack(int id)
+        {
+            return this.emphasisdrills(id);
         }
 
         // GET: drills/Detailsemphasis/5

@@ -128,18 +128,18 @@ namespace ClubAdministration.Library.widgets.ribbons
                 hostform = "",
                 postback = false,
                 rootparam = null,
-                selectionneeded = true
+                selectionneeded = false
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
-                action = "locations",
+                action = "Index",
                 placeholder = "گروه سني",
-                controller = "drills",
+                controller = "agelevels",
                 title = "گروه سني",
                 hostform = "",
                 postback = false,
                 rootparam = null,
-                selectionneeded = true
+                selectionneeded = false
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
@@ -150,33 +150,33 @@ namespace ClubAdministration.Library.widgets.ribbons
                 hostform = "",
                 postback = false,
                 rootparam = null,
-                selectionneeded = true
+                selectionneeded = false
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
-                action = "materials",
+                action = "Index",
                 placeholder = "لوازم مورد نياز تمرين",
-                controller = "drills",
-                title = "برنامه هفتگي",
+                controller = "materials",
+                title = "لوازم تمرين",
                 hostform = "",
                 postback = false,
                 rootparam = null,
-                selectionneeded = true
+                selectionneeded = false
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Index",
                 controller = "drills",
                 title = "به‌روزآوری",
-                placeholder = "اطلاعات لیست مربيان بازآوری شود",
+                placeholder = "اطلاعات لیست تمرينات بازآوری شود",
                 postback = false,
                 rootparam = null,
                 selectionneeded = false,
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
-                action = "skills",
-                controller = "drills",
+                action = "Index",
+                controller = "skills",
                 title = "مهارت‌ها",
                 placeholder = " مهارت‌هاي مورد بررسي در تمرين",
                 postback = false,
