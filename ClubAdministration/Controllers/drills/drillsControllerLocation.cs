@@ -21,8 +21,8 @@ namespace ClubAdministration.Controllers
         public ActionResult locations()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.drill_types
-                .Where(a => a.title.Contains(this.Setting.PageSetting.SearchItem)));
+            return View(db.drill_locations
+                .Where(a => a.location.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
         [HttpPost]
@@ -31,6 +31,31 @@ namespace ClubAdministration.Controllers
         public ActionResult locationsPostBack()
         {
             return this.locations();
+        }
+
+        // GET: drills/locationdrills
+        [HttpGet]
+        public ActionResult locationdrills(int id)
+        {
+            ViewBag.location = db.drill_locations.Find(id);
+
+            if (ViewBag.location == null)
+            {
+                Session["TACTION_RESULT"] = "مشكل در نمايش مكان وجود دارد";
+                return this.RedirectToAction("locations");
+            }
+
+            //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
+            return View(db.drills
+                .Where(a => a.drill_locationid == id && a.drill_title.Contains(this.Setting.PageSetting.SearchItem)).ToList());
+        }
+
+        [HttpPost]
+        [ActionName("locationdrills")]
+        [ValidateAntiForgeryToken]
+        public ActionResult locationdrillsPostBack(int id)
+        {
+            return this.locationdrills(id);
         }
 
         // GET: drills/Detailslocation/5

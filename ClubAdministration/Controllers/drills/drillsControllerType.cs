@@ -45,7 +45,7 @@ namespace ClubAdministration.Controllers
         [HttpPost]
         [ActionName("typedrills")]
         [ValidateAntiForgeryToken]
-        public ActionResult typesPostBack(int id)
+        public ActionResult typedrillsPostBack(int id)
         {
             return this.typedrills(id);
         }

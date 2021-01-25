@@ -37,9 +37,9 @@ namespace ClubAdministration.Controllers
         [HttpGet]
         public ActionResult emphasisdrills(int id)
         {
-            ViewBag.type = db.drill_emphasises.Find(id);
+            ViewBag.emphasis = db.drill_emphasises.Find(id);
 
-            if (ViewBag.type == null)
+            if (ViewBag.emphasis == null)
             {
                 Session["TACTION_RESULT"] = "مشكل در نمايش تاكيد تمرين وجود دارد";
                 return this.RedirectToAction("emphasises");

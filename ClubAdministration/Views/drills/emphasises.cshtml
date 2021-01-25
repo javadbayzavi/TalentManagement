@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "تاكيدهاي تمرينات";
 }
-@using (Html.BeginForm("drills","emphasises",FormMethod.Post,new { id="drillsfrm" }))
+@using (Html.BeginForm("emphasises","drills",FormMethod.Post,new { id="drillsfrm" }))
 {
     @widgets.common.ribbon.Show_Ribbon(Url, "drills.emphasises.default", "مديريت تاكيدات تمرين")
 

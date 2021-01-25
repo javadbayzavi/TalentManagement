@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "انواع تمرينات";
 }
-@using (Html.BeginForm("drills","types",FormMethod.Post,new { id="drillsfrm" }))
+@using (Html.BeginForm("types","drills",FormMethod.Post,new { id="drillsfrm" }))
 {
     @widgets.common.ribbon.Show_Ribbon(Url, "drills.types.default", "مديريت انواع تمرين")
 
