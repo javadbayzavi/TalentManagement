@@ -25,6 +25,31 @@ namespace ClubAdministration.Controllers
                 .Where(a => a.title.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
+        // GET: drills/typedrills
+        [HttpGet]
+        public ActionResult typedrills(int id)
+        {
+            ViewBag.type = db.drill_types.Find(id);
+
+            if (ViewBag.type == null)
+            {
+                Session["TACTION_RESULT"] = "مشكل در نمايش نوع وجود دارد";
+                return this.RedirectToAction("types");
+            }
+
+            //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
+            return View(db.drills
+                .Where(a => a.drill_typeid == id && a.drill_title.Contains(this.Setting.PageSetting.SearchItem)).ToList());
+        }
+
+        [HttpPost]
+        [ActionName("typedrills")]
+        [ValidateAntiForgeryToken]
+        public ActionResult typesPostBack(int id)
+        {
+            return this.typedrills(id);
+        }
+
         [HttpPost]
         [ActionName("types")]
         [ValidateAntiForgeryToken]
@@ -42,8 +67,6 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("types");
             }
             var type = db.drill_types.Find(id);
-            //ViewBag.materials = .ToList();
-            //ViewBag.skills = drill.drillskills.ToList();
 
             if (type == null)
             {

@@ -451,13 +451,14 @@
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
     <Compile Include="Library\widgets\forms\HtmlExtentions.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillType.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Material.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Skill.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Agelevel.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Drills.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-CoachesCertificates.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-CoachesTraining.cs" />
-    <Compile Include="Library\widgets\ribbons\ribbons_generator-PaymentCategories - Copy.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-PaymentCategories.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Finance.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Players.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-PlayerPayments.cs" />
@@ -775,6 +776,12 @@
     <Content Include="Views\materials\Details.cshtml" />
     <Content Include="Views\materials\Edit.cshtml" />
     <Content Include="Views\materials\Index.cshtml" />
+    <Content Include="Views\drills\Createtype.cshtml" />
+    <Content Include="Views\drills\Deletetype.cshtml" />
+    <Content Include="Views\drills\Detailstype.cshtml" />
+    <Content Include="Views\drills\Edittype.cshtml" />
+    <Content Include="Views\drills\types.cshtml" />
+    <Content Include="Views\drills\typedrills.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

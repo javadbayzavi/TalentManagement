@@ -145,6 +145,15 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "drills.delete.default":
                     return drills_delete(rootParams);
 
+                case "drills.types.default":
+                    return drills_types_default(rootParams);
+                case "drills.types.details":
+                    return drills_types_details(rootParams);
+                case "drills.types.delete":
+                    return drills_types_delete(rootParams);
+                case "drills.types.typedrills":
+                    return drills_types_typedrills(rootParams);
+
                 case "agelevels.list.default":
                     return agelevels_list_default(rootParams);
                 case "agelevels.delete.default":
@@ -362,7 +371,6 @@ namespace ClubAdministration.Library.widgets.ribbons
                     rootparam = null,
                     selectionneeded = false,
                 });
-
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
                     action = "Index",
@@ -373,7 +381,6 @@ namespace ClubAdministration.Library.widgets.ribbons
                     rootparam = null,
                     selectionneeded = false,
                 });
-
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
                     action = "Index",
