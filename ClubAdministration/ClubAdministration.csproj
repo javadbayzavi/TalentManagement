@@ -406,6 +406,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\club\materialsController.cs" />
+    <Compile Include="Controllers\club\positionsController.cs" />
     <Compile Include="Controllers\club\skillsController.cs" />
     <Compile Include="Controllers\club\seasonController.cs" />
     <Compile Include="Controllers\coaches\coachesControlCertLevel.cs" />
@@ -452,6 +453,7 @@
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
     <Compile Include="Library\widgets\forms\HtmlExtentions.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-Position.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillEmphasis.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillLocation.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillType.cs" />
@@ -804,6 +806,11 @@
     <Content Include="Views\coaches\EditLevel.cshtml" />
     <Content Include="Views\coaches\LevelCertificates.cshtml" />
     <Content Include="Views\coaches\Levels.cshtml" />
+    <Content Include="Views\positions\Create.cshtml" />
+    <Content Include="Views\positions\Delete.cshtml" />
+    <Content Include="Views\positions\Details.cshtml" />
+    <Content Include="Views\positions\Edit.cshtml" />
+    <Content Include="Views\positions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

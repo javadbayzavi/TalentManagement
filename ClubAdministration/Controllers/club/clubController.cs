@@ -166,6 +166,8 @@ namespace ClubAdministration.Controllers
             {
                 db.Entry(training_terms).State = EntityState.Modified;
                 db.SaveChanges();
+                //TODO : cascade update on players end subscriptions for the players whose subscription dates not passed
+                //db.player_registerations.Where(a => a.training_id == training_terms.ID).
                 return RedirectToAction("Index");
             }
             return View(training_terms);

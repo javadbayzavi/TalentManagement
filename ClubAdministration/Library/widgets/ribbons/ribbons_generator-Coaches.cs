@@ -216,6 +216,17 @@ namespace ClubAdministration.Library.widgets.ribbons
                 rootparam = null,
                 selectionneeded = false,
             });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Levels",
+                controller = "coaches",
+                title = "درجه‌بندي مدارك",
+                placeholder = " ليست درجه‌بندي مدارك",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+            });
+
 
             return ribbons;
         }

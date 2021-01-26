@@ -50,11 +50,13 @@ namespace ClubAdministration.Controllers
             //Business rules in class registeration:
             //1. Player cannot register twice in a same class
             //2.Player cannot register in a class that is currently closed
+            //3. Max capacity of classes must be checked
             int today = BaseDate.CalculateDateDiffInMinutes(DateTime.Today);
             var trtrm = db.training_terms
                 .Where(a =>
                 a.e_date > today &&
-                a.player_registerations.Any(pl => pl.player_id == player.ID) == false
+                a.player_registerations.Any(pl => pl.player_id == player.ID) == false &&
+                a.player_registerations.Count < a.max_player
                 ).ToList();
 
             ViewBag.training_id = new SelectList(trtrm, "ID", "term_title");

@@ -188,6 +188,13 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "agelevels.details.default":
                     return agelevels_details_default(rootParams);
 
+                case "positions.list.default":
+                    return positions_list_default(rootParams);
+                case "positions.delete.default":
+                    return positions_delete_default(rootParams);
+                case "positions.details.default":
+                    return positions_details_default(rootParams);
+
                 case "skills.list.default":
                     return skills_list_default(rootParams);
                 case "skills.delete.default":
@@ -428,6 +435,16 @@ namespace ClubAdministration.Library.widgets.ribbons
                     rootparam = null,
                     selectionneeded = false,
                 });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Index",
+                controller = "positions",
+                title = "پست بازي",
+                placeholder = "بخش برنامه‌ريزي پست‌هاي بازي",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+            });
             return ribbons;
             }
     }
