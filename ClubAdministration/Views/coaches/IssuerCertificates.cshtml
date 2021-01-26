@@ -4,7 +4,7 @@
     ViewBag.Title = "مدارك  " + issuer.title;
 }
 @widgets.common.ribbon.Show_Ribbon(Url, "coaches.issuers.certificates", "مدارك  " + issuer.title, new { id = issuer.ID })
-@using (Html.BeginForm("IssuerCertificates", "issuer", FormMethod.Post, new { id = "issuerfrm" }))
+@using (Html.BeginForm("IssuerCertificates", "coaches", FormMethod.Post, new { id = "issuerfrm" }))
 {
     @widgets.common.search.Show_Search_Form(ViewBag.search)
     @Html.AntiForgeryToken()

@@ -137,6 +137,15 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "coaches.issuers.certificates":
                     return coaches_issuers_certificates(rootParams);
 
+                case "coaches.levels.default":
+                    return coaches_levels_default(rootParams);
+                case "coaches.levels.delete":
+                    return coaches_levels_delete(rootParams);
+                case "coaches.levels.details":
+                    return coaches_levels_details(rootParams);
+                case "coaches.levels.certificates":
+                    return coaches_levels_certificates(rootParams);
+
                 // drill related ribbons
                 case "drills.list.default":
                     return drills_list_default(rootParams);

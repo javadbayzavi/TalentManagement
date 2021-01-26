@@ -57,5 +57,9 @@ namespace ClubAdministration.Models
 
         [ForeignKey("issuer_id")]
         public certificates_issuer issuer { get; set; }
+
+        [ForeignKey("level_id")]
+        public certificates_levels level { get; set; }
+        public int level_id { get; set; }
     }
 }

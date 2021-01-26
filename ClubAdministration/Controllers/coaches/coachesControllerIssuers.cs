@@ -28,7 +28,6 @@ namespace ClubAdministration.Controllers.coaches
         }
         public ActionResult CreateIssuer()
         {
-            var cats = db.certificates_issuers.ToList();
             return View();
         }
 

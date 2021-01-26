@@ -33,6 +33,7 @@ namespace ClubAdministration.Models
         public virtual DbSet<coach_training> coach_trainings { get; set; }
         public virtual DbSet<coach_certificates> coach_certificates { get; set; }
         public virtual DbSet<certificates_issuer> certificates_issuers { get; set; }
+        public virtual DbSet<certificates_levels> certificates_levels { get; set; }
         public virtual DbSet<club_bankaccounts> club_bankaccounts { get; set; }
         public virtual DbSet<coach_sessions> coach_sessions { get; set; }
         public virtual DbSet<drill> drills { get; set; }

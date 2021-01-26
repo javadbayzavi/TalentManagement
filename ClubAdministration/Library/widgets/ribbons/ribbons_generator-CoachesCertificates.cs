@@ -284,5 +284,158 @@ namespace ClubAdministration.Library.widgets.ribbons
             });
             return ribbons;
         }
+        private static List<Models.ViewModels.ribbons> coaches_levels_details(params object[] rootParams)
+        {
+
+            List<ClubAdministration.Models.ViewModels.ribbons> ribbons = new List<ClubAdministration.Models.ViewModels.ribbons>();
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Editlevel",
+                controller = "coaches",
+                title = "ويرايش",
+                postback = false,
+                rootparam = rootParams[0],
+                selectionneeded = false,
+                hostform = "",
+                placeholder = "ويرايش درجه",
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "levels",
+                controller = "coaches",
+                title = "بازگشت",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+                hostform = "",
+                placeholder = "بازگشت به صفحه قبل"
+            });
+            return ribbons;
+        }
+        private static List<Models.ViewModels.ribbons> coaches_levels_delete(params object[] rootParams)
+        {
+
+            List<ClubAdministration.Models.ViewModels.ribbons> ribbons = new List<ClubAdministration.Models.ViewModels.ribbons>();
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Deletelevel",
+                controller = "coaches",
+                title = "حذف",
+                postback = true,
+                rootparam = rootParams[0],
+                selectionneeded = false,
+                hostform = "issuerform",
+                placeholder = "حذف درجه مدرك",
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "levels",
+                controller = "coaches",
+                title = "بازگشت",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+                hostform = "",
+                placeholder = "بازگشت به صفحه قبل"
+            });
+            return ribbons;
+        }
+        private static List<Models.ViewModels.ribbons> coaches_levels_certificates(params object[] rootParams)
+        {
+
+            List<ClubAdministration.Models.ViewModels.ribbons> ribbons = new List<ClubAdministration.Models.ViewModels.ribbons>();
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "levels",
+                controller = "coaches",
+                title = "بازگشت",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+                hostform = "",
+                placeholder = "بازگشت به صفحه قبل"
+            });
+            return ribbons;
+        }
+
+        private static List<Models.ViewModels.ribbons> coaches_levels_default(params object[] rootParams)
+        {
+
+            List<ClubAdministration.Models.ViewModels.ribbons> ribbons = new List<ClubAdministration.Models.ViewModels.ribbons>();
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Createlevel",
+                controller = "coaches",
+                title = "ايجاد",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+                hostform = "",
+                placeholder = "ايجاد درجه",
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Editlevel",
+                controller = "coaches",
+                title = "ویرایش",
+                placeholder = "ویرایش اطلاعات درجه",
+                postback = false,
+                rootparam = null,
+                selectionneeded = true,
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "DetailsIssuer",
+                controller = "coaches",
+                title = "نمایش",
+                placeholder = "نمایش اطلاعات صادركننده",
+                postback = false,
+                rootparam = null,
+                selectionneeded = true,
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Deletelevel",
+                controller = "coaches",
+                title = "حذف",
+                placeholder = "حذف اطلاعات درجه",
+                postback = false,
+                rootparam = null,
+                selectionneeded = true,
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "levelCertificates",
+                controller = "coaches",
+                title = "مدارك",
+                placeholder = "نمایش مدرك‌هاي درجه مربي",
+                postback = false,
+                rootparam = null,
+                selectionneeded = true,
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "levels",
+                controller = "coaches",
+                title = "به‌روزآوري",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+                hostform = "",
+                placeholder = "بازآوري مجدد ليست"
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Index",
+                controller = "coaches",
+                title = "بازگشت",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+                hostform = "",
+                placeholder = "بازگشت به صفحه قبل"
+            });
+            return ribbons;
+        }
     }
 }

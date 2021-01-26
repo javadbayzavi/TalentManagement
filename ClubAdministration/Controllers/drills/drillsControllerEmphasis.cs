@@ -67,8 +67,6 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("emphasises");
             }
             var emphasis = db.drill_emphasises.Find(id);
-            //ViewBag.materials = .ToList();
-            //ViewBag.skills = drill.drillskills.ToList();
 
             if (emphasis == null)
             {
@@ -85,7 +83,7 @@ namespace ClubAdministration.Controllers
             return View();
         }
 
-        // POST: drillsController/Createtype
+        // POST: drillsController/Createemphasis
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -114,7 +112,7 @@ namespace ClubAdministration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //Load the drill type entry
+            //Load the drill emphasis entry
             var entry = db.drill_emphasises.Find(id);
             return View(entry);
         }

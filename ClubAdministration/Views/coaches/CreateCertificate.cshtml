@@ -32,6 +32,14 @@
 
             <div class="form-group row font-weight-bold">
                 <div class="col-sm-12 col-md-6">
+                    @Html.Label("درجه مدرك", htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownList("level_id", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.level_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
                     @Html.Label("تاريخ اخذ مدرك", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.certificate_date, new { htmlAttributes = new { @id = "certificate_date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.certificate_date, "", new { @class = "text-danger" })

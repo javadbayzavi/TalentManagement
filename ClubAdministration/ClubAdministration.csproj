@@ -408,6 +408,7 @@
     <Compile Include="Controllers\club\materialsController.cs" />
     <Compile Include="Controllers\club\skillsController.cs" />
     <Compile Include="Controllers\club\seasonController.cs" />
+    <Compile Include="Controllers\coaches\coachesControlCertLevel.cs" />
     <Compile Include="Controllers\coaches\coachesControllerTraining.cs" />
     <Compile Include="Controllers\coaches\coachesControllerSessions.cs" />
     <Compile Include="Controllers\coaches\coachesControllerPlan.cs" />
@@ -467,6 +468,7 @@
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Coaches.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Sessions.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator.cs" />
+    <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\drills\drill_kpis.cs" />
     <Compile Include="Models\drills\drill_skills.cs" />
@@ -483,7 +485,7 @@
     <Compile Include="Models\drills\drill_types.cs" />
     <Compile Include="Models\drills\drill.cs" />
     <Compile Include="Models\coaches\coach.cs" />
-    <Compile Include="Models\certificates_issuer.cs" />
+    <Compile Include="Models\coaches\certificates_issuer.cs" />
     <Compile Include="Models\coaches\coach_certificates.cs" />
     <Compile Include="Models\coaches\coach_session.cs" />
     <Compile Include="Models\player_assets.cs" />
@@ -796,6 +798,12 @@
     <Content Include="Views\drills\Editlocation.cshtml" />
     <Content Include="Views\drills\locationdrills.cshtml" />
     <Content Include="Views\drills\locations.cshtml" />
+    <Content Include="Views\coaches\CreateLevel.cshtml" />
+    <Content Include="Views\coaches\DeleteLevel.cshtml" />
+    <Content Include="Views\coaches\DetailsLevel.cshtml" />
+    <Content Include="Views\coaches\EditLevel.cshtml" />
+    <Content Include="Views\coaches\LevelCertificates.cshtml" />
+    <Content Include="Views\coaches\Levels.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
