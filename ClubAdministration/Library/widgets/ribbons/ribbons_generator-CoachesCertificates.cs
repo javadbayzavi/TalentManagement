@@ -385,7 +385,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
-                action = "DetailsIssuer",
+                action = "DetailsLevel",
                 controller = "coaches",
                 title = "نمایش",
                 placeholder = "نمایش اطلاعات صادركننده",

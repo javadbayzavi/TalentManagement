@@ -811,6 +811,7 @@
     <Content Include="Views\positions\Details.cshtml" />
     <Content Include="Views\positions\Edit.cshtml" />
     <Content Include="Views\positions\Index.cshtml" />
+    <Content Include="Views\club\Coaches.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

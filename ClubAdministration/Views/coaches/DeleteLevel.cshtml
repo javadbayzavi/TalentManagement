@@ -1,11 +1,11 @@
-﻿@model ClubAdministration.Models.certificates_level
+﻿@model ClubAdministration.Models.certificates_levels
 
 @{
-    ViewBag.Title = "حذف" + " " + Model.title;
+    ViewBag.Title = "حذف" + " " + Model.level;
 }
 
 @widgets.common.ribbon.Show_Ribbon(Url, "coaches.levels.delete", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
-@using (Html.BeginForm("DeleteIssuer", "coaches", FormMethod.Post, new { @name = "issuerform" }))
+@using (Html.BeginForm("DeleteLevel", "coaches", FormMethod.Post, new { @name = "levelform" }))
 {
     @Html.AntiForgeryToken()
     <div class="mt-2 rounded-bottom shadow-sm mb-4">

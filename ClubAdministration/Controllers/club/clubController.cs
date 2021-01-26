@@ -63,6 +63,34 @@ namespace ClubAdministration.Controllers
             return this.Sessions(id);
         }
 
+        public ActionResult Coaches(int? id)
+        {
+            if (id == null)
+            {
+                Session["TACTION_RESULT"] = "خطا در نمايش مربيان كلاس آموزشي";
+                return this.RedirectToAction("Index");
+            }
+            training_terms training_terms = db.training_terms.Find(id);
+            if (training_terms == null)
+            {
+                Session["TACTION_RESULT"] = "كلاس آموزشي درخواستي در سيستم ثبت نشده است";
+                return this.RedirectToAction("Index");
+            }
+
+            ViewBag.training = training_terms;
+
+            return View(training_terms.coach_training.Where(a => a.coach.coach_name.Contains(this.Setting.PageSetting.SearchItem) ||
+            a.coach.coach_family.Contains(this.Setting.PageSetting.SearchItem)
+            ).ToList());
+        }
+        [HttpPost]
+        [ActionName("Coaches")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CoachesPostBack(int? id)
+        {
+            return this.Coaches(id);
+        }
+
         public ActionResult Players(int? id)
         {
             if (id == null)

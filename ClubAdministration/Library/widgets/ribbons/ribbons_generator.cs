@@ -22,6 +22,8 @@ namespace ClubAdministration.Library.widgets.ribbons
                     return training_player_list(rootParams);
                 case "training.list.sessions":
                     return training_session_list(rootParams);
+                case "training.list.coaches":
+                    return training_coaches_list(rootParams);
                 case "training.details.default":
                     return training_details(rootParams);
                 case "training.delete.default":
@@ -301,6 +303,24 @@ namespace ClubAdministration.Library.widgets.ribbons
             return ribbons;
         }
 
+        private static List<Models.ViewModels.ribbons> training_coaches_list(params object[] rootParams)
+        {
+
+            List<ClubAdministration.Models.ViewModels.ribbons> ribbons = new List<ClubAdministration.Models.ViewModels.ribbons>();
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "Index",
+                controller = "club",
+                title = "بازگشت",
+                postback = false,
+                rootparam = null,
+                selectionneeded = false,
+                hostform = "",
+                placeholder = "بازگشت به صفحه قبل"
+            });
+            return ribbons;
+        }
+
         private static List<Models.ViewModels.ribbons> training_player_list(params object[] rootParams)
         {
 
@@ -397,6 +417,17 @@ namespace ClubAdministration.Library.widgets.ribbons
                 });
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
+                    action = "Coaches",
+                    placeholder = "مربيان کلاس",
+                    controller = "club",
+                    title = "مربيان",
+                    hostform = "",
+                    postback = false,
+                    rootparam = null,
+                    selectionneeded = true
+                });
+                ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+                {
                     action = "Index",
                     controller = "club",
                     title = "به‌روزآوری",
@@ -435,16 +466,16 @@ namespace ClubAdministration.Library.widgets.ribbons
                     rootparam = null,
                     selectionneeded = false,
                 });
-            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
-            {
-                action = "Index",
-                controller = "positions",
-                title = "پست بازي",
-                placeholder = "بخش برنامه‌ريزي پست‌هاي بازي",
-                postback = false,
-                rootparam = null,
-                selectionneeded = false,
-            });
+                ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+                {
+                    action = "Index",
+                    controller = "positions",
+                    title = "پست بازي",
+                    placeholder = "بخش برنامه‌ريزي پست‌هاي بازي",
+                    postback = false,
+                    rootparam = null,
+                    selectionneeded = false,
+                });
             return ribbons;
             }
     }

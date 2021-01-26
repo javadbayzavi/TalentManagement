@@ -1,6 +1,6 @@
 ﻿@model ICollection<ClubAdministration.Models.coach_certificates>
 @{
-    var level = (ClubAdministration.Models.certificates_level)ViewBag.level;
+    var level = (ClubAdministration.Models.certificates_levels)ViewBag.level;
     ViewBag.Title = "مدارك  " + level.title;
 }
 @widgets.common.ribbon.Show_Ribbon(Url, "coaches.levels.certificates", "مدارك  " + level.title, new { id = level.ID })

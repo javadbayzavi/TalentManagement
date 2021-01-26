@@ -1,5 +1,4 @@
-﻿@model ClubAdministration.Models.certificates_issuer
-
+﻿@model ClubAdministration.Models.certificates_levels
 @{ 
     ViewBag.Title = "ويرايش " + Model.title;
 }
@@ -9,13 +8,13 @@
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ID)
     <div class="form-horizontal p-0 mb-2 shadow-sm">
-        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">جزئیات سازمان</h4>
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">جزئیات درجه</h4>
         <div class="container-fluid border rounded-bottom border-top-0 m-0">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group row">
                 <div class="col font-weight-bold">
-                    @Html.Label("نام سازمان", htmlAttributes: new { @class = "control-label col" })
+                    @Html.Label("نام درجه", htmlAttributes: new { @class = "control-label col" })
                     @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.title , "", new { @class = "text-danger" })
                 </div>
@@ -25,7 +24,7 @@
                     <input type="submit" value="  ذخيره  " class="btn btn-primary px-5 m-2" />
                 </div>
                 <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
-                    @Html.ActionLink("بازگشت به ليست", "Issuers", null, new { @class = "btn btn-outline-warning px-5 m-2" })
+                    @Html.ActionLink("بازگشت به ليست", "Levels", null, new { @class = "btn btn-outline-warning px-5 m-2" })
                 </div>
             </div>
         </div>
