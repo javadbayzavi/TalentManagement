@@ -61,6 +61,11 @@ namespace ClubAdministration.Models
 
         public string end_time { get; set; }
 
+
+        [ForeignKey("level_id")]
+        public agelevel agelevel { get; set; }
+        public int level_id { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<player_registerations> player_registerations { get; set; }
 

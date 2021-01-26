@@ -28,6 +28,9 @@
                             عنوان كلاس
                         </th>
                         <th class="d-none d-lg-table-cell text-center">
+                            گروه سني
+                        </th>
+                        <th class="d-none d-lg-table-cell text-center">
                             تاريخ شروع
                         </th>
                         <th class="d-none d-lg-table-cell text-center">
@@ -68,6 +71,9 @@
                 </th>
                 <td>
                     @Html.ActionLink(item.term_title, "Details", new { id = item.ID }, new { @title = "نمایش جزئیات کلاس " + item.term_title })
+                </td>
+                <td class="d-none d-lg-table-cell">
+                    @item.agelevel.level
                 </td>
                 <td class="d-none d-lg-table-cell">
                     @item.start_date

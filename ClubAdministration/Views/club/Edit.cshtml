@@ -23,12 +23,17 @@
             </div>
 
             <div class="form-group row">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
+                    @Html.Label("گروه سني", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownList("level_id", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.level_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-4">
                     @Html.Label("تاريخ شروع كلاس", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @id = "start_date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                     @Html.Label("تاريخ پايان كلاس", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.end_date, new { htmlAttributes = new { @id = "end_date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.end_date, "", new { @class = "text-danger" })

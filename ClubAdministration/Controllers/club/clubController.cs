@@ -22,7 +22,7 @@ namespace ClubAdministration.Controllers
         public ActionResult Index()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.training_terms.ToList().Where(a => 
+            return View(db.training_terms.Include(a => a.agelevel).ToList().Where(a => 
             a.term_title.Contains(this.Setting.PageSetting.SearchItem)||
             a.start_date.Contains(this.Setting.PageSetting.SearchItem)||
             a.end_date.Contains(this.Setting.PageSetting.SearchItem)
@@ -101,7 +101,7 @@ namespace ClubAdministration.Controllers
                 Session["TACTION_RESULT"] = "مشكل در نمايش بازيكنان كلاس آموزشي";
                 return this.RedirectToAction("Index");
             }
-            training_terms training_terms = db.training_terms.Find(id);
+            training_terms training_terms = db.training_terms.Where(a => a.ID == id).Include(a => a.agelevel).FirstOrDefault();
             if (training_terms == null)
             {
                 Session["TACTION_RESULT"] = "كلاس آموزشي درخواستي در سيستم ثبت نشده است";
@@ -115,6 +115,7 @@ namespace ClubAdministration.Controllers
         public ActionResult Create()
         {
             //TODO: This action need to be deeply reviewed
+            ViewBag.level_id = new SelectList(db.agelevels.ToList(), "ID", "level");
             return View();
         }
 
@@ -123,7 +124,7 @@ namespace ClubAdministration.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,term_title,start_date,max_player,session_per_week,weekdays,active,end_date,fee_type")] training_terms training_terms)
+        public ActionResult Create([Bind(Include = "ID,term_title,start_date,max_player,session_per_week,weekdays,active,end_date,fee_type,level_id")] training_terms training_terms)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
@@ -150,6 +151,7 @@ namespace ClubAdministration.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.level_id = new SelectList(db.agelevels.ToList(), "ID", "level", training_terms.level_id);
 
             return View(training_terms);
         }
@@ -159,7 +161,7 @@ namespace ClubAdministration.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,term_title,start_date,max_player,session_per_week,weekdays,active,end_date,fee_type")] training_terms training_terms)
+        public ActionResult Edit([Bind(Include = "ID,term_title,start_date,max_player,session_per_week,weekdays,active,end_date,fee_type,level_id")] training_terms training_terms)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
@@ -181,11 +183,12 @@ namespace ClubAdministration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            training_terms training_terms = db.training_terms.Find(id);
+            training_terms training_terms = db.training_terms.Where(a => a.ID == id).Include(a => a.agelevel).FirstOrDefault();
             if (training_terms == null)
             {
                 return HttpNotFound();
             }
+
             return View(training_terms);
         }
 
