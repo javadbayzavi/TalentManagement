@@ -194,6 +194,16 @@ namespace ClubAdministration.Library.widgets.ribbons
                 rootparam = null,
                 selectionneeded = true,
             });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
+                action = "patterns",
+                controller = "drills",
+                title = "الگوها",
+                placeholder = " الگوهاي تمرين",
+                postback = false,
+                rootparam = null,
+                selectionneeded = true,
+            });
 
             return ribbons;
         }

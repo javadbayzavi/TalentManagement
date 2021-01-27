@@ -10,6 +10,7 @@ using ClubAdministration.Library.Core.Defaults;
 using ClubAdministration.Library.Core.Pages;
 using ClubAdministration.Library.Utilities;
 using ClubAdministration.Models;
+using ClubAdministration.Resources.modules.club;
 
 namespace ClubAdministration.Controllers
 {
@@ -41,13 +42,14 @@ namespace ClubAdministration.Controllers
         {
             if (id == null)
             {
-                Session["TACTION_RESULT"] = "خطا در نمايش جلسات تمرين كلاس آموزشي";
+                
+                Session["TACTION_RESULT"] = lang.sessionShowError;
                 return this.RedirectToAction("Index");
             }
             training_terms training_terms = db.training_terms.Find(id);
             if (training_terms == null)
             {
-                Session["TACTION_RESULT"] = "كلاس آموزشي درخواستي در سيستم ثبت نشده است";
+                Session["TACTION_RESULT"] = lang.sessionNotFound;
                 return this.RedirectToAction("Index");
             }
 
@@ -67,13 +69,13 @@ namespace ClubAdministration.Controllers
         {
             if (id == null)
             {
-                Session["TACTION_RESULT"] = "خطا در نمايش مربيان كلاس آموزشي";
+                Session["TACTION_RESULT"] = lang.coachShowError;
                 return this.RedirectToAction("Index");
             }
             training_terms training_terms = db.training_terms.Find(id);
             if (training_terms == null)
             {
-                Session["TACTION_RESULT"] = "كلاس آموزشي درخواستي در سيستم ثبت نشده است";
+                Session["TACTION_RESULT"] = lang.coachNotFound;
                 return this.RedirectToAction("Index");
             }
 
@@ -95,13 +97,13 @@ namespace ClubAdministration.Controllers
         {
             if (id == null)
             {
-                Session["TACTION_RESULT"] = "مشكل در نمايش بازيكنان كلاس آموزشي";
+                Session["TACTION_RESULT"] = lang.playerShowError;
                 return this.RedirectToAction("Index");
             }
             training_terms training_terms = db.training_terms.Find(id);
             if (training_terms == null)
             {
-                Session["TACTION_RESULT"] = "كلاس آموزشي درخواستي در سيستم ثبت نشده است";
+                Session["TACTION_RESULT"] = lang.playerNotFound;
                 return this.RedirectToAction("Index");
             }
 
@@ -126,13 +128,13 @@ namespace ClubAdministration.Controllers
         {
             if (id == null)
             {
-                Session["TACTION_RESULT"] = "مشكل در نمايش بازيكنان كلاس آموزشي";
+                Session["TACTION_RESULT"] = lang.trainingShowError;
                 return this.RedirectToAction("Index");
             }
             training_terms training_terms = db.training_terms.Where(a => a.ID == id).Include(a => a.agelevel).FirstOrDefault();
             if (training_terms == null)
             {
-                Session["TACTION_RESULT"] = "كلاس آموزشي درخواستي در سيستم ثبت نشده است";
+                Session["TACTION_RESULT"] = lang.trainingNotFound;
                 return this.RedirectToAction("Index");
             }
 

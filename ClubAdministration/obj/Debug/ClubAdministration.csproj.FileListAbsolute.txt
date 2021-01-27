@@ -395,3 +395,10 @@ E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\ru-ru\JavaScriptEngin
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.Router.Mvc4.dll
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.Router.Mvc4.pdb
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.Router.Mvc4.xml
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\fa\ClubAdministration.resources.dll
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.club.lang.resources
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.club.lang.fa.resources
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.csproj.GenerateResource.cache
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\fa\ClubAdministration.resources.dll
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.drill.pattern.lang.resources
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.drill.pattern.lang.fa.resources

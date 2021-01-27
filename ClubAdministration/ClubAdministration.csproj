@@ -419,6 +419,7 @@
     <Compile Include="Controllers\drills\drillsControllerEmphasis.cs" />
     <Compile Include="Controllers\club\agelevelsController.cs" />
     <Compile Include="Controllers\drills\drillsControllerLocation.cs" />
+    <Compile Include="Controllers\drills\drillsControllerPattern.cs" />
     <Compile Include="Controllers\drills\drillsControllerType.cs" />
     <Compile Include="Controllers\drills\drillsController.cs" />
     <Compile Include="Controllers\finance\financeControllerCategory.cs" />
@@ -472,6 +473,9 @@
     <Compile Include="Library\widgets\ribbons\ribbons_generator.cs" />
     <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
+    <Compile Include="Models\training_pattern.cs" />
+    <Compile Include="Models\drills\pattern_item.cs" />
+    <Compile Include="Models\drills\drill_pattern.cs" />
     <Compile Include="Models\drills\drill_kpis.cs" />
     <Compile Include="Models\drills\drill_skills.cs" />
     <Compile Include="Models\drills\drill_materials.cs" />
@@ -520,6 +524,26 @@
     <Compile Include="Models\training_sessions.cs" />
     <Compile Include="Models\training_terms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\modules\club\lang.fa.Designer.cs">
+      <DependentUpon>lang.fa.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\modules\club\lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\modules\drill\pattern\lang.fa.Designer.cs">
+      <DependentUpon>lang.fa.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\modules\drill\pattern\lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -812,12 +836,24 @@
     <Content Include="Views\positions\Edit.cshtml" />
     <Content Include="Views\positions\Index.cshtml" />
     <Content Include="Views\club\Coaches.cshtml" />
+    <Content Include="Views\drills\patterns\Deletepattern.cshtml" />
+    <Content Include="Views\drills\patterns\Createpattern.cshtml" />
+    <Content Include="Views\drills\patterns\Detailspattern.cshtml" />
+    <Content Include="Views\drills\patterns\Editpattern.cshtml" />
+    <Content Include="Views\drills\patterns\patterns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\assets\" />
     <Folder Include="Controllers\news\" />
     <Folder Include="Controllers\staff\" />
+    <Folder Include="Resources\modules\coaches\" />
+    <Folder Include="Resources\modules\finance\" />
+    <Folder Include="Resources\modules\metric\" />
+    <Folder Include="Resources\modules\news\" />
+    <Folder Include="Resources\modules\player\" />
+    <Folder Include="Resources\modules\session\" />
+    <Folder Include="Resources\modules\staff\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
@@ -831,6 +867,24 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\modules\club\lang.fa.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.fa.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\modules\club\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\modules\drill\pattern\lang.fa.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.fa.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\modules\drill\pattern\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
