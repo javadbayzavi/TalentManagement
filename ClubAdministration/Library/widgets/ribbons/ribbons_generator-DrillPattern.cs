@@ -63,7 +63,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             });
             return ribbons;
         }
-        private static List<Models.ViewModels.ribbons> drills_patterns_typedrills(params object[] rootParams)
+        private static List<Models.ViewModels.ribbons> drills_patterns_patternitems(params object[] rootParams)
         {
 
             List<ClubAdministration.Models.ViewModels.ribbons> ribbons = new List<ClubAdministration.Models.ViewModels.ribbons>();

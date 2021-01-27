@@ -202,7 +202,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 placeholder = " الگوهاي تمرين",
                 postback = false,
                 rootparam = null,
-                selectionneeded = true,
+                selectionneeded = false,
             });
 
             return ribbons;

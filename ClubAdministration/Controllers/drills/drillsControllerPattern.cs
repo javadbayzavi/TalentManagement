@@ -51,9 +51,9 @@ namespace ClubAdministration.Controllers
         }
 
         [HttpPost]
-        [ActionName("patterndrills")]
+        [ActionName("patternditems")]
         [ValidateAntiForgeryToken]
-        public ActionResult patterndrillsPostBack(int id)
+        public ActionResult patternitemsPostBack(int id)
         {
             return this.patternitems(id);
         }
