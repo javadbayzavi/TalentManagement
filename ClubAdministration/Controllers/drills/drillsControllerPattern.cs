@@ -21,7 +21,7 @@ namespace ClubAdministration.Controllers
         public ActionResult patterns()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.drill_patterns
+            return View(db.drill_patterns.Include(a => a.agelevel)
                 .Where(a => a.title.Contains(this.Setting.PageSetting.SearchItem)));
         }
 

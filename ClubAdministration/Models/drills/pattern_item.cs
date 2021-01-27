@@ -25,7 +25,7 @@ namespace ClubAdministration.Models
         public bool periodic { get; set; }
 
         //The order of the drill in pattern
-        public int order { get; set; }
+        public int orders { get; set; }
 
         public int weekday { get; set; }
 
