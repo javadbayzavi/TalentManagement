@@ -37,17 +37,17 @@ namespace ClubAdministration.Controllers
         [HttpGet]
         public ActionResult patternitems(int id)
         {
-            ViewBag.pattern = db.pattern_items.Find(id);
+            var pattern = db.drill_patterns.Where(a => a.ID == id).Include(a => a.items).FirstOrDefault();
+            ViewBag.pattern = pattern;
 
-            if (ViewBag.items == null)
+            if (pattern == null)
             {
                 Session["TACTION_RESULT"] = lang.patternShowError ;
                 return this.RedirectToAction("patterns");
             }
 
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.drills
-                .Where(a => a.drill_typeid == id && a.drill_title.Contains(this.Setting.PageSetting.SearchItem)).ToList());
+            return View(pattern.items);
         }
 
         [HttpPost]

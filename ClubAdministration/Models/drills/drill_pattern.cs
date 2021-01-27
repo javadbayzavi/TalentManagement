@@ -21,5 +21,8 @@ namespace ClubAdministration.Models
         [ForeignKey("level_id")]
         public agelevel agelevel { get; set; }
         public int level_id { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pattern_items> items { get; set; }
     }
 }

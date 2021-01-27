@@ -1,0 +1,99 @@
+﻿@model ICollection<ClubAdministration.Models.pattern_items>
+@{
+    var pattern = (ClubAdministration.Models.drill_patterns)ViewBag.pattern;
+    ViewBag.Title = "آيتم‌هاي تمريني  " + pattern.title;
+}
+@widgets.common.ribbon.Show_Ribbon(Url, "drills.patterns.patternitems", "آيتم‌هاي تمريني  " + pattern.title, new { id = pattern.ID })
+@using (Html.BeginForm("patternitems", "drills", FormMethod.Post, new { id = "drillsfrm" }))
+{
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+    @Html.AntiForgeryToken()
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h3 class="table-light border border-bottom-0 accordion py-3 m-0 rounded-top shadow-sm">
+            آيتم‌هاي تمريني @pattern.title
+        </h3>
+        <div class="border rounded-bottom p-2 text-center">
+            <table class="table text-center table-hover table-bordered table-responsive-sm py-0 m-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.CheckBox("IDdrill", new { @id = "chkwhole" })
+                        </th>
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            عنوان تمرين
+                        </th>
+                        <th class="text-center">
+                            دوره اي
+                        </th>
+                        <th class="text-center">
+                            ترتيب اجرا
+                        </th>
+                        <th class="text-center">
+                            روز هفته
+                        </th>
+                        <th class="text-center">
+                            ساعت تمرين
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int index = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
+                        </td>
+                        <th scope="row">
+                            @Html.Label((index++).ToString())
+                        </th>
+                        <td>
+                            @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID })
+                        </td>
+                        <td>
+                            @item.periodic.ToString()
+                        </td>
+                        <td>
+                            @item.orders
+                        </td>
+                        <td>
+                            @item.weekday
+                        </td>
+                        <td>
+                            @item.drill_hour
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

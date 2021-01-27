@@ -475,7 +475,7 @@
     <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\training_pattern.cs" />
-    <Compile Include="Models\drills\pattern_item.cs" />
+    <Compile Include="Models\drills\pattern_items.cs" />
     <Compile Include="Models\drills\drill_pattern.cs" />
     <Compile Include="Models\drills\drill_kpis.cs" />
     <Compile Include="Models\drills\drill_skills.cs" />
@@ -842,6 +842,7 @@
     <Content Include="Views\drills\Detailspattern.cshtml" />
     <Content Include="Views\drills\Editpattern.cshtml" />
     <Content Include="Views\drills\patterns.cshtml" />
+    <Content Include="Views\drills\patternitems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

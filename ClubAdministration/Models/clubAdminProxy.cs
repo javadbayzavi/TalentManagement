@@ -41,7 +41,7 @@ namespace ClubAdministration.Models
         public virtual DbSet<agelevel> agelevels { get; set; }
         public virtual DbSet<drill_types> drill_types { get; set; }
         public virtual DbSet<drill_patterns> drill_patterns { get; set; }
-        public virtual DbSet<pattern_item> pattern_items { get; set; }
+        public virtual DbSet<pattern_items> pattern_items { get; set; }
         public virtual DbSet<training_patterns> training_patterns { get; set; }
         public virtual DbSet<position> positions { get; set; }
         public virtual DbSet<drill_locations> drill_locations { get; set; }

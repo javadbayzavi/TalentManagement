@@ -128,7 +128,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
-                action = "patterndrills",
+                action = "patternitems",
                 controller = "drills",
                 title = "آيتم‌ها",
                 placeholder = "نمایش آيتم‌هاي تمرين",
