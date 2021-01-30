@@ -402,3 +402,7 @@ E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministrat
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\fa\ClubAdministration.resources.dll
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.drill.pattern.lang.resources
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.drill.pattern.lang.fa.resources
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.common.widgets.lang.resources
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.drill.items.lang.resources
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.common.widgets.lang.fa.resources
+E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.drill.items.lang.fa.resources

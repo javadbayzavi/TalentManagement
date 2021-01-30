@@ -1,0 +1,59 @@
+﻿@helper Show_Drill_Hour(int hour)
+{
+    switch (hour)
+    {
+        case 1:
+            <span>
+                صبح‌ها
+            </span>
+            break;
+        case 2:
+            <span>
+                عصرها
+            </span>
+            break;
+        case 3:
+            <span>
+                شناور
+            </span>
+            break;
+    }
+}
+@helper Entry_Drill_Hour(int selected)
+{
+    var active = new List<SelectListItem>();
+    active.Add(new SelectListItem()
+    {
+        Text = "صبح‌ها",
+        Value = "1"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "عصرها",
+        Value = "2"
+    });
+    active.Add(new SelectListItem()
+    {
+        Text = "شناور",
+        Value = "3"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-sm-12 col-md-6">
+            <label class="control-label">ساعت تمرين</label>
+            <select name="drill_hour" id="drill_hour" class="form-control">
+                @foreach (var item in active)
+                {
+                    if (item.Value == selected.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

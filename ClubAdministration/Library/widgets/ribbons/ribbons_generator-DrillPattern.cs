@@ -63,23 +63,6 @@ namespace ClubAdministration.Library.widgets.ribbons
             });
             return ribbons;
         }
-        private static List<Models.ViewModels.ribbons> drills_patterns_patternitems(params object[] rootParams)
-        {
-
-            List<ClubAdministration.Models.ViewModels.ribbons> ribbons = new List<ClubAdministration.Models.ViewModels.ribbons>();
-            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
-            {
-                action = "patterns",
-                controller = "drills",
-                title = "بازگشت",
-                postback = false,
-                rootparam = null,
-                selectionneeded = false,
-                hostform = "",
-                placeholder = "بازگشت به صفحه قبل"
-            });
-            return ribbons;
-        }
 
         private static List<Models.ViewModels.ribbons> drills_patterns_default(params object[] rootParams)
         {

@@ -1,0 +1,17 @@
+﻿
+@helper Show_Drill_Periodic(bool period)
+{
+
+    <span>@((period) ? "بله" : "خير")</span>
+}
+
+@helper Entry_Drill_Periodic(bool period)
+{
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">آيتم تمرين دوره‌اي اجرا شود؟</label>
+            <input type="checkbox" name="periodic" id="periodic" checked="@((period)? "checked" : "")" />
+        </div>
+    </div>
+
+}

@@ -171,8 +171,13 @@ namespace ClubAdministration.Library.widgets.ribbons
                     return drills_patterns_details(rootParams);
                 case "drills.patterns.delete":
                     return drills_patterns_delete(rootParams);
-                case "drills.patterns.patternitems":
-                    return drills_patterns_patternitems(rootParams);
+
+                case "drills.patternitems.default":
+                    return drills_patternitems_default(rootParams);
+                case "drills.patternitems.details":
+                    return drills_patternitems_details(rootParams);
+                case "drills.patternitems.delete":
+                    return drills_patternitems_delete(rootParams);
 
                 case "drills.emphasises.default":
                     return drills_emphasises_default(rootParams);

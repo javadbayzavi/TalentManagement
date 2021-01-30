@@ -419,6 +419,7 @@
     <Compile Include="Controllers\drills\drillsControllerEmphasis.cs" />
     <Compile Include="Controllers\club\agelevelsController.cs" />
     <Compile Include="Controllers\drills\drillsControllerLocation.cs" />
+    <Compile Include="Controllers\drills\drillsControllerItems.cs" />
     <Compile Include="Controllers\drills\drillsControllerPattern.cs" />
     <Compile Include="Controllers\drills\drillsControllerType.cs" />
     <Compile Include="Controllers\drills\drillsController.cs" />
@@ -454,6 +455,7 @@
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
     <Compile Include="Library\widgets\forms\HtmlExtentions.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillPatternItem.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillPattern.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Position.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillEmphasis.cs" />
@@ -525,6 +527,16 @@
     <Compile Include="Models\training_sessions.cs" />
     <Compile Include="Models\training_terms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\common\widgets\lang.Designer.cs">
+      <DependentUpon>lang.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\common\widgets\lang.fa.Designer.cs">
+      <DependentUpon>lang.fa.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\modules\club\lang.fa.Designer.cs">
       <DependentUpon>lang.fa.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -534,6 +546,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\modules\drill\items\lang.Designer.cs">
+      <DependentUpon>lang.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\modules\drill\items\lang.fa.Designer.cs">
+      <DependentUpon>lang.fa.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\modules\drill\pattern\lang.fa.Designer.cs">
       <DependentUpon>lang.fa.resx</DependentUpon>
@@ -587,6 +609,9 @@
     <Content Include="App_Code\widgets\gender_status.cshtml" />
     <Content Include="App_Code\widgets\level_play.cshtml" />
     <Content Include="App_Code\widgets\metric_direction.cshtml" />
+    <Content Include="App_Code\widgets\drill_periodic.cshtml" />
+    <Content Include="App_Code\widgets\drill_weekday.cshtml" />
+    <Content Include="App_Code\widgets\drill_hour.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -843,6 +868,10 @@
     <Content Include="Views\drills\Editpattern.cshtml" />
     <Content Include="Views\drills\patterns.cshtml" />
     <Content Include="Views\drills\patternitems.cshtml" />
+    <Content Include="Views\drills\Edititem.cshtml" />
+    <Content Include="Views\drills\Createitem.cshtml" />
+    <Content Include="Views\drills\Detailsitem.cshtml" />
+    <Content Include="Views\drills\Deleteitem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -871,11 +900,27 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\common\widgets\lang.fa.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.fa.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\common\widgets\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\modules\club\lang.fa.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>lang.fa.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\modules\club\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\modules\drill\items\lang.fa.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.fa.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\modules\drill\items\lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>lang.Designer.cs</LastGenOutput>
     </EmbeddedResource>

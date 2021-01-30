@@ -1,0 +1,63 @@
+﻿@model ClubAdministration.Models.pattern_items
+@{
+    ViewBag.Title = "جزئيات آيتم تمرين " + Model.drill.drill_title + " در " + Model.pattern.title;
+}
+
+@widgets.common.ribbon.Show_Ribbon(Url, "drills.patternitems.details", "جزئيات " +  Model.drill.drill_title + " در " + Model.pattern.title , new { id = Model.ID }, new { id = Model.pattern_id })
+
+<div class="mt-2 rounded-bottom shadow-sm mb-4">
+    <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+    <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+        <table class="table table-striped table-responsive-sm">
+            <tr>
+                <td>
+                    كد شناسايي
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ID)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    عنوان الگو
+                </td>
+                <td>
+                    @Model.pattern.title
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    عنوان تمرين
+                </td>
+                <td>
+                    @Model.drill.drill_title
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    دوره‌اي؟
+                </td>
+                <td>
+                    @widgets.drill_periodic.Show_Drill_Periodic(Model.periodic)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    روز‌هاي هفته
+                </td>
+                <td>
+                    @widgets.drill_weekday.Show_Drill_WeekDay(Model.weekday)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ساعت تمرين
+                </td>
+                <td>
+                    @widgets.drill_hour.Show_Drill_Hour(Model.drill_hour)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+

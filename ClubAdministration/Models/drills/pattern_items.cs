@@ -24,9 +24,6 @@ namespace ClubAdministration.Models
         //This field indicates whether drill will be periodically placed in sessions or not
         public bool periodic { get; set; }
 
-        //The order of the drill in pattern
-        public int orders { get; set; }
-
         public int weekday { get; set; }
 
         //This filed determine mirning training session or evening session

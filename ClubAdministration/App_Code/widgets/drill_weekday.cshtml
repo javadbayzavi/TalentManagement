@@ -1,0 +1,119 @@
+﻿@helper Show_Drill_WeekDay(int day)
+{
+    switch (day)
+    {
+        case 1:
+            <span style="color:aqua">
+                شنبه‌ها
+            </span>
+            break;
+        case 2:
+            <span style="color:forestgreen">
+                يكشنبه‌ها
+            </span>
+            break;
+        case 3:
+            <span style="color:darkcyan">
+                دوشنبه‌ها
+            </span>
+            break;
+        case 4:
+            <span style="color:red">
+                سه‌شنبه‌ها
+            </span>
+            break;
+        case 5:
+            <span style="color:aqua">
+                چهارشنبه‌ها
+            </span>
+            break;
+        case 6:
+            <span style="color:forestgreen">
+                پنج‌شنبه‌ها
+            </span>
+            break;
+        case 7:
+            <span style="color:forestgreen">
+                جمعه‌ها
+            </span>
+            break;
+        case 8:
+            <span style="color:darkcyan">
+                روز‌هاي فرد
+            </span>
+            break;
+        case 9:
+            <span style="color:red">
+                روزهاي فرد
+            </span>
+            break;
+    }
+}
+@helper Entry_Drill_WeekDay(int day)
+{
+    var days = new List<SelectListItem>();
+    days.Add(new SelectListItem()
+    {
+        Text = "شنبه‌ها",
+        Value = "1"
+    });
+    days.Add(new SelectListItem()
+    {
+        Text = "يكشنبه‌ها",
+        Value = "2"
+    });
+    days.Add(new SelectListItem()
+    {
+        Text = "دوشنبه‌ها",
+        Value = "3"
+    });
+    days.Add(new SelectListItem()
+    {
+        Text = "سه‌شنبه‌ها",
+        Value = "4"
+    });
+    days.Add(new SelectListItem()
+    {
+        Text = "چهارشنبه‌ها",
+        Value = "5"
+    });
+    days.Add(new SelectListItem()
+    {
+        Text = "پنج‌شنبه‌ها",
+        Value = "6"
+    });
+    days.Add(new SelectListItem()
+    {
+        Text = "جمعه‌ها",
+        Value = "7"
+    });
+    days.Add(new SelectListItem()
+    {
+        Text = "روزهاي فرد",
+        Value = "8"
+    });
+    days.Add(new SelectListItem()
+    {
+        Text = "روزهاي زوج",
+        Value = "9"
+    });
+
+    <div class="form-group row font-weight-bold">
+        <div class="col-md-6 col-sm-12">
+            <label class="control-label">روزهاي هفته</label>
+            <select name="weekday" id="weekday" class="form-control">
+                @foreach (var item in days)
+                {
+                    if (item.Value == day.ToString())
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}

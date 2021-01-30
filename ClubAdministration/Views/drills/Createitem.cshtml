@@ -1,0 +1,37 @@
+﻿@model ClubAdministration.Models.pattern_items
+@{
+    var pattern = (ClubAdministration.Models.drill_patterns)ViewBag.pattern;
+    ViewBag.Title = "افزودن تمرين به " + pattern.title;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">افزودن تمرين به @pattern.title</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.Hidden("pattern_id", pattern.ID)
+            <div class="form-group row font-weight-bold">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("تمرين", htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownList("drill_id", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.drill_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @widgets.drill_weekday.Entry_Drill_WeekDay(0)
+            @widgets.drill_periodic.Entry_Drill_Periodic(true)
+            @widgets.drill_hour.Entry_Drill_Hour(0)
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ثبت نام  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "patternitems", new { id = pattern.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
