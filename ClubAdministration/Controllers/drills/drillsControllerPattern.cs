@@ -37,7 +37,7 @@ namespace ClubAdministration.Controllers
         [HttpGet]
         public ActionResult patternitems(int id)
         {
-            var pattern = db.drill_patterns.Where(a => a.ID == id).Include(a => a.items).FirstOrDefault();
+            var pattern = db.drill_patterns.Where(a => a.ID == id).Include(a => a.items.Select(b =>  b.drill)).FirstOrDefault();
             ViewBag.pattern = pattern;
 
             if (pattern == null)

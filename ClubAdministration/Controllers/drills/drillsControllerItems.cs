@@ -110,9 +110,9 @@ namespace ClubAdministration.Controllers
             {
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("patternitems" , new { item.pattern_id });
+                return RedirectToAction("patternitems" , new { id = item.pattern_id });
             }
-            return View(item);
+            return RedirectToAction("Edititem" , new { id = item.ID});
         }
 
         // GET: drills/Deletepattern/5
