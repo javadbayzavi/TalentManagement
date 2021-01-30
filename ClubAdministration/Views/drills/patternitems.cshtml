@@ -3,7 +3,7 @@
     var pattern = (ClubAdministration.Models.drill_patterns)ViewBag.pattern;
     ViewBag.Title = "آيتم‌هاي تمريني  " + pattern.title;
 }
-@widgets.common.ribbon.Show_Ribbon(Url, "drills.patterns.patternitems", "آيتم‌هاي تمريني  " + pattern.title, new { id = pattern.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "drills.patternitems.default", "آيتم‌هاي تمريني  " + pattern.title, new { id = pattern.ID })
 @using (Html.BeginForm("patternitems", "drills", FormMethod.Post, new { id = "drillsfrm" }))
 {
     @widgets.common.search.Show_Search_Form(ViewBag.search)
@@ -24,9 +24,6 @@
                         </th>
                         <th class="text-center">
                             عنوان تمرين
-                        </th>
-                        <th class="text-center">
-                            دوره اي
                         </th>
                         <th class="text-center">
                             ترتيب اجرا
@@ -55,16 +52,13 @@
                             @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID })
                         </td>
                         <td>
-                            @item.periodic.ToString()
+                            @widgets.drill_periodic.Show_Drill_Periodic(item.periodic)
                         </td>
                         <td>
-                            @item.orders
+                            @widgets.drill_weekday.Show_Drill_WeekDay(item.weekday)
                         </td>
                         <td>
-                            @item.weekday
-                        </td>
-                        <td>
-                            @item.drill_hour
+                            @widgets.drill_hour.Show_Drill_Hour(item.drill_hour)
                         </td>
                     </tr>
                 }

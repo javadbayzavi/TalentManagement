@@ -36,10 +36,23 @@ namespace ClubAdministration.Controllers
         }
 
         // GET: drills/Createitem
-        public ActionResult Createitem()
+        public ActionResult Createitem(int id)
         {
             ////Load all patterns
             //ViewBag.pattern_id = new SelectList(db.drill_patterns.ToList(), "ID", "title");
+            if(id == 0)
+            {
+                Session["TACTION_RESULT"] = lang.itemShowError;
+                return this.RedirectToAction("patterns");
+            }
+
+            ViewBag.pattern = db.drill_patterns.Find(id);
+
+            if(ViewBag.pattern == null)
+            {
+                Session["TACTION_RESULT"] = lang.itemNotFound;
+                return this.RedirectToAction("patterns");
+            }
 
             //Load alll drills
             ViewBag.drill_id = new SelectList(db.drills.ToList(), "ID", "drill_title");
@@ -55,7 +68,8 @@ namespace ClubAdministration.Controllers
         {
 
             //1. Convert the entry to Db Model
-            if (ModelState.IsValid == true)
+            //TODO : model state for pattern item must be check for its correctness
+            if (ModelState.IsValid == false)
             {
                 //TODO: This action need to be deeply reviewed
                 db.pattern_items.Add(item);
@@ -76,9 +90,7 @@ namespace ClubAdministration.Controllers
             }
 
             //Load the drill pattern entry
-            var entry = db.pattern_items.Find(id);
-            ////Load all patterns
-            //ViewBag.pattern_id = new SelectList(db.drill_patterns.ToList(), "ID", "title",entry.pattern_id);
+            var entry = db.pattern_items.Where(a => a.ID == id).Include(a => a.pattern).FirstOrDefault();
 
             //Load alll drills
             ViewBag.drill_id = new SelectList(db.drills.ToList(), "ID", "drill_title",entry.drill_id);
