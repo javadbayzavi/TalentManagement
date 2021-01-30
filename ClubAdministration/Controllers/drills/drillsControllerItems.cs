@@ -68,8 +68,7 @@ namespace ClubAdministration.Controllers
         {
 
             //1. Convert the entry to Db Model
-            //TODO : model state for pattern item must be check for its correctness
-            if (ModelState.IsValid == false)
+            if (ModelState.IsValid)
             {
                 //TODO: This action need to be deeply reviewed
                 db.pattern_items.Add(item);

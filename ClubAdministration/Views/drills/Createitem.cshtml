@@ -22,7 +22,13 @@
                 </div>
             </div>
             @widgets.drill_weekday.Entry_Drill_WeekDay(0)
-            @widgets.drill_periodic.Entry_Drill_Periodic(true)
+            <div class="form-group row font-weight-bold">
+                <div class="col-md-6 col-sm-12">
+                    <label class="control-label">آيتم تمرين دوره‌اي اجرا شود؟</label>
+                    @Html.CheckBoxFor(a => a.periodic)
+                </div>
+            </div>
+            @*@widgets.drill_periodic.Entry_Drill_Periodic(true)*@
             @widgets.drill_hour.Entry_Drill_Hour(0)
             <div class="form-group row border mx-1 rounded">
                 <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">

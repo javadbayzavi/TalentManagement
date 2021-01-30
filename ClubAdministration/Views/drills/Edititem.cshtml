@@ -21,7 +21,13 @@
                 </div>
             </div>
             @widgets.drill_weekday.Entry_Drill_WeekDay(Model.weekday)
-            @widgets.drill_periodic.Entry_Drill_Periodic(Model.periodic)
+            <div class="form-group row font-weight-bold">
+                <div class="col-md-6 col-sm-12">
+                    <label class="control-label">آيتم تمرين دوره‌اي اجرا شود؟</label>
+                    @Html.CheckBoxFor(a => a.periodic)
+                </div>
+            </div>
+            @*@widgets.drill_periodic.Entry_Drill_Periodic(Model.periodic)*@
             @widgets.drill_hour.Entry_Drill_Hour(Model.drill_hour)
             <div class="form-group row border mx-1 rounded">
                 <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
