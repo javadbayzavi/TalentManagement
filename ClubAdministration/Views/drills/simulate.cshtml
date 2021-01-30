@@ -1,0 +1,85 @@
+﻿@model ClubAdministration.Models.drill_patterns
+@{
+    var pattern = (ClubAdministration.Models.drill_patterns)ViewBag.pattern;
+    ViewBag.Title = "نمايش هفتگي برنامه تمريني  " + pattern.title;
+}
+@widgets.common.ribbon.Show_Ribbon(Url, "drills.patterns.simulate", "نمايش هفتگي برنامه تمريني  " + pattern.title, new { id = pattern.ID })
+@using (Html.BeginForm("simulate", "drills", FormMethod.Post, new { id = "drillsfrm" }))
+{
+    @widgets.common.search.Show_Search_Form(ViewBag.search)
+    @Html.AntiForgeryToken()
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h3 class="table-light border border-bottom-0 accordion py-3 m-0 rounded-top shadow-sm">
+            برنامه هفتگي @pattern.title
+        </h3>
+        <div class="border rounded-bottom p-2 text-center">
+            <table class="table text-center table-hover table-bordered table-responsive-sm py-0 m-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            روز هفته
+                        </th>
+                        <th class="text-center">
+                            صبح‌ها
+                        </th>
+                        <th class="text-center">
+                            عصرها
+                        </th>
+                    </tr>
+                </thead>
+                @for (int day = 1; day <= 7; day++)
+                {
+                    <tr>
+                        <th scope="row">
+                            @Html.Label((day).ToString())
+                        </th>
+                        <td>
+                            @widgets.drill_weekday.Show_Drill_WeekDay(day)
+                        </td>
+                        <td>
+                            @foreach (var item in Model.items.Where(a => a.weekday == day && a.drill_hour == 1))
+                            {
+                                @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic)? "(هفتگي)" : "")
+                                
+                            }
+                        </td>
+                        <td>
+                            @foreach (var item in Model.items.Where(a => a.weekday == day && a.drill_hour == 2))
+                            {
+                                @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(هفتگي)" : "")
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+<script>
+    $("#chkwhole").change(function chang() {
+        $(".chkitem").not("#chkwhole").prop('checked', this.checked);
+        if (this.checked) {
+            $(".chkitem").parent().parent().addClass("table-primary");
+            $(".chkitem").parent().parent().removeClass("table-light");
+        }
+        else {
+            $(".chkitem").parent().parent().removeClass("table-primary");
+            $(".chkitem").parent().parent().addClass("table-light");
+        }
+    });
+
+    $(".chkitem").change(function chng() {
+        if (this.checked) {
+            $(this.parentElement.parentElement).addClass("table-primary");
+            $(this.parentElement.parentElement).removeClass("table-light");
+        }
+        else {
+            $(this.parentElement.parentElement).removeClass("table-primary");
+            $(this.parentElement.parentElement).addClass("table-light");
+        }
+    });
+
+</script>

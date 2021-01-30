@@ -15,7 +15,26 @@ namespace ClubAdministration.Controllers
 {
     public partial class drillsController : BaseController
     {
+        // GET: drills/simulate/5
+        public ActionResult simulate(int id)
+        {
+            if (id <= 0)
+            {
+                Session["TACTION_RESULT"] = lang.patternShowError;
+                return this.RedirectToAction("patterns");
+            }
 
+            var pattern = db.drill_patterns.Where(a => a.ID == id).Include(a => a.items.Select(b => b.drill)).FirstOrDefault();
+            ViewBag.pattern = pattern;
+
+            if (pattern == null)
+            {
+                Session["TACTION_RESULT"] = lang.patternShowError;
+                return this.RedirectToAction("patterns");
+            }
+
+            return View(pattern);
+        }
         // GET: drills/patterns
         [HttpGet]
         public ActionResult patterns()
@@ -37,6 +56,11 @@ namespace ClubAdministration.Controllers
         [HttpGet]
         public ActionResult patternitems(int id)
         {
+            if (id <= 0)
+            {
+                Session["TACTION_RESULT"] = lang.patternShowError;
+                return this.RedirectToAction("patterns");
+            }
             var pattern = db.drill_patterns.Where(a => a.ID == id).Include(a => a.items.Select(b =>  b.drill)).FirstOrDefault();
             ViewBag.pattern = pattern;
 

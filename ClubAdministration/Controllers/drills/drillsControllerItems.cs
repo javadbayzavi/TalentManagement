@@ -40,7 +40,7 @@ namespace ClubAdministration.Controllers
         {
             ////Load all patterns
             //ViewBag.pattern_id = new SelectList(db.drill_patterns.ToList(), "ID", "title");
-            if(id == 0)
+            if(id <= 0)
             {
                 Session["TACTION_RESULT"] = lang.itemShowError;
                 return this.RedirectToAction("patterns");

@@ -872,6 +872,7 @@
     <Content Include="Views\drills\Createitem.cshtml" />
     <Content Include="Views\drills\Detailsitem.cshtml" />
     <Content Include="Views\drills\Deleteitem.cshtml" />
+    <Content Include="Views\drills\simulate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
