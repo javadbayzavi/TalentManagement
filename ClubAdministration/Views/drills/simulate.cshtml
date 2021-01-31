@@ -6,7 +6,7 @@
 @widgets.common.ribbon.Show_Ribbon(Url, "drills.patterns.simulate", "نمايش هفتگي برنامه تمريني  " + pattern.title, new { id = pattern.ID })
 @using (Html.BeginForm("simulate", "drills", FormMethod.Post, new { id = "drillsfrm" }))
 {
-    @widgets.common.search.Show_Search_Form(ViewBag.search)
+    @*@widgets.common.search.Show_Search_Form(ViewBag.search)*@
     @Html.AntiForgeryToken()
     <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
         <h3 class="table-light border border-bottom-0 accordion py-3 m-0 rounded-top shadow-sm">
@@ -50,7 +50,7 @@
                                 var items = Model.items.Where(a => a.weekday == 8 && a.drill_hour == 1);
                                 foreach (var item in items)
                                 {
-                                    @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي زوج)" : "")
+                                    @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي زوج)" : "")<br />
                                 }
                             }
 
@@ -60,14 +60,14 @@
                                 var items = Model.items.Where(a => a.weekday == 9 && a.drill_hour == 1);
                                 foreach (var item in items)
                                 {
-                                    @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي فرد)" : "")
+                                    @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي فرد)" : "")<br />
                                 }
                             }
 
                             @*//Drill that palnned for this weekday or planned to all weekdays both at morning)*@
                             @foreach (var item in Model.items.Where(a => (a.weekday == day || a.weekday == 10) && a.drill_hour == 1))
                             {
-                                @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(هفتگي)" : "")
+                                @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(هفتگي)" : "")<br />
                             }
                         </td>
                         <td>
@@ -77,7 +77,7 @@
                                 var items = Model.items.Where(a => a.weekday == 8 && a.drill_hour == 2);
                                 foreach (var item in items)
                                 {
-                                    @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي زوج)" : "")
+                                    @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي زوج)" : "")<br />
                                 }
                             }
 
@@ -87,14 +87,14 @@
                                 var items = Model.items.Where(a => a.weekday == 9 && a.drill_hour == 2);
                                 foreach (var item in items)
                                 {
-                                    @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي فرد)" : "")
+                                    @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي فرد)" : "")<br />
                                 }
                             }
 
                             @*//Drill that palnned for this weekday or planned to all weekdays both at evening)*@
                             @foreach (var item in Model.items.Where(a => (a.weekday == day || a.weekday == 10) && a.drill_hour == 2))
                             {
-                                @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(هفتگي)" : "")
+                                @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(هفتگي)" : "")<br />
                             }
                         </td>
                     </tr>
