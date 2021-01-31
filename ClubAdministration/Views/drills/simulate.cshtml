@@ -64,6 +64,7 @@
                                 }
                             }
 
+                            @*//Drill that palnned for this weekday or planned to all weekdays both at morning)*@
                             @foreach (var item in Model.items.Where(a => (a.weekday == day || a.weekday == 10) && a.drill_hour == 1))
                             {
                                 @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(هفتگي)" : "")
@@ -90,6 +91,7 @@
                                 }
                             }
 
+                            @*//Drill that palnned for this weekday or planned to all weekdays both at evening)*@
                             @foreach (var item in Model.items.Where(a => (a.weekday == day || a.weekday == 10) && a.drill_hour == 2))
                             {
                                 @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(هفتگي)" : "")
