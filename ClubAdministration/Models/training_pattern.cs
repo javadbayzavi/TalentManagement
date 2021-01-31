@@ -49,6 +49,6 @@ namespace ClubAdministration.Models
                 this.e_date = BaseDate.CalculateDateDiffInMinutes(value);
             }
         }
-        public int order { get; set; }
+        public int orders { get; set; }
     }
 }

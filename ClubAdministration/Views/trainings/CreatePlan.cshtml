@@ -1,7 +1,7 @@
-﻿@model ClubAdministration.Models.coach_training
+﻿@model ClubAdministration.Models.training_patterns
 @{
-    var coach = (ClubAdministration.Models.coach)ViewBag.coach;
-    ViewBag.Title = "همكاري  " + coach.FullName + " در کلاس  جدید";
+    var training = (ClubAdministration.Models.training_terms)ViewBag.training;
+    ViewBag.Title ="ايجاد برنامه تمريني براي  " + @training.term_title;
 }
 
 
@@ -9,32 +9,32 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal p-0 mb-2 shadow-sm">
-        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">همكاري  @coach.FullName در کلاس  جدید</h4>
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">ايجاد برنامه تمريني براي   @training.term_title </h4>
         <div class="container-fluid border rounded-bottom border-top-0 m-0">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            @Html.Hidden("coach_id", coach.ID)
+            @Html.Hidden("training_id", training.ID)
             <div class="form-group row font-weight-bold">
                 <div class="col-sm-12 col-md-6">
-                    @Html.Label("كلاس آموزشي", htmlAttributes: new { @class = "control-label " })
-                    @Html.DropDownList("training_id", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.Label("برنامه تمريني", htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownList("pattern_id", null, htmlAttributes: new { @class = "form-control " })
                     @Html.ValidationMessageFor(model => model.training_id, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group row font-weight-bold">
                 <div class="col-sm-12 col-md-6">
-                    @Html.Label("تاريخ شروع فعاليت", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.registeration_date, new { htmlAttributes = new { @id = "registeration_date", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.registeration_date, "", new { @class = "text-danger" })
+                    @Html.Label("تاريخ شروع ", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @id = "start_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group row font-weight-bold">
                 <div class="col-sm-12 col-md-6">
                     @Html.Label("تاريخ خاتمه", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.resignation_date, new { htmlAttributes = new { @id = "resignation_date", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.resignation_date, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.end_date, new { htmlAttributes = new { @id = "end_date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.end_date, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                     <input type="submit" value="  ثبت  " class="btn btn-primary px-5 m-2" />
                 </div>
                 <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
-                    @Html.ActionLink("بازگشت به ليست", "Trainings", new { id = coach.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                    @Html.ActionLink("بازگشت به ليست", "Plans", new { id = training.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
                 </div>
             </div>
         </div>
@@ -52,18 +52,18 @@
 
 <script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
 <script type="text/javascript">
-    $('#registeration_date').MdPersianDateTimePicker({
+    $('#start_date').MdPersianDateTimePicker({
         englishNumber: true,
         enableTimePicker: true,
         groupId: 'dateselectorMain',
         dateFormat: 'yyyy/MM/dd-HH:mm:ss',
-        targetTextSelector: '#registeration_date',
+        targetTextSelector: '#start_date',
     });
-    $('#resignation_date').MdPersianDateTimePicker({
+    $('#end_date').MdPersianDateTimePicker({
         englishNumber: true,
         enableTimePicker: true,
         groupId: 'dateselectorMain',
         dateFormat: 'yyyy/MM/dd-HH:mm:ss',
-        targetTextSelector: '#resignation_date',
+        targetTextSelector: '#end_date',
     });
 </script>

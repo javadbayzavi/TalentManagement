@@ -35,7 +35,7 @@ namespace ClubAdministration.Controllers
 
             ViewBag.training = training;
 
-            return View(training.training_patterns.Where(e => e.training_id == id).ToList()
+            return View(training.training_patterns.Where(e => e.training_id == id)
                 .Where(aa => aa.pattern.title.Contains(this.Setting.PageSetting.SearchItem)
                 ));
 

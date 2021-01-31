@@ -7,7 +7,7 @@
 @using (Html.BeginForm("Plans", "trainings", new { id = ViewBag.pl_id }, FormMethod.Post, new { id = "trainingsform", name = "coachform" }))
 {
     @Html.AntiForgeryToken()
-    @widgets.common.ribbon.Show_Ribbon(Url, "trainings.plans.default", "مديريت برنامه تمريني دوره " + training.term_title, new { id = training.ID })
+    @widgets.common.ribbon.Show_Ribbon(Url, "training.plans.default", "مديريت برنامه تمريني دوره " + training.term_title, new { id = training.ID })
 
     @widgets.common.search.Show_Search_Form(ViewBag.search)
 
@@ -40,7 +40,7 @@
                 @{
                     int index = 1;
                 }
-                @foreach (var item in Model.OrderBy(a => a.order))
+                @foreach (var item in Model.OrderBy(a => a.orders))
                 {
                     <tr>
                         <td>
