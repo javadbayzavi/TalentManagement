@@ -4,7 +4,7 @@
     ViewBag.Title = "لیست بازیکنان ثبت‌‌نامی کلاس " + training.term_title;
 }
 
-@using(Html.BeginForm("Players","club",new { id=  training.ID }, FormMethod.Post, new {id="trainingform", name="trainingform" }))
+@using(Html.BeginForm("Players","trainings",new { id=  training.ID }, FormMethod.Post, new {id="trainingform", name="trainingform" }))
 {
     @widgets.common.ribbon.Show_Ribbon(Url, "training.list.players", "لیست بازیکنان ثبت‌نامی" + training.term_title)
 

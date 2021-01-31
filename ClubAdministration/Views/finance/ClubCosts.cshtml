@@ -63,7 +63,7 @@
                             @Html.Label((index++).ToString())
                         </td>
                         <td>
-                            <a href="~/club/Details/@item.ID"> @Html.DisplayFor(modelItem => item.term_title) </a>
+                            <a href="~/trainings/Details/@item.ID"> @Html.DisplayFor(modelItem => item.term_title) </a>
                         </td>
                         <td class="d-none d-xl-table-cell text-center">
                             @widgets.training_active.Show_Training_Active(item.active.GetValueOrDefault())

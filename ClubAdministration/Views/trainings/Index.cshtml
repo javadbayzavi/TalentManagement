@@ -6,9 +6,9 @@
 
 }
 
-@using(Html.BeginForm("Index","club", FormMethod.Post, new {id="trainingform", name="trainingform" }))
+@using(Html.BeginForm("Index","trainings", FormMethod.Post, new {id="trainingform", name="trainingform" }))
 {
-    @widgets.common.ribbon.Show_Ribbon(Url, "training.list.default", "مديريت باشگاه")
+    @widgets.common.ribbon.Show_Ribbon(Url, "training.list.default", "مديريت كلاس‌هاي آموزشي")
 
     @widgets.common.search.Show_Search_Form(ViewBag.search)
     @Html.AntiForgeryToken()
@@ -100,6 +100,7 @@
                     @Html.ActionLink("هزينه‌ها", "TrainingCosts", "finance", new { id = item.ID }, null) |
                     @Html.ActionLink("بازيكنان", "Players", new { id = item.ID }) |
                     @Html.ActionLink("جلسات", "Sessions", new { id = item.ID }) |
+                    @Html.ActionLink("مربيان", "Coaches", new { id = item.ID }) |
                     @Html.ActionLink("ويرايش", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("جزئيات", "Details", new { id = item.ID }) |
                     @Html.ActionLink("حذف", "Delete", new { id = item.ID })

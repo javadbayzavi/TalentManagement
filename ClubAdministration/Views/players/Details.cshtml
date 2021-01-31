@@ -443,10 +443,9 @@
                         @Html.Label((index++).ToString())
                     </td>
                     <td>
-                        <a href="~/club/Details/@item.training_id">@item.training_terms.term_title</a>
+                        <a href="~/trainings/Details/@item.training_id">@item.training_terms.term_title</a>
                     </td>
                     <td>
-                        @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.registeration_date)*@
                         @item.registeration_date
                     </td>
                 </tr>

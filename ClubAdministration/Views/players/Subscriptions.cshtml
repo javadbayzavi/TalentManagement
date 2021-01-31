@@ -49,14 +49,12 @@
                             @Html.Label((index++).ToString())
                         </th>
                         <td>
-                            @Html.ActionLink(item.training_terms.term_title, "Details", new { Controller = "club", id = item.training_id })
+                            @Html.ActionLink(item.training_terms.term_title, "Details", new { Controller = "trainings", id = item.training_id })
                         </td>
                         <td>
-                            @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.registeration_date)*@
                             @item.registeration_date
                         </td>
                         <td>
-                            @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.registeration_date)*@
                             @item.resignation_date
                         </td>
                         <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">

@@ -14,11 +14,11 @@ using ClubAdministration.Resources.modules.club;
 
 namespace ClubAdministration.Controllers
 {
-    public partial class clubController : BaseController
+    public partial class trainingsController : BaseController
     {
         private clubAdminProxy db = new clubAdminProxy();
 
-        // GET: clubController
+        // GET: trainingsController
         [HttpGet]
         public ActionResult Index()
         {
@@ -123,7 +123,7 @@ namespace ClubAdministration.Controllers
             return this.Players(id);
         }
 
-        // GET: club/Details/5
+        // GET: trainings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -141,7 +141,7 @@ namespace ClubAdministration.Controllers
             return View(training_terms);
         }
 
-        // GET: club/Create
+        // GET: trainings/Create
         public ActionResult Create()
         {
             //TODO: This action need to be deeply reviewed
@@ -167,7 +167,7 @@ namespace ClubAdministration.Controllers
             return View(training_terms);
         }
 
-        // GET: club/Edit/5
+        // GET: trainings/Edit/5
         public ActionResult Edit(int? id)
         {
             //TODO: This action need to be deeply reviewed
@@ -186,7 +186,7 @@ namespace ClubAdministration.Controllers
             return View(training_terms);
         }
 
-        // POST: club/Edit/5
+        // POST: trainings/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -199,13 +199,12 @@ namespace ClubAdministration.Controllers
                 db.Entry(training_terms).State = EntityState.Modified;
                 db.SaveChanges();
                 //TODO : cascade update on players end subscriptions for the players whose subscription dates not passed
-                //db.player_registerations.Where(a => a.training_id == training_terms.ID).
                 return RedirectToAction("Index");
             }
             return View(training_terms);
         }
 
-        // GET: club/Delete/5
+        // GET: trainings/Delete/5
         public ActionResult Delete(int? id)
         {
             //TODO: This action need to be deeply reviewed
@@ -222,7 +221,7 @@ namespace ClubAdministration.Controllers
             return View(training_terms);
         }
 
-        // POST: club/Delete/5
+        // POST: trainings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

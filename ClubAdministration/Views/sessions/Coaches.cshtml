@@ -59,7 +59,7 @@
                             @Html.ActionLink((item.coach.FullName), "Details", "coaches", new { id = item.coach_id }, null)
                         </td>
                         <td class="d-none d-lg-table-cell text-center">
-                            @Html.ActionLink(item.session.training_terms.term_title, "Details", "club", new { id = item.session.trainingterms_id }, null)
+                            @Html.ActionLink(item.session.training_terms.term_title, "Details", "trainings", new { id = item.session.trainingterms_id }, null)
                         </td>
                         <td class="d-none d-lg-table-cell text-center">
                             @item.session.session_date

@@ -239,7 +239,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Delete",
-                controller = "club",
+                controller = "trainings",
                 title = "حذف",
                 postback = true,
                 rootparam = rootParams[0],
@@ -250,7 +250,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Index",
-                controller = "club",
+                controller = "trainings",
                 title = "بازگشت",
                 postback = false,
                 rootparam = null,
@@ -268,7 +268,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Edit",
-                controller = "club",
+                controller = "trainings",
                 title = "ويرايش",
                 postback = false,
                 rootparam = rootParams[0],
@@ -279,7 +279,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Index",
-                controller = "club",
+                controller = "trainings",
                 title = "بازگشت",
                 postback = false,
                 rootparam = null,
@@ -308,7 +308,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Index",
-                controller = "club",
+                controller = "trainings",
                 title = "بازگشت",
                 postback = false,
                 rootparam = null,
@@ -326,7 +326,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Index",
-                controller = "club",
+                controller = "trainings",
                 title = "بازگشت",
                 postback = false,
                 rootparam = null,
@@ -355,7 +355,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Index",
-                controller = "club",
+                controller = "trainings",
                 title = "بازگشت",
                 postback = false,
                 rootparam = null,
@@ -371,7 +371,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
                     action = "Create",
-                    controller = "club",
+                    controller = "trainings",
                     title = "ایجاد",
                     postback = false,
                     rootparam = null,
@@ -382,7 +382,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
                     action = "Edit",
-                    controller = "club",
+                    controller = "trainings",
                     title = "ویرایش",
                     placeholder = "ویرایش اطلاعات کلاس آموزشی",
                     postback = false,
@@ -392,7 +392,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
                     action = "Details",
-                    controller = "club",
+                    controller = "trainings",
                     title = "نمایش",
                     placeholder = "نمایش اطلاعات کلاس آموزشی",
                     postback = false,
@@ -402,7 +402,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
                     action = "Delete",
-                    controller = "club",
+                    controller = "trainings",
                     title = "حذف",
                     placeholder = "حذف اطلاعات کلاس آموزشی",
                     postback = false,
@@ -413,7 +413,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 {
                     action = "Sessions",
                     placeholder = "جلسات تمرین برنامه‌ریزی شده برای کلاس",
-                    controller = "club",
+                    controller = "trainings",
                     title = "جلسات تمرین",
                     hostform = "",
                     postback = false,
@@ -424,7 +424,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 {
                     action = "Players",
                     placeholder = "بازیکان ثبت نام شده در کلاس",
-                    controller = "club",
+                    controller = "trainings",
                     title = "بازیکنان",
                     hostform = "",
                     postback = false,
@@ -435,7 +435,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 {
                     action = "Coaches",
                     placeholder = "مربيان کلاس",
-                    controller = "club",
+                    controller = "trainings",
                     title = "مربيان",
                     hostform = "",
                     postback = false,
@@ -445,7 +445,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
                     action = "Index",
-                    controller = "club",
+                    controller = "trainings",
                     title = "به‌روزآوری",
                     placeholder = "اطلاعات لیست کلاس ها بازآوری شود",
                     postback = false,

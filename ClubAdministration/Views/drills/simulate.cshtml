@@ -6,7 +6,6 @@
 @widgets.common.ribbon.Show_Ribbon(Url, "drills.patterns.simulate", "نمايش هفتگي برنامه تمريني  " + pattern.title, new { id = pattern.ID })
 @using (Html.BeginForm("simulate", "drills", FormMethod.Post, new { id = "drillsfrm" }))
 {
-    @*@widgets.common.search.Show_Search_Form(ViewBag.search)*@
     @Html.AntiForgeryToken()
     <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
         <h3 class="table-light border border-bottom-0 accordion py-3 m-0 rounded-top shadow-sm">

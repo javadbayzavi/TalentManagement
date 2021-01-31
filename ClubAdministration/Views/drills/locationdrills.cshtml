@@ -1,7 +1,7 @@
 ﻿@model ICollection<ClubAdministration.Models.drill>
 @{
     var location = (ClubAdministration.Models.drill_locations)ViewBag.location;
-    ViewBag.Title = "تمرينات  " + type.location;
+    ViewBag.Title = "تمرينات  " + location.location;
 }
 @widgets.common.ribbon.Show_Ribbon(Url, "drills.locationdrills.drills", "مدارك  " + location.location, new { id = location.ID })
 @using (Html.BeginForm("locationdrills", "drills", FormMethod.Post, new { id = "drillsfrm" }))

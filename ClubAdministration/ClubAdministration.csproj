@@ -445,7 +445,7 @@
     <Compile Include="Controllers\finance\financeControllerMain.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\players\playersControllerIntelligences.cs" />
-    <Compile Include="Controllers\club\clubController.cs" />
+    <Compile Include="Controllers\club\trainingsController.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerParticipants.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -717,9 +717,9 @@
     <Content Include="Views\players\Details.cshtml" />
     <Content Include="Views\players\Edit.cshtml" />
     <Content Include="Views\players\Index.cshtml" />
-    <Content Include="Views\club\Create.cshtml" />
-    <Content Include="Views\club\Delete.cshtml" />
-    <Content Include="Views\club\Index.cshtml" />
+    <Content Include="Views\trainings\Create.cshtml" />
+    <Content Include="Views\trainings\Delete.cshtml" />
+    <Content Include="Views\trainings\Index.cshtml" />
     <Content Include="Views\finance\Create.cshtml" />
     <Content Include="Views\finance\Delete.cshtml" />
     <Content Include="Views\finance\Details.cshtml" />
@@ -746,8 +746,8 @@
     <Content Include="Views\finance\ClubCosts.cshtml" />
     <Content Include="Views\finance\SessionCosts.cshtml" />
     <Content Include="Views\finance\PlayerCosts.cshtml" />
-    <Content Include="Views\club\Sessions.cshtml" />
-    <Content Include="Views\club\Players.cshtml" />
+    <Content Include="Views\trainings\Sessions.cshtml" />
+    <Content Include="Views\trainings\Players.cshtml" />
     <Content Include="Views\finance\PlayerInvoices.cshtml" />
     <Content Include="Views\finance\PlayersInvoices.cshtml" />
     <Content Include="Views\finance\Accounts.cshtml" />
@@ -760,8 +760,8 @@
     <Content Include="Views\players\Resubscribe.cshtml" />
     <Content Include="Views\players\Subscribe.cshtml" />
     <Content Include="Views\finance\TrainingCosts.cshtml" />
-    <Content Include="Views\club\Details.cshtml" />
-    <Content Include="Views\club\Edit.cshtml" />
+    <Content Include="Views\trainings\Details.cshtml" />
+    <Content Include="Views\trainings\Edit.cshtml" />
     <Content Include="Views\players\Bodyshape.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -861,7 +861,7 @@
     <Content Include="Views\positions\Details.cshtml" />
     <Content Include="Views\positions\Edit.cshtml" />
     <Content Include="Views\positions\Index.cshtml" />
-    <Content Include="Views\club\Coaches.cshtml" />
+    <Content Include="Views\trainings\Coaches.cshtml" />
     <Content Include="Views\drills\Deletepattern.cshtml" />
     <Content Include="Views\drills\Createpattern.cshtml" />
     <Content Include="Views\drills\Detailspattern.cshtml" />

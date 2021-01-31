@@ -65,10 +65,9 @@
                             @Html.ActionLink((item.player.name + " " + item.player.familiy), "Details", "players", new { id = item.player_id }, null)
                         </td>
                         <td class="d-none d-lg-table-cell text-center">
-                            @Html.ActionLink(item.session.training_terms.term_title, "Details", "club", new { id = item.session.trainingterms_id }, null)
+                            @Html.ActionLink(item.session.training_terms.term_title, "Details", "trainings", new { id = item.session.trainingterms_id }, null)
                         </td>
                         <td class="d-none d-lg-table-cell text-center">
-                            @*@ClubAdministration.Library.Utilities.DateConvertor.ConvertToPersian(item.session.session_date)*@
                             @item.session.session_date
                         </td>
                         <td class="d-none d-md-table-cell text-center">

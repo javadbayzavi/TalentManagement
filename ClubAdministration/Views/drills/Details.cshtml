@@ -1,7 +1,4 @@
 ﻿@model ClubAdministration.Models.drill
-@{
-    //var materials = (List<ClubAdministration.Models.drill_materials>)ViewBag.materials;
-}
 @widgets.common.ribbon.Show_Ribbon(Url, "drills.details.default", "جزئيات تمرين " + (" " + Model.drill_title), rootParams: new { id = Model.ID })
 
 <div class="mt-2 rounded-bottom shadow-sm mb-4">

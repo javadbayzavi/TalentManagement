@@ -4,7 +4,7 @@
     var training = (ClubAdministration.Models.training_terms)ViewBag.training;
     ViewBag.Title = "لیست جلسات تمرینی  " + training.term_title;
 }
-@using (Html.BeginForm("Sessions", "club",new { id=  training.ID }, FormMethod.Post, new { id = "trainingform", name = "trainingform" }))
+@using (Html.BeginForm("Sessions", "trainings",new { id=  training.ID }, FormMethod.Post, new { id = "trainingform", name = "trainingform" }))
 {
     @widgets.common.ribbon.Show_Ribbon(Url, "training.list.sessions", "لیست جلسات تمرینی  " + training.term_title)
 

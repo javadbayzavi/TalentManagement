@@ -49,7 +49,7 @@
                             @Html.Label((index++).ToString())
                         </th>
                         <td>
-                            @Html.ActionLink(item.training_terms.term_title,"Details",new { Controller = "club" , id = item.training_id })
+                            @Html.ActionLink(item.training_terms.term_title,"Details",new { Controller = "trainings" , id = item.training_id })
                         </td>
                         <td>
                             @item.registeration_date
