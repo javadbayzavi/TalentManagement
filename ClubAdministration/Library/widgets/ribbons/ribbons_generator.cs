@@ -29,6 +29,13 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "training.delete.default":
                     return training_delete(rootParams);
 
+                case "training.plans.default":
+                    return training_plans_default(rootParams);
+                case "training.plans.details":
+                    return training_plans_details(rootParams);
+                case "training.plans.delete":
+                    return training_plans_delete(rootParams);
+
                 case "players.list.default":
                     return player_list(rootParams);
                 case "players.details.default":

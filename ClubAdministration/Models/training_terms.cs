@@ -66,6 +66,7 @@ namespace ClubAdministration.Models
         public agelevel agelevel { get; set; }
         public int level_id { get; set; }
 
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<player_registerations> player_registerations { get; set; }
 
@@ -77,5 +78,7 @@ namespace ClubAdministration.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<coach_training> coach_training { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<training_patterns> training_patterns { get; set; }
     }
 }

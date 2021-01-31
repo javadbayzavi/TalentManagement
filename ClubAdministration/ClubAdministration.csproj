@@ -405,6 +405,7 @@
     <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\club\trainingsControllerTrainingPlan.cs" />
     <Compile Include="Controllers\club\materialsController.cs" />
     <Compile Include="Controllers\club\positionsController.cs" />
     <Compile Include="Controllers\club\skillsController.cs" />
@@ -455,6 +456,7 @@
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
     <Compile Include="Library\widgets\forms\HtmlExtentions.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-TrainingPlan.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillPatternItem.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillPattern.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Position.cs" />
@@ -546,6 +548,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\modules\club\plans\lang.Designer.cs">
+      <DependentUpon>lang.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\modules\club\plans\lang.fa.Designer.cs">
+      <DependentUpon>lang.fa.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\modules\drill\items\lang.Designer.cs">
       <DependentUpon>lang.resx</DependentUpon>
@@ -873,6 +885,11 @@
     <Content Include="Views\drills\Detailsitem.cshtml" />
     <Content Include="Views\drills\Deleteitem.cshtml" />
     <Content Include="Views\drills\simulate.cshtml" />
+    <Content Include="Views\trainings\CreatePlan.cshtml" />
+    <Content Include="Views\trainings\DeletePlan.cshtml" />
+    <Content Include="Views\trainings\DetailsPlan.cshtml" />
+    <Content Include="Views\trainings\EditPlan.cshtml" />
+    <Content Include="Views\trainings\Plans.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -914,6 +931,14 @@
       <LastGenOutput>lang.fa.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\modules\club\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\modules\club\plans\lang.fa.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.fa.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\modules\club\plans\lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>lang.Designer.cs</LastGenOutput>
     </EmbeddedResource>

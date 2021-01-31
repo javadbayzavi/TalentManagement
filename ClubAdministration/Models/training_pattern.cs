@@ -21,8 +21,34 @@ namespace ClubAdministration.Models
         public drill_patterns pattern { get; set; }
         public int pattern_id { get; set; }
 
-        public int start_date { get; set; }
+        public int s_date { get; set; }
+        [NotMapped]
+        public string start_date 
+        {
+            get
+            {
+                return DateConvertor.ConvertToPersian(BaseDate.GetDateFromDateOffsetSystemStartDate(this.s_date).ToString());
+            }
+            set
+            {
+                this.s_date = BaseDate.CalculateDateDiffInMinutes(value);
+            }
+        }
 
-        public int end_date { get; set; }
+
+        public int e_date { get; set; }
+        [NotMapped]
+        public string end_date 
+        {
+            get
+            {
+                return DateConvertor.ConvertToPersian(BaseDate.GetDateFromDateOffsetSystemStartDate(this.e_date).ToString());
+            }
+            set
+            {
+                this.e_date = BaseDate.CalculateDateDiffInMinutes(value);
+            }
+        }
+        public int order { get; set; }
     }
 }
