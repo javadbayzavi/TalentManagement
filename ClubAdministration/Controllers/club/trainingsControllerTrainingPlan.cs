@@ -40,6 +40,25 @@ namespace ClubAdministration.Controllers
 
         }
 
+        // GET: trainings/Preview
+        public ActionResult Preview(int id)
+        {
+            if (id <= 0)
+            {
+                Session["TACTION_RESULT"] = lang.trainingShowError;
+                return this.RedirectToAction("Index");
+            }
+
+            var training = db.training_terms.Where(a => a.ID == id).Include(a => a.training_patterns.
+            Select(aa => aa.pattern.items.Select(c => c.drill))).FirstOrDefault();
+
+            if (training == null)
+            {
+                Session["TACTION_RESULT"] = lang.trainingNotFound;
+                return this.RedirectToAction("Index");
+            }
+            return View(training);
+        }
         // POST: trainings/Plans
         [HttpPost,ActionName("Plans"),ValidateAntiForgeryToken]
         public ActionResult PlanPostBack(int? id)
