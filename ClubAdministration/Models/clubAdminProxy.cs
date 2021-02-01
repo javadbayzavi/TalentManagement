@@ -214,6 +214,11 @@ namespace ClubAdministration.Models
                 .HasMany(e => e.coaches)
                 .WithRequired(e => e.session)
                 .HasForeignKey(e => e.session_id);
+
+            modelBuilder.Entity<training_terms>()
+                .HasMany(e => e.training_patterns)
+                .WithRequired(e => e.training)
+                .HasForeignKey(e => e.training_id);
         }
 
     }

@@ -18,7 +18,12 @@
                 <div class="col-sm-12 col-md-6">
                     @Html.Label("برنامه تمريني", htmlAttributes: new { @class = "control-label " })
                     @Html.DropDownList("pattern_id", null, htmlAttributes: new { @class = "form-control " })
-                    @Html.ValidationMessageFor(model => model.training_id, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.pattern_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("ترتيب اجرا", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.orders, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orders, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -28,16 +33,12 @@
                     @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @id = "start_date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
                 </div>
-            </div>
-
-            <div class="form-group row font-weight-bold">
                 <div class="col-sm-12 col-md-6">
                     @Html.Label("تاريخ خاتمه", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.end_date, new { htmlAttributes = new { @id = "end_date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.end_date, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group row border mx-1 rounded">
                 <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
                     <input type="submit" value="  ثبت  " class="btn btn-primary px-5 m-2" />

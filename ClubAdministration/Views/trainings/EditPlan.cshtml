@@ -1,7 +1,6 @@
 ﻿@model ClubAdministration.Models.training_patterns
 @{
-    var coach = (ClubAdministration.Models.coach)ViewBag.coach;
-    ViewBag.Title = "ويرايش برنامه تمريني  " + coach.FullName + " در کلاس";
+    ViewBag.Title = "ويرايش برنامه تمريني  " + Model.training.term_title;
 }
 
 
@@ -11,29 +10,30 @@
     @Html.HiddenFor(model => model.ID)
 
     <div class="form-horizontal p-0 mb-2 shadow-sm">
-        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">ويرايش همكاري  @coach.FullName در کلاس</h4>
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">ويرايش برنامه تمريني  @Model.training.term_title </h4>
         <div class="container-fluid border rounded-bottom border-top-0 m-0">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             @Html.Hidden("training_id", Model.training_id)
             <div class="form-group row font-weight-bold">
                 <div class="col-sm-12 col-md-6">
-                    @Html.Label("كلاس آموزشي", htmlAttributes: new { @class = "control-label " })
+                    @Html.Label("برنامه تمريني", htmlAttributes: new { @class = "control-label " })
                     @Html.DropDownList("pattern_id", null, htmlAttributes: new { @class = "form-control " })
-                    @Html.ValidationMessageFor(model => model.training_id, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.pattern_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("ترتيب اجرا", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.orders, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orders, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            @Html.HiddenFor(model => model.training_id)
             <div class="form-group row font-weight-bold">
                 <div class="col-sm-12 col-md-6">
                     @Html.Label("تاريخ شروع ", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @id = "start_date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
                 </div>
-            </div>
-
-            <div class="form-group row font-weight-bold">
                 <div class="col-sm-12 col-md-6">
                     @Html.Label("تاريخ خاتمه", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.end_date, new { htmlAttributes = new { @id = "end_date", @class = "form-control" } })
@@ -46,7 +46,7 @@
                     <input type="submit" value="  ذخيره  " class="btn btn-primary px-5 m-2" />
                 </div>
                 <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
-                    @Html.ActionLink("بازگشت به ليست", "Plans", new { id = coach.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                    @Html.ActionLink("بازگشت به ليست", "Plans", new { id = Model.training.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
-﻿@model ClubAdministration.Models.coach_training
+﻿@model ClubAdministration.Models.training_patterns
 @{
-    ViewBag.Title = " : ‌جزئيات مربيگري دوره" + " " + Model.coach.FullName;
+    ViewBag.Title = " جزئيات برنامه تمريني" + " " + Model.pattern.title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "coaches.trainings.details", "جزئيات مربيگري " + " " + Model.coach.FullName, new { id = Model.ID }, new { id = Model.coach_id })
+@widgets.common.ribbon.Show_Ribbon(Url, "training.plans.details", "جزئيات برنامه تمريني " + " " + Model.pattern.title, new { id = Model.ID }, new { id = Model.training_id })
 
 <div class="mt-2 rounded-bottom shadow-sm mb-4">
     <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
@@ -19,34 +19,34 @@
             </tr>
             <tr>
                 <td>
-                    نام و نام خانوادگي
+                    برنامه تمريني
                 </td>
                 <td>
-                    @(Model.coach.FullName)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    کلاس آموزشی
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.training_terms.term_title)
+                    @Html.ActionLink(Model.pattern.title,"Detailspattern",new { controller = "drills" , id = Model.pattern_id })
                 </td>
             </tr>
             <tr>
                 <td>
-                    تاریخ ثبت نام
+                    ترتيب اجرا
                 </td>
                 <td>
-                    @Model.registeration_date
+                    @Html.DisplayFor(model => model.orders)
                 </td>
             </tr>
             <tr>
                 <td>
-                    تاریخ خاتمه فعاليت
+                    تاریخ شروع برنامه تمريني
                 </td>
                 <td>
-                    @Model.resignation_date
+                    @Model.start_date
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    تاریخ خاتمه برنامه تمريني
+                </td>
+                <td>
+                    @Model.end_date
                 </td>
             </tr>
         </table>

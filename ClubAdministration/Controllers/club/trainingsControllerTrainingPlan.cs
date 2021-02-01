@@ -25,7 +25,7 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("Index");
             }
 
-            var training = db.training_terms.Where(a => a.ID == id).Include(a => a.training_patterns).FirstOrDefault();
+            var training = db.training_terms.Where(a => a.ID == id).Include(a => a.training_patterns.Select(aa => aa.pattern)).FirstOrDefault();
 
             if (training == null)
             {
@@ -35,8 +35,7 @@ namespace ClubAdministration.Controllers
 
             ViewBag.training = training;
 
-            return View(training.training_patterns.Where(e => e.training_id == id)
-                .Where(aa => aa.pattern.title.Contains(this.Setting.PageSetting.SearchItem)
+            return View(training.training_patterns.Where(e => e.training_id == id && e.pattern.title.Contains(this.Setting.PageSetting.SearchItem)
                 ));
 
         }
@@ -55,11 +54,15 @@ namespace ClubAdministration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             var plan = db.training_patterns.Where(a => a.ID == id).Include(a => a.pattern).FirstOrDefault();
+
             if (plan == null)
             {
-                return HttpNotFound();
+                Session["TACTION_RESULT"] = lang.dateError;
+                return this.RedirectToAction("Index");
             }
+
             return View(plan);
         }
 
@@ -74,7 +77,8 @@ namespace ClubAdministration.Controllers
 
             if (training == null)
             {
-                return HttpNotFound();
+                Session["TACTION_RESULT"] = lang.dateError;
+                return this.RedirectToAction("Index");
             }
 
             //Load all age level related patterns for this class
@@ -90,7 +94,7 @@ namespace ClubAdministration.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePlan([Bind(Include = "pattern_id,training_id,start_date,end_date,order")] training_patterns plan)
+        public ActionResult CreatePlan([Bind(Include = "ID,pattern_id,training_id,start_date,end_date,orders")] training_patterns plan)
         {
             var trn = db.training_terms.Find(plan.training_id);
             if (plan.e_date < trn.s_date ||
@@ -102,6 +106,7 @@ namespace ClubAdministration.Controllers
                 Session["TACTION_RESULT"] = lang.dateError;
                 return View(plan);
             }
+
             if (ModelState.IsValid)
             {
                 db.training_patterns.Add(plan);
@@ -109,7 +114,7 @@ namespace ClubAdministration.Controllers
                 return RedirectToAction("Plans", new { id = plan.training_id });
             }
 
-            return RedirectToAction("");
+            return RedirectToAction("Createplan",plan.training_id);
         }
 
         // GET: trainings/EditTraining/5
@@ -123,7 +128,8 @@ namespace ClubAdministration.Controllers
 
             if (plan == null)
             {
-                return HttpNotFound();
+                Session["TACTION_RESULT"] = lang.dateError;
+                return this.RedirectToAction("Index");
             }
 
             //Load all age level related patterns for this class
@@ -132,12 +138,12 @@ namespace ClubAdministration.Controllers
             return View(plan);
         }
 
-        // POST: trainings/EditTraining/5
+        // POST: trainings/EditPlan/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken, ActionName("EditPlan")]
-        public ActionResult EditPlan([Bind(Include = "pattern_id,training_id,start_date,end_date,order")] training_patterns plan)
+        public ActionResult EditPlan([Bind(Include = "ID,pattern_id,training_id,start_date,end_date,orders")] training_patterns plan)
         {
             //It must be check for various conditions:
             //1.start date must be bigger than the class start date
@@ -164,14 +170,14 @@ namespace ClubAdministration.Controllers
             return this.RedirectToAction("Plans", plan.ID);
         }
 
-        // GET: trainings/DeleteTraining/5
+        // GET: trainings/DeletePlan/5
         public ActionResult DeletePlan(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var plan = db.training_patterns.Where(a => a.ID == id).Include(a => a.pattern);
+            var plan = db.training_patterns.Where(a => a.ID == id).Include(a => a.pattern).Include(a => a.training).FirstOrDefault();
             if (plan == null)
             {
                 return HttpNotFound();

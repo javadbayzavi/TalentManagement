@@ -4,10 +4,10 @@
     ViewBag.Title = "برنامه‌ريزي تمرين  " + training.term_title;
 }
 
-@using (Html.BeginForm("Plans", "trainings", new { id = ViewBag.pl_id }, FormMethod.Post, new { id = "trainingsform", name = "coachform" }))
+@using (Html.BeginForm("Plans", "trainings", new { id = training.ID }, FormMethod.Post, new { id = "trainingsform", name = "trainingsform" }))
 {
     @Html.AntiForgeryToken()
-    @widgets.common.ribbon.Show_Ribbon(Url, "training.plans.default", "مديريت برنامه تمريني دوره " + training.term_title, new { id = training.ID })
+    @widgets.common.ribbon.Show_Ribbon(Url, "training.plans.default", "مديريت برنامه تمريني  " + training.term_title, new { id = training.ID })
 
     @widgets.common.search.Show_Search_Form(ViewBag.search)
 
@@ -50,7 +50,7 @@
                             @Html.Label((index++).ToString())
                         </th>
                         <td>
-                            @Html.ActionLink(item.pattern.title,"Detailspattern",new { Controller = "drills" , id = item.training_id })
+                            @Html.ActionLink(item.pattern.title,"Detailspattern",new { Controller = "drills" , id = item.pattern_id })
                         </td>
                         <td>
                             @item.start_date
