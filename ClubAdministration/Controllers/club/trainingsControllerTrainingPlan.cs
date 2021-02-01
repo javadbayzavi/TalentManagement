@@ -8,7 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using ClubAdministration.Library.Core.Defaults;
 using ClubAdministration.Library.Core.Pages;
+using ClubAdministration.Library.Utilities;
 using ClubAdministration.Models;
+using ClubAdministration.Models.ViewModels;
 using ClubAdministration.Resources.modules.club.plans;
 
 namespace ClubAdministration.Controllers
@@ -49,13 +51,44 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("Index");
             }
 
-            var training = db.training_terms.Where(a => a.ID == id).Include(a => a.training_patterns.
-            Select(aa => aa.pattern.items.Select(c => c.drill))).FirstOrDefault();
-
+            var training = db.training_terms.Where(a => a.ID == id).Include(a => a.training_patterns
+            .OrderBy(bb => bb.s_date).OrderBy(bb => bb.orders)
+            .Select(aa => aa.pattern.items.Select(c => c.drill)))
+                .FirstOrDefault();
             if (training == null)
             {
                 Session["TACTION_RESULT"] = lang.trainingNotFound;
                 return this.RedirectToAction("Index");
+            }
+
+            var plans = new List<training_plan_preview>();
+
+            for (long counter = training.s_date; counter <= training.e_date; counter = counter + DateTime.Today.Millisecond)
+            {
+                var day = new training_plan_preview()
+                {
+                    drill_dt = counter
+                };
+                //Check wether has palnning for today or not
+                if (training.training_patterns.Any(a => a.s_date <= counter && a.e_date >= counter))
+                {
+                    var patterns = training.training_patterns.Where(a => a.s_date <= counter && a.e_date >= counter);
+                    //Load all patterns related to today
+                    foreach (var pattern in patterns)
+                    {
+                        //Check wether has any drill for this pattern or not
+                        if (pattern.pattern.items.Count() > 0)
+                        {
+                            //load all drills
+                            foreach (var drill in pattern.pattern.items)
+                            {
+                                day.drill_title = drill.drill.drill_title;
+                                day.drill_id = drill.drill_id;
+                                day.drill_hour = drill.drill_hour;
+                            }
+                        }
+                    }
+                }
             }
             return View(training);
         }
