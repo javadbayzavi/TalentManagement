@@ -23,6 +23,9 @@ namespace ClubAdministration.Models
         public int level_id { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pattern_items> items { get; set; }
+        public ICollection<pattern_items> items { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public ICollection<training_patterns> trainings { get; set; }
     }
 }

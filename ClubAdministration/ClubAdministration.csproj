@@ -521,6 +521,7 @@
     <Compile Include="Models\ViewModels\navigations.cs" />
     <Compile Include="Models\ViewModels\players_invoices.cs" />
     <Compile Include="Models\ViewModels\menuitems.cs" />
+    <Compile Include="Models\ViewModels\drill_view.cs" />
     <Compile Include="Models\ViewModels\training_plan_preview.cs" />
     <Compile Include="Models\ViewModels\ribbons.cs" />
     <Compile Include="Models\ViewModels\player_invoices.cs" />

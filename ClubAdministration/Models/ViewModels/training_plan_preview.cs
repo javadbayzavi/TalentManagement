@@ -9,9 +9,7 @@ namespace ClubAdministration.Models.ViewModels
 {
     public class training_plan_preview
     {
-        public int drill_id { get; set; }
-        public string drill_title { get; set; }
-
+        public List<drill_view> drills { get; set; }
         public long drill_dt { get; set; }
         public string drill_date 
         {
@@ -24,6 +22,5 @@ namespace ClubAdministration.Models.ViewModels
                 this.drill_dt = BaseDate.CalculateDateDiffInMinutes(value);
             }
         }
-        public int drill_hour { get; set; }
     }
 }

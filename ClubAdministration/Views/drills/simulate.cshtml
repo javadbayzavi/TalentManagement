@@ -30,8 +30,8 @@
                     </tr>
                 </thead>
                 @{ 
-                    bool even = Model.items.Any(a => a.weekday == 8);
-                    bool odd = Model.items.Any(a => a.weekday == 9);
+                    bool even = Model.items.Any(a => a.weekday == 9);
+                    bool odd = Model.items.Any(a => a.weekday == 8);
                 }
                 @for (int day = 1; day <= 7; day++)
                 {
@@ -46,7 +46,7 @@
                             @*//Add morning hour even days drill to plan)*@
                             @if (even && (day + 1) % 2 == 0)
                             {
-                                var items = Model.items.Where(a => a.weekday == 8 && a.drill_hour == 1);
+                                var items = Model.items.Where(a => a.weekday == 9 && a.drill_hour == 1);
                                 foreach (var item in items)
                                 {
                                     @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي زوج)" : "")<br />
@@ -56,7 +56,7 @@
                             @*//Add morning hour odd days drill to plan)*@
                             @if (odd && (day + 1) % 2 > 0)
                             {
-                                var items = Model.items.Where(a => a.weekday == 9 && a.drill_hour == 1);
+                                var items = Model.items.Where(a => a.weekday == 8 && a.drill_hour == 1);
                                 foreach (var item in items)
                                 {
                                     @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي فرد)" : "")<br />
@@ -73,7 +73,7 @@
                             @*//Add evening hour even days drill to plan)*@
                             @if (even && (day + 1) % 2 == 0)
                             {
-                                var items = Model.items.Where(a => a.weekday == 8 && a.drill_hour == 2);
+                                var items = Model.items.Where(a => a.weekday == 9 && a.drill_hour == 2);
                                 foreach (var item in items)
                                 {
                                     @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي زوج)" : "")<br />
@@ -83,7 +83,7 @@
                             @*//Add evening hour odd days drill to plan)*@
                             @if (odd && (day + 1) % 2 > 0)
                             {
-                                var items = Model.items.Where(a => a.weekday == 9 && a.drill_hour == 2);
+                                var items = Model.items.Where(a => a.weekday == 8 && a.drill_hour == 2);
                                 foreach (var item in items)
                                 {
                                     @Html.ActionLink(item.drill.drill_title, "Details", new { Controller = "drills", id = item.ID }) @((item.periodic) ? "(روزهاي فرد)" : "")<br />

@@ -46,7 +46,8 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("patterns");
             }
 
-            ViewBag.pattern = db.drill_patterns.Find(id);
+            var pattern = db.drill_patterns.Find(id);
+            ViewBag.pattern = pattern;
 
             if(ViewBag.pattern == null)
             {
@@ -54,8 +55,8 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("patterns");
             }
 
-            //Load alll drills
-            ViewBag.drill_id = new SelectList(db.drills.ToList(), "ID", "drill_title");
+            //Load all drills related to pattern age level
+            ViewBag.drill_id = new SelectList(db.drills.Where(a => a.agelevel_id == pattern.level_id).ToList(), "ID", "drill_title");
             return View();
         }
 
@@ -92,7 +93,7 @@ namespace ClubAdministration.Controllers
             var entry = db.pattern_items.Where(a => a.ID == id).Include(a => a.pattern).FirstOrDefault();
 
             //Load alll drills
-            ViewBag.drill_id = new SelectList(db.drills.ToList(), "ID", "drill_title",entry.drill_id);
+            ViewBag.drill_id = new SelectList(db.drills.Where(a => a.agelevel_id == entry.pattern.level_id).ToList(), "ID", "drill_title",entry.drill_id);
 
             return View(entry);
         }

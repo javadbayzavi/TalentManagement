@@ -51,10 +51,11 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("Index");
             }
 
-            var training = db.training_terms.Where(a => a.ID == id).Include(a => a.training_patterns
-            .OrderBy(bb => bb.s_date).OrderBy(bb => bb.orders)
-            .Select(aa => aa.pattern.items.Select(c => c.drill)))
+            var training = db.training_terms.Where(a => a.ID == id)
+                .Include(a => a.training_patterns
+                .Select(aa => aa.pattern.items.Select(c => c.drill)))
                 .FirstOrDefault();
+
             if (training == null)
             {
                 Session["TACTION_RESULT"] = lang.trainingNotFound;
@@ -63,16 +64,17 @@ namespace ClubAdministration.Controllers
 
             var plans = new List<training_plan_preview>();
 
-            for (long counter = training.s_date; counter <= training.e_date; counter = counter + DateTime.Today.Millisecond)
+            for (long counter = training.s_date; counter <= training.e_date; counter += 1440 )
             {
                 var day = new training_plan_preview()
                 {
-                    drill_dt = counter
+                    drill_dt = counter,
+                    drills =  new List<drill_view>()
                 };
                 //Check wether has palnning for today or not
                 if (training.training_patterns.Any(a => a.s_date <= counter && a.e_date >= counter))
                 {
-                    var patterns = training.training_patterns.Where(a => a.s_date <= counter && a.e_date >= counter);
+                    var patterns = training.training_patterns.Where(a => a.s_date <= counter && a.e_date >= counter).OrderBy(a => a.s_date).OrderBy(a => a.orders);
                     //Load all patterns related to today
                     foreach (var pattern in patterns)
                     {
@@ -82,15 +84,19 @@ namespace ClubAdministration.Controllers
                             //load all drills
                             foreach (var drill in pattern.pattern.items)
                             {
-                                day.drill_title = drill.drill.drill_title;
-                                day.drill_id = drill.drill_id;
-                                day.drill_hour = drill.drill_hour;
+                                day.drills.Add(new drill_view()
+                                {
+                                    drill_title = drill.drill.drill_title,
+                                    drill_id = drill.drill_id,
+                                    drill_hour = drill.drill_hour,
+                                });
                             }
                         }
                     }
                 }
+                plans.Add(day);
             }
-            return View(training);
+            return View(plans);
         }
         // POST: trainings/Plans
         [HttpPost,ActionName("Plans"),ValidateAntiForgeryToken]

@@ -462,6 +462,17 @@ namespace ClubAdministration.Library.widgets.ribbons
                 });
                 ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
                 {
+                    action = "Preview",
+                    placeholder = "مشاهده برنامه تمرينات",
+                    controller = "trainings",
+                    title = "تقويم",
+                    hostform = "",
+                    postback = false,
+                    rootparam = null,
+                    selectionneeded = true
+                });
+                ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+                {
                     action = "Index",
                     controller = "trainings",
                     title = "به‌روزآوری",
