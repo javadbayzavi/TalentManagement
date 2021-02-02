@@ -81,9 +81,12 @@ namespace ClubAdministration.Controllers
                         //Check wether has any drill for this pattern or not
                         if (pattern.pattern.items.Count() > 0)
                         {
+                            bool even = pattern.pattern.items.Any(a => a.weekday == 9);
+                            bool odd = pattern.pattern.items.Any(a => a.weekday == 8);                            
                             //load all drills
                             foreach (var drill in pattern.pattern.items)
                             {
+                                //For each drill now weekday must be checked and filtered
                                 day.drills.Add(new drill_view()
                                 {
                                     drill_title = drill.drill.drill_title,
