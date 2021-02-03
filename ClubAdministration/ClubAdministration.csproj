@@ -897,6 +897,7 @@
     <Content Include="Views\trainings\EditPlan.cshtml" />
     <Content Include="Views\trainings\Plans.cshtml" />
     <Content Include="Views\trainings\Preview.cshtml" />
+    <Content Include="Views\components\_calendarView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -42,7 +42,7 @@ namespace ClubAdministration.Controllers
 
         }
 
-        // GET: trainings/Preview
+        // GET: trainings/Preview/5
         public ActionResult Preview(int id)
         {
             if (id <= 0)
@@ -65,14 +65,25 @@ namespace ClubAdministration.Controllers
             ViewBag.training = training.term_title;
             ViewBag.training_id = training.ID;
 
+            return View();
+        } 
+
+        // GET(Json): trainings/Preview
+        public JsonResult PreviewDrills(int id)
+        {
+            var training = db.training_terms.Where(a => a.ID == id)
+                .Include(a => a.training_patterns
+                .Select(aa => aa.pattern.items.Select(c => c.drill)))
+                .FirstOrDefault();
+
             var plans = new List<training_plan_preview>();
 
-            for (long counter = training.s_date; counter <= training.e_date; counter += 1440 )
+            for (long counter = training.s_date; counter <= training.e_date; counter += 1440)
             {
                 var day = new training_plan_preview()
                 {
                     drill_dt = counter,
-                    drills =  new List<drill_view>()
+                    drills = new List<drill_view>()
                 };
                 //Check wether has palnning for today or not
                 if (training.training_patterns.Any(a => a.s_date <= counter && a.e_date >= counter))
@@ -86,7 +97,7 @@ namespace ClubAdministration.Controllers
                         {
                             bool even = pattern.pattern.items.Any(a => a.weekday == 9);
                             bool odd = pattern.pattern.items.Any(a => a.weekday == 8);
-                            
+
                             var lst = new List<pattern_items>();
                             //TODO : this part of calculation must be redifined to be compatible with system datetime configuration (first day of week)
                             int DayofWek = (int)BaseDate.GetDateFromDateOffsetSystemStartDate(counter).DayOfWeek + 7;
@@ -104,7 +115,7 @@ namespace ClubAdministration.Controllers
                             //Load all drills related to this day and all days drills
                             lst.AddRange(pattern.pattern.items.Where(a => a.weekday == (DayofWek - 5) || a.weekday == 10));
 
-                            
+
                             foreach (var drill in lst)
                             {
                                 //For each drill now weekday must be checked and filtered
@@ -120,8 +131,8 @@ namespace ClubAdministration.Controllers
                 }
                 plans.Add(day);
             }
-            return View(plans);
-        } 
+            return new JsonResult { Data = plans, JsonRequestBehavior = JsonRequestBehavior.AllowGet} ;
+        }
 
         // POST: trainings/Plans
         [HttpPost,ActionName("Plans"),ValidateAntiForgeryToken]

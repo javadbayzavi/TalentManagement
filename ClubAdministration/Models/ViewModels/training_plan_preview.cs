@@ -22,6 +22,5 @@ namespace ClubAdministration.Models.ViewModels
                 this.drill_dt = BaseDate.CalculateDateDiffInMinutes(value);
             }
         }
-        public int DayOfWeek { get; set; }
     }
 }
