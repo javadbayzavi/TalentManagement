@@ -62,6 +62,9 @@ namespace ClubAdministration.Controllers
                 return this.RedirectToAction("Index");
             }
 
+            ViewBag.training = training.term_title;
+            ViewBag.training_id = training.ID;
+
             var plans = new List<training_plan_preview>();
 
             for (long counter = training.s_date; counter <= training.e_date; counter += 1440 )
@@ -82,9 +85,27 @@ namespace ClubAdministration.Controllers
                         if (pattern.pattern.items.Count() > 0)
                         {
                             bool even = pattern.pattern.items.Any(a => a.weekday == 9);
-                            bool odd = pattern.pattern.items.Any(a => a.weekday == 8);                            
-                            //load all drills
-                            foreach (var drill in pattern.pattern.items)
+                            bool odd = pattern.pattern.items.Any(a => a.weekday == 8);
+                            
+                            var lst = new List<pattern_items>();
+                            //TODO : this part of calculation must be redifined to be compatible with system datetime configuration (first day of week)
+                            int DayofWek = (int)BaseDate.GetDateFromDateOffsetSystemStartDate(counter).DayOfWeek + 7;
+                            if (even && (DayofWek) % 2 == 0)
+                            {
+                                //Load all drills related to even days
+                                lst.AddRange(pattern.pattern.items.Where(a => a.weekday == 9));
+                            }
+                            else if (odd && (DayofWek) % 2 >= 1)
+                            {
+                                //Load all drills related to odd days
+                                lst.AddRange(pattern.pattern.items.Where(a => a.weekday == 8));
+                            }
+
+                            //Load all drills related to this day and all days drills
+                            lst.AddRange(pattern.pattern.items.Where(a => a.weekday == (DayofWek - 5) || a.weekday == 10));
+
+                            
+                            foreach (var drill in lst)
                             {
                                 //For each drill now weekday must be checked and filtered
                                 day.drills.Add(new drill_view()
@@ -100,7 +121,8 @@ namespace ClubAdministration.Controllers
                 plans.Add(day);
             }
             return View(plans);
-        }
+        } 
+
         // POST: trainings/Plans
         [HttpPost,ActionName("Plans"),ValidateAntiForgeryToken]
         public ActionResult PlanPostBack(int? id)

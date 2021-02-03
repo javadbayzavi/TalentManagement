@@ -1,98 +1,52 @@
 ﻿@model IEnumerable<ClubAdministration.Models.ViewModels.training_plan_preview>
 @{
-    var training = (ClubAdministration.Models.training_terms)ViewBag.training;
-    ViewBag.Title = "پيش نمايش برنامه‌ريزي تمرين  " + training.term_title;
+    ViewBag.Title = "تقويم برنامه‌ريزي تمرين  " + ViewBag.training;
 }
+<style>
+    .calendar-body{
+        height : calc(100vh - 165px);
+        width:90%;
+        padding-left:130px;
+    }
+    .calendar-header{
+        padding-left:30%;
+    }
+</style>
 
-@using (Html.BeginForm("Preview", "trainings", new { id = training.ID }, FormMethod.Post, new { id = "trainingsform", name = "trainingsform" }))
+@using (Html.BeginForm("Preview", "trainings", new { id = ViewBag.training_id }, FormMethod.Post, new { id = "trainingsform", name = "trainingsform" }))
 {
     @Html.AntiForgeryToken()
-    @widgets.common.ribbon.Show_Ribbon(Url, "training.preview.default", "پيش نمايش برنامه ريزي تمرين  " + training.term_title, new { id = training.ID })
+    @widgets.common.ribbon.Show_Ribbon(Url, "training.preview.default", "تقويم برنامه ريزي تمرين  " + ViewBag.training, new { id = ViewBag.training_id })
 
     @widgets.common.search.Show_Search_Form(ViewBag.search)
 
     <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
-        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">برنامه‌هاي تمريني <span style="font-weight:bold;color:brown">@training.term_title</span></h2>
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">تقويم برنامه تمريني <span style="font-weight:bold;color:brown">@ViewBag.training</span></h2>
         <div class="px-2">
-            <table class=" table table-hover table-responsive-sm text-center w-100">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>
-                            @Html.CheckBox("IDSubscription", new { @id = "chkwhole" })
-                        </th>
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            عنوان برنامه
-                        </th>
-                        <th>
-                            تاريخ شروع
-                        </th>
-                        <th>
-                            تاريخ اتمام
-                        </th>
-                        <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
-                            عمليات
-                        </th>
-                    </tr>
-                </thead>
-                @{
-                    int index = 1;
-                }
-                @foreach (var item in Model.OrderBy(a => a.orders))
-                {
-                    <tr>
-                        <td>
-                            @Html.CheckBox("IDS", new { @value = item.ID.ToString(), @class = "chkitem", @id = "chkitem" + (index) })
-                        </td>
-                        <th>
-                            @Html.Label((index++).ToString())
-                        </th>
-                        <td>
-                            @Html.ActionLink(item.pattern.title,"Detailspattern",new { Controller = "drills" , id = item.pattern_id })
-                        </td>
-                        <td>
-                            @item.start_date
-                        </td>
-                        <td>
-                            @item.end_date
-                        </td>
-                        <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
-                            @Html.ActionLink("انصراف مربي", "DeletePlan", new { id = item.ID }) |
-                            @Html.ActionLink("ويرايش عضويت", "EditPlan", new { id = item.ID }) |
-                            @Html.ActionLink("جزئيات", "DetailsPlan", new { id = item.ID })
+            @*<div class="calendar-body">
+                <div id="calendar">
 
-                        </td>
-                    </tr>
-                }
-            </table>
+                </div>
+            </div>
+            <div id="MyPopup" class="modal fade modal-CreateEvent" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
         </div>
     </div>
 }
-<script>
-        $("#chkwhole").change(function chang() {
-            $(".chkitem").not("#chkwhole").prop('checked', this.checked);
-            if (this.checked) {
-                $(".chkitem").parent().parent().addClass("table-primary");
-                $(".chkitem").parent().parent().removeClass("table-light");
-            }
-            else {
-                $(".chkitem").parent().parent().removeClass("table-primary");
-                $(".chkitem").parent().parent().addClass("table-light");
-            }
-        });
-
-        $(".chkitem").change(function chng() {
-            if (this.checked) {
-                $(this.parentElement.parentElement).addClass("table-primary");
-                $(this.parentElement.parentElement).removeClass("table-light");
-            }
-            else {
-                $(this.parentElement.parentElement).removeClass("table-primary");
-                $(this.parentElement.parentElement).addClass("table-light");
-            }
-        });
-
-</script>
-
+<script src="~/Scripts/calendar/moment.min.js"></script>
+<script src="~/Scripts/calendar/fullcalendar.js"></script>

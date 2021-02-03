@@ -13,7 +13,7 @@ namespace ClubAdministration.Library.Core.Defaults
       public const string TimeSeparator = ":";
       public const string DateTimeValidFormat = "mm" + DateSeparator + "dd" + DateSeparator + "yyyy " + "hh" + TimeSeparator + "mm";
       public static DateTime SystemStartDateTime = new DateTime(2019, 11, 1, 0, 0, 0, 0);
-      
+      public int FirstDayofWeek = 0;
 
       public static DateTime GetDateFromDateOffsetSystemStartDate(Int64 offset)
       {
