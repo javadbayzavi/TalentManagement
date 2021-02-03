@@ -64,7 +64,7 @@ namespace ClubAdministration.Controllers
 
             ViewBag.training = training.term_title;
             ViewBag.training_id = training.ID;
-            @ViewBag.StoreAddess = "trainings/PreviewDrills" + training.ID.ToString();
+            @ViewBag.StoreAddess = "trainings/PreviewDrills/" + training.ID.ToString();
             return View();
         } 
 
@@ -80,11 +80,11 @@ namespace ClubAdministration.Controllers
 
             for (long counter = training.s_date; counter <= training.e_date; counter += 1440)
             {
-                var day = new training_plan_preview()
-                {
-                    drill_dt = counter,
-                    drills = new List<drill_view>()
-                };
+                //var day = new training_plan_preview()
+                //{
+                //    drill_dt = counter,
+                //    drills = new List<drill_view>()
+                //};
                 //Check wether has palnning for today or not
                 if (training.training_patterns.Any(a => a.s_date <= counter && a.e_date >= counter))
                 {
@@ -118,18 +118,27 @@ namespace ClubAdministration.Controllers
 
                             foreach (var drill in lst)
                             {
+                                plans.Add(
+                                    new training_plan_preview()
+                                    {
+                                        drill_dt = counter,
+                                        drill_title = drill.drill.drill_title,
+                                        drill_hour = drill.drill_hour,
+                                        drill_id = drill.drill_id
+                                    }
+                                    );
                                 //For each drill now weekday must be checked and filtered
-                                day.drills.Add(new drill_view()
-                                {
-                                    drill_title = drill.drill.drill_title,
-                                    drill_id = drill.drill_id,
-                                    drill_hour = drill.drill_hour,
-                                });
+                                //day.drills.Add(new drill_view()
+                                //{
+                                //    drill_title = drill.drill.drill_title,
+                                //    drill_id = drill.drill_id,
+                                //    drill_hour = drill.drill_hour,
+                                //});
                             }
                         }
                     }
                 }
-                plans.Add(day);
+                //plans.Add(day);
             }
             return new JsonResult { Data = plans, JsonRequestBehavior = JsonRequestBehavior.AllowGet} ;
         }
