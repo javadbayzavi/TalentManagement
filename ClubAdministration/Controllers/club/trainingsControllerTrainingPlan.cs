@@ -64,7 +64,7 @@ namespace ClubAdministration.Controllers
 
             ViewBag.training = training.term_title;
             ViewBag.training_id = training.ID;
-
+            @ViewBag.StoreAddess = "trainings/PreviewDrills" + training.ID.ToString();
             return View();
         } 
 

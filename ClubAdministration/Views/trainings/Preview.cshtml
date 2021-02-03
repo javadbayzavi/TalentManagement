@@ -23,28 +23,7 @@
     <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
         <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">تقويم برنامه تمريني <span style="font-weight:bold;color:brown">@ViewBag.training</span></h2>
         <div class="px-2">
-            @*<div class="calendar-body">
-                <div id="calendar">
-
-                </div>
-            </div>
-            <div id="MyPopup" class="modal fade modal-CreateEvent" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title"></h4>
-                        </div>
-                        <div class="modal-body">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn" data-dismiss="modal">
-                                OK
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
+            @Html.Partial("~/Views/components/calendarView.cshtml")
         </div>
     </div>
 }

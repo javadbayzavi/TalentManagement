@@ -29,7 +29,7 @@
             var events = [];
             $.ajax({
                 type: "GET",
-                url: "/home/GetEvents",
+                url: @ViewBag.StoreAddess,
                 success: function (data) {
                     $.each(data, function (i, v) {
                         events.push({
