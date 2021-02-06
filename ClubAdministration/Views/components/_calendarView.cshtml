@@ -21,10 +21,11 @@
 <link href="~/Content/calendar/fullcalendar.css" rel="stylesheet" />
 
 @*@section Scripts{*@
-    <script src="~/Scripts/calendar/moment.min.js"></script>
-    <script src="~/Scripts/calendar/fullcalendar.js"></script>
+<script src="~/Scripts/calendar/moment.min.js"></script>
+<script src="~/Scripts/calendar/fullcalendar.js"></script>
+<script src="~/Scripts/calendar/locales-all.min.js"></script>
 
-    <script>
+<script>
         $(document).ready(function () {
             var events = [];
             $.ajax({
@@ -33,7 +34,7 @@
                 success: function (data) {
                     $.each(data, function (i, v) {
                         events.push({
-                            title: v.drill_dt,
+                            title: v.drill_title,
                             description: v.Description,
                             start: moment(v.drill_date),
                             end: v.End != null ? moment(v.drill_date) : null,
@@ -52,13 +53,36 @@
             function GenerateCalender(events) {
                 $('#calender').fullCalendar('destroy');
                 $('#calender').fullCalendar({
-                    contentHeight: 400,
+                    locale: 'fa',
+                    isRTL: true,
+                    firstDay : 6,
+                    contentHeight: 500,
                     defaultDate: new Date(),
+                    timeZone: 'UTC',
                     timeFormat: 'h(:mm)a',
                     header: {
-                        left: 'prev,next today',
+                        left: 'next,prev,today',
                         center: 'title',
-                        right: 'month,basicWeek,basicDay,agenda'
+                        right: 'month,basicWeek,basicDay,agenda,list'
+                    },
+                    monthNames : ['ژانويه', 'فوريه', 'مارچ', 'آپريل', 'مي', 'جون', 'جولاي',
+                        'آگوست', 'سپتامبر', 'اكتبر', 'نوامبر', 'دسامبر'],
+                    dayNames : ['يك‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه',
+                        'پنج‌شنبه', 'جمعه', 'شنبه'],
+                    dayNamesShort : ['يك‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه',
+                        'پنج‌شنبه', 'جمعه', 'شنبه'],
+                    button: {
+                        month: 'ماه',
+                        list: 'ليست'
+                    },
+                    buttonText:
+                    {
+                      today:    'امروز',
+                      month:    'ماه',
+                      week:     'هفته',
+                      day:      'روز',
+                      list:     'ليست',
+                      agenda:   'ساعات'
                     },
                     eventLimit: true,
                     eventColor: '#378006',
@@ -78,5 +102,5 @@
                 })
             }
         })
-    </script>
+</script>
 @*}*@
