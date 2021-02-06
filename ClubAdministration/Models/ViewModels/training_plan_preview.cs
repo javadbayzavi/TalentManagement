@@ -26,11 +26,11 @@ namespace ClubAdministration.Models.ViewModels
                 this.drill_dt = BaseDate.CalculateDateDiffInMinutes(value);
             }
         }
-        public string drill_date
+        public DateTime drill_date
         {
             get
             {
-                return BaseDate.SystemStartDateTime.AddMinutes(this.drill_dt).ToString();
+                return BaseDate.SystemStartDateTime.AddMinutes(this.drill_dt);
             }
             set
             {
