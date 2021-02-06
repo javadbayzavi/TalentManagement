@@ -1,5 +1,8 @@
-﻿
-<div id="calender"></div>
+﻿<link href="~/Scripts/calendar/main.css" rel="stylesheet" />
+
+<div id='loading' class="loader">loading...</div>
+
+<div id="calendar"></div>
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -18,12 +21,12 @@
     </div>
 </div>
 
-<link href="~/Content/calendar/fullcalendar.css" rel="stylesheet" />
+@*<link href="~/Content/calendar/fullcalendar.css" rel="stylesheet" />*@
 
 @*@section Scripts{*@
 <script src="~/Scripts/calendar/moment.min.js"></script>
-<script src="~/Scripts/calendar/fullcalendar.js"></script>
-<script src="~/Scripts/calendar/locales-all.min.js"></script>
+<script src="~/Scripts/calendar/main.js"></script>
+<script src="~/Scripts/calendar/locales-all.js"></script>
 
 <script>
         $(document).ready(function () {
@@ -51,55 +54,49 @@
             })
 
             function GenerateCalender(events) {
-                $('#calender').fullCalendar('destroy');
-                $('#calender').fullCalendar({
-                    locale: 'fa',
-                    isRTL: true,
-                    firstDay : 6,
-                    contentHeight: 500,
-                    defaultDate: new Date(),
-                    timeZone: 'UTC',
-                    timeFormat: 'h(:mm)a',
-                    header: {
-                        left: 'next,prev,today',
-                        center: 'title',
-                        right: 'month,basicWeek,basicDay,agenda,list'
-                    },
-                    monthNames : ['ژانويه', 'فوريه', 'مارچ', 'آپريل', 'مي', 'جون', 'جولاي',
-                        'آگوست', 'سپتامبر', 'اكتبر', 'نوامبر', 'دسامبر'],
-                    dayNames : ['يك‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه',
-                        'پنج‌شنبه', 'جمعه', 'شنبه'],
-                    dayNamesShort : ['يك‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه',
-                        'پنج‌شنبه', 'جمعه', 'شنبه'],
-                    button: {
-                        month: 'ماه',
-                        list: 'ليست'
-                    },
-                    buttonText:
-                    {
-                      today:    'امروز',
-                      month:    'ماه',
-                      week:     'هفته',
-                      day:      'روز',
-                      list:     'ليست',
-                      agenda:   'ساعات'
-                    },
-                    eventLimit: true,
-                    eventColor: '#378006',
-                    events: events,
-                    eventClick: function (calEvent, jsEvent, view) {
-                        $('#myModal #eventTitle').text(calEvent.title);
-                        var $description = $('<div/>');
-                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
-                        if (calEvent.end != null) {
-                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
-                        }
-                        $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
-                        $('#myModal #pDetails').empty().html($description);
 
-                        $('#myModal').modal();
-                    }
-                })
+                var calendarEl = document.getElementById('calendar');
+                alert(calendarEl);
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                  locale: 'fa',
+                  displayEventTime: false,
+                  timeZone: 'UTC',
+                  timeFormat: 'h(:mm)a',
+                  initialDate: new Date(),
+                  headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,dayGridWeek,dayGridDay,listYear'
+                  },
+                  events: events,
+                  loading: function(bool) {
+                    document.getElementById('loading').style.display =
+                      bool ? 'block' : 'none';
+                  }
+                //    eventClick: function (calEvent, jsEvent, view) {
+                //        $('#myModal #eventTitle').text(calEvent.title);
+                //        var $description = $('<div/>');
+                //        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                //        if (calEvent.end != null) {
+                //            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                //        }
+                //        $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                //        $('#myModal #pDetails').empty().html($description);
+
+                //        $('#myModal').modal();
+                //    }
+                });
+                calendar.render();
+
+                //    contentHeight: 500,
+                //    navLinks: true, // can click day/week names to navigate views
+                //    editable: true,
+                //    dayMaxEvents: true,
+
+                //    eventLimit: true,
+                //    eventColor: '#378006',
+                //    events: events,
+                //});
             }
         })
 </script>
