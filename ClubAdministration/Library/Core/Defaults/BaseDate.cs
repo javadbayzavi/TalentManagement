@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ClubAdministration.Library.Core.Defaults
@@ -17,14 +18,15 @@ namespace ClubAdministration.Library.Core.Defaults
 
       public static DateTime GetDateFromDateOffsetSystemStartDate(Int64 offset)
       {
-          return SystemStartDateTime.AddMinutes(offset);
+            return SystemStartDateTime.AddMinutes(offset);
       }
       /**
        * Return different date from system default date to current date in minutes
        **/
       public static int CalculateDateDiffInMinutes(DateTime endPoint)
       {
-          return Convert.ToInt32(Math.Round((endPoint - BaseDate.SystemStartDateTime).TotalMinutes).ToString());
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            return Convert.ToInt32(Math.Round((endPoint - BaseDate.SystemStartDateTime).TotalMinutes).ToString());
       }
       public static int CalculateDateDiffInMinutes(string endPoint)
       {
@@ -39,7 +41,6 @@ namespace ClubAdministration.Library.Core.Defaults
             }
             return 0;
       }
-
       //Result format yyyy mm dd hh mm
       public static int[] changeStingPersianDateToIntDate(string entryDate)
       {

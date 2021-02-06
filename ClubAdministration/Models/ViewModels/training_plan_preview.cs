@@ -37,5 +37,10 @@ namespace ClubAdministration.Models.ViewModels
                 this.drill_dt = BaseDate.CalculateDateDiffInMinutes(value);
             }
         }
+        public string DayofWeeks { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public bool repeatitve { get; set; }
+
     }
 }

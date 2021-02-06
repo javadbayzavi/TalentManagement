@@ -92,6 +92,7 @@ namespace ClubAdministration.Controllers
                     //Load all patterns related to today
                     foreach (var pattern in patterns)
                     {
+                        string weekdaystr = "";
                         //Check wether has any drill for this pattern or not
                         if (pattern.pattern.items.Count() > 0)
                         {
@@ -101,20 +102,25 @@ namespace ClubAdministration.Controllers
                             var lst = new List<pattern_items>();
                             //TODO : this part of calculation must be redifined to be compatible with system datetime configuration (first day of week)
                             int DayofWek = (int)BaseDate.GetDateFromDateOffsetSystemStartDate(counter).DayOfWeek + 7;
+                            
                             if (even && (DayofWek) % 2 == 0)
                             {
                                 //Load all drills related to even days
                                 lst.AddRange(pattern.pattern.items.Where(a => a.weekday == 9));
+                                weekdaystr = "[1,3,5,6]";
                             }
+
                             else if (odd && (DayofWek) % 2 >= 1)
                             {
                                 //Load all drills related to odd days
                                 lst.AddRange(pattern.pattern.items.Where(a => a.weekday == 8));
+                                weekdaystr = "[0,2,4]";
                             }
 
                             //Load all drills related to this day and all days drills
                             lst.AddRange(pattern.pattern.items.Where(a => a.weekday == (DayofWek - 5) || a.weekday == 10));
-
+                            if (DayofWek == 14)
+                                weekdaystr = "";
 
                             foreach (var drill in lst)
                             {

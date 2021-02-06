@@ -21,9 +21,6 @@
     </div>
 </div>
 
-@*<link href="~/Content/calendar/fullcalendar.css" rel="stylesheet" />*@
-
-@*@section Scripts{*@
 <script src="~/Scripts/calendar/moment.min.js"></script>
 <script src="~/Scripts/calendar/main.js"></script>
 <script src="~/Scripts/calendar/locales-all.js"></script>
@@ -54,24 +51,27 @@
             })
 
             function GenerateCalender(events) {
-
                 var calendarEl = document.getElementById('calendar');
-                alert(calendarEl);
                 var calendar = new FullCalendar.Calendar(calendarEl, {
-                  locale: 'fa',
-                  displayEventTime: false,
-                  timeZone: 'UTC',
-                  timeFormat: 'h(:mm)a',
-                  initialDate: new Date(),
-                  headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,dayGridWeek,dayGridDay,listYear'
-                  },
-                  events: events,
-                  loading: function(bool) {
-                    document.getElementById('loading').style.display =
-                      bool ? 'block' : 'none';
+                    locale: 'fa',
+                    displayEventTime: false,
+                    timeZone: 'local',
+                    timeFormat: 'h(:mm)a',
+                    initialDate: new Date(),
+                    navLinks: true, 
+                    editable: true,
+                    contentHeight: 700,
+                    themeSystem: 'standard',
+                    dayMaxEvents: true,
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,dayGridWeek,dayGridDay,listYear'
+                    },
+                    events: events,
+                    loading: function(bool) {
+                        document.getElementById('loading').style.display =
+                        bool ? 'block' : 'none';
                   }
                 //    eventClick: function (calEvent, jsEvent, view) {
                 //        $('#myModal #eventTitle').text(calEvent.title);
@@ -87,17 +87,6 @@
                 //    }
                 });
                 calendar.render();
-
-                //    contentHeight: 500,
-                //    navLinks: true, // can click day/week names to navigate views
-                //    editable: true,
-                //    dayMaxEvents: true,
-
-                //    eventLimit: true,
-                //    eventColor: '#378006',
-                //    events: events,
-                //});
             }
         })
 </script>
-@*}*@

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "تقويم برنامه‌ريزي تمرين  " + ViewBag.training;
 }
-<style>
+@*<style>
     .calendar-body{
         height : calc(100vh - 165px);
         width:90%;
@@ -11,7 +11,7 @@
     .calendar-header{
         padding-left:30%;
     }
-</style>
+</style>*@
 
 @using (Html.BeginForm("Preview", "trainings", new { id = ViewBag.training_id }, FormMethod.Post, new { id = "trainingsform", name = "trainingsform" }))
 {
@@ -25,5 +25,3 @@
         </div>
     </div>
 }
-@*<script src="~/Scripts/calendar/moment.min.js"></script>
-<script src="~/Scripts/calendar/fullcalendar.js"></script>*@
