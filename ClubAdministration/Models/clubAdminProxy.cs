@@ -4,6 +4,7 @@ namespace ClubAdministration.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using ClubAdministration.Models.system;
 
     public partial class clubAdminProxy : DbContext
     {
@@ -53,6 +54,15 @@ namespace ClubAdministration.Models
         public virtual DbSet<metrics> metrics { get; set; }
         public virtual DbSet<metric_instances> metric_instances { get; set; }
         public virtual DbSet<metric_values> metric_values { get; set; }
+        public virtual DbSet<menus> menus { get; set; }
+        public virtual DbSet<roles> roles { get; set; }
+        public virtual DbSet<groups> groups { get; set; }
+        public virtual DbSet<permissions> permissions { get; set; }
+        public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<users_groups> users_groups { get; set; }
+        public virtual DbSet<role_permissions> role_permissions { get; set; }
+        public virtual DbSet<roles_group> roles_groups { get; set; }
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

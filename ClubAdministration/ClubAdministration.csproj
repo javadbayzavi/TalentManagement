@@ -437,6 +437,11 @@
     <Compile Include="Controllers\players\playersControllerTraining.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerMain.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerCoaches.cs" />
+    <Compile Include="Controllers\system\permissionsController.cs" />
+    <Compile Include="Controllers\system\groupsController.cs" />
+    <Compile Include="Controllers\system\menusController.cs" />
+    <Compile Include="Controllers\system\usersController.cs" />
+    <Compile Include="Controllers\system\rolesController.cs" />
     <Compile Include="Library\Core\Defaults\ReservedKeys.cs" />
     <Compile Include="Library\Core\Pages\BaseController.cs" />
     <Compile Include="Library\Core\Pages\ControllerSetting.cs" />
@@ -452,6 +457,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Library\Core\Defaults\BaseDate.cs" />
+    <Compile Include="Library\Core\Security\PermissionValidator.cs" />
     <Compile Include="Library\Core\Sessions\SessionManager.cs" />
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
@@ -476,9 +482,17 @@
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Coaches.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Sessions.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator.cs" />
+    <Compile Include="Models\agelevel.cs" />
     <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\drills\drill_template.cs" />
+    <Compile Include="Models\system\roles_group.cs" />
+    <Compile Include="Models\system\role_permissions.cs" />
+    <Compile Include="Models\system\users_groups.cs" />
+    <Compile Include="Models\system\users.cs" />
+    <Compile Include="Models\system\permissions.cs" />
+    <Compile Include="Models\system\groups.cs" />
+    <Compile Include="Models\system\roles.cs" />
     <Compile Include="Models\trainings\training_pattern.cs" />
     <Compile Include="Models\drills\pattern_items.cs" />
     <Compile Include="Models\drills\drill_pattern.cs" />
@@ -492,7 +506,7 @@
     <Compile Include="Models\material.cs" />
     <Compile Include="Models\drills\drill_locations.cs" />
     <Compile Include="Models\drills\drill_emphasis.cs" />
-    <Compile Include="Models\agelevel.cs" />
+    <Compile Include="Models\system\menus.cs" />
     <Compile Include="Models\position.cs" />
     <Compile Include="Models\drills\drill_types.cs" />
     <Compile Include="Models\drills\drill.cs" />
@@ -901,7 +915,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\assets\" />
     <Folder Include="Controllers\news\" />
     <Folder Include="Controllers\staff\" />
     <Folder Include="Resources\modules\coaches\" />
