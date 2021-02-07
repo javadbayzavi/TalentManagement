@@ -69,86 +69,6 @@ namespace ClubAdministration.Controllers
         } 
 
         // GET(Json): trainings/Preview
-        public JsonResult PreviewDrillsHook(int id)
-        {
-            var training = db.training_terms.Where(a => a.ID == id)
-                .Include(a => a.training_patterns
-                .Select(aa => aa.pattern.items.Select(c => c.drill)))
-                .FirstOrDefault();
-
-            var plans = new List<training_plan_preview>();
-
-            for (long counter = training.s_date; counter <= training.e_date; counter += 1440)
-            {
-                //var day = new training_plan_preview()
-                //{
-                //    drill_dt = counter,
-                //    drills = new List<drill_view>()
-                //};
-                //Check wether has palnning for today or not
-                if (training.training_patterns.Any(a => a.s_date <= counter && a.e_date >= counter))
-                {
-                    var patterns = training.training_patterns.Where(a => a.s_date <= counter && a.e_date >= counter).OrderBy(a => a.s_date).OrderBy(a => a.orders);
-                    //Load all patterns related to today
-                    foreach (var pattern in patterns)
-                    {
-                        //string weekdaystr = "";
-                        //Check wether has any drill for this pattern or not
-                        if (pattern.pattern.items.Count() > 0)
-                        {
-                            bool even = pattern.pattern.items.Any(a => a.weekday == 9);
-                            bool odd = pattern.pattern.items.Any(a => a.weekday == 8);
-
-                            var lst = new List<pattern_items>();
-                            //TODO : this part of calculation must be redifined to be compatible with system datetime configuration (first day of week)
-                            int DayofWek = (int)BaseDate.GetDateFromDateOffsetSystemStartDate(counter).DayOfWeek + 7;
-                            
-                            if (even && (DayofWek) % 2 == 0)
-                            {
-                                //Load all drills related to even days
-                                lst.AddRange(pattern.pattern.items.Where(a => a.weekday == 9));
-                                //weekdaystr = "[1,3,5,6]";
-                            }
-
-                            else if (odd && (DayofWek) % 2 >= 1)
-                            {
-                                //Load all drills related to odd days
-                                lst.AddRange(pattern.pattern.items.Where(a => a.weekday == 8));
-                                //weekdaystr = "[0,2,4]";
-                            }
-
-                            //Load all drills related to this day and all days drills
-                            lst.AddRange(pattern.pattern.items.Where(a => a.weekday == (DayofWek - 5) || a.weekday == 10));
-                            if (DayofWek == 14)
-                                //weekdaystr = "";
-
-                            foreach (var drill in lst)
-                            {
-                                plans.Add(
-                                    new training_plan_preview()
-                                    {
-                                        drill_dt = counter,
-                                        drill_title = drill.drill.drill_title,
-                                        drill_hour = drill.drill_hour,
-                                        drill_id = drill.drill_id
-                                    }
-                                    );
-                                //For each drill now weekday must be checked and filtered
-                                //day.drills.Add(new drill_view()
-                                //{
-                                //    drill_title = drill.drill.drill_title,
-                                //    drill_id = drill.drill_id,
-                                //    drill_hour = drill.drill_hour,
-                                //});
-                            }
-                        }
-                    }
-                }
-                //plans.Add(day);
-            }
-            return new JsonResult { Data = plans, JsonRequestBehavior = JsonRequestBehavior.AllowGet} ;
-        }
-
         public JsonResult PreviewDrills(int id)
         {
             var training = db.training_terms.Where(a => a.ID == id)
@@ -186,14 +106,19 @@ namespace ClubAdministration.Controllers
                             else
                                 eventItem.daysofWeek = ((item.weekday - 2) >= 0)? "['" + (item.weekday -2) + "']" : "['6']";
 
-                            eventItem.recureStart = BaseDate.GetDateFromDateOffsetSystemStartDate(pattern.s_date);
-                            eventItem.recureEnd = BaseDate.GetDateFromDateOffsetSystemStartDate(pattern.e_date);
+                            var strt = BaseDate.GetDateFromDateOffsetSystemStartDate(pattern.s_date);
+                            var endd = BaseDate.GetDateFromDateOffsetSystemStartDate(pattern.e_date);
+
+                            eventItem.recureStart = strt.Year.ToString() + "/" + strt.Month + "/" + strt.Day;
+                            eventItem.recureEnd = endd.Year.ToString() + "/" + endd.Month + "/" + endd.Day;
+
                             eventItem.classification = item.ID.ToString() + "_" + item.pattern_id + "_" + item.drill_id;
                         }                    
                         else
                         {
                             eventItem.drill_dt = pattern.s_date;
                         }
+                        var dd = DateTime.Today;
                         eventItem.drill_id = item.drill_id;
                         eventItem.drill_title = item.drill.drill_title;
                         eventItem.startTime = pattern.training.start_time;

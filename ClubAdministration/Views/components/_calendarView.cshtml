@@ -41,8 +41,8 @@
                             daysOfWeek: v.daysofWeek,
                             startTime: v.startTime,
                             endTime: v.endTime,
-                            startRecur: v.recureStart,
-                            endRecur: v.recureEnd,
+                            startRecur: new Date(v.recureStart),
+                            endRecur: new Date(v.recureEnd),
                             groupId: v.classification,
                             url : '../../drills/Details/' + v.drill_id
                         });

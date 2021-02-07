@@ -24,6 +24,7 @@ namespace ClubAdministration.Library.Core.Pages
             this.Setting = new ControllerSetting(this);
             //this.initUserSession();
 
+            //TODO: this item need to be studied in more dept
             int culture = 0;
             if (this.Session == null || this.Session[ReservedKeys.CurrentCulture] == null)
             {

@@ -18,7 +18,6 @@ namespace ClubAdministration.Library.Core.Defaults
 
       public static DateTime GetDateFromDateOffsetSystemStartDate(Int64 offset)
       {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             return SystemStartDateTime.AddMinutes(offset);
       }
       /**
@@ -26,7 +25,6 @@ namespace ClubAdministration.Library.Core.Defaults
        **/
       public static int CalculateDateDiffInMinutes(DateTime endPoint)
       {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             return Convert.ToInt32(Math.Round((endPoint - BaseDate.SystemStartDateTime).TotalMinutes).ToString());
       }
       public static int CalculateDateDiffInMinutes(string endPoint)
