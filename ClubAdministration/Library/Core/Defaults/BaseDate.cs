@@ -18,6 +18,7 @@ namespace ClubAdministration.Library.Core.Defaults
 
       public static DateTime GetDateFromDateOffsetSystemStartDate(Int64 offset)
       {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             return SystemStartDateTime.AddMinutes(offset);
       }
       /**

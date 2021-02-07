@@ -31,18 +31,22 @@
             $.ajax({
                 type: "GET",
                 url: "/@ViewBag.StoreAddess",
+                //url: "/trainings/PreviewDrillsHook/2005",
                 success: function (data) {
                     $.each(data, function (i, v) {
                         events.push({
                             title: v.drill_title,
-                            description: v.Description,
                             start: moment(v.drill_date),
                             end: v.End != null ? moment(v.drill_date) : null,
-                            color: v.ThemeColor,
-                            allDay : v.IsFullDay
+                            daysOfWeek: v.daysofWeek,
+                            startTime: v.startTime,
+                            endTime: v.endTime,
+                            startRecur: v.recureStart,
+                            endRecur: v.recureEnd,
+                            groupId: v.classification,
+                            url : '../../drills/Details/' + v.drill_id
                         });
                     })
-
                     GenerateCalender(events);
                 },
                 error: function (error) {
@@ -58,15 +62,16 @@
                     timeZone: 'local',
                     timeFormat: 'h(:mm)a',
                     initialDate: new Date(),
-                    navLinks: true, 
-                    editable: true,
+                    navLinks: true,
+                    //TODO: This feature must be set based on the user prevelage
+                    editable: false,
                     contentHeight: 700,
                     themeSystem: 'standard',
                     dayMaxEvents: true,
                     headerToolbar: {
                         left: 'prev,next today',
                         center: 'title',
-                        right: 'dayGridMonth,dayGridWeek,dayGridDay,listYear'
+                        right: 'dayGridMonth,dayGridWeek,timeGridDay,listYear'
                     },
                     events: events,
                     loading: function(bool) {

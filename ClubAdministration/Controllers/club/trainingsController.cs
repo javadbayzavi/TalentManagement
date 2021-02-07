@@ -154,7 +154,7 @@ namespace ClubAdministration.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,term_title,start_date,max_player,session_per_week,weekdays,active,end_date,fee_type,level_id")] training_terms training_terms)
+        public ActionResult Create([Bind(Include = "ID,term_title,start_date,max_player,session_per_week,weekdays,active,end_date,fee_type,level_id,start_time,end_time")] training_terms training_terms)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
@@ -191,7 +191,7 @@ namespace ClubAdministration.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,term_title,start_date,max_player,session_per_week,weekdays,active,end_date,fee_type,level_id")] training_terms training_terms)
+        public ActionResult Edit([Bind(Include = "ID,term_title,start_date,max_player,session_per_week,weekdays,active,end_date,fee_type,level_id,start_time,end_time")] training_terms training_terms)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)

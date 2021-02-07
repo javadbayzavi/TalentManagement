@@ -69,7 +69,7 @@ namespace ClubAdministration.Controllers
         } 
 
         // GET(Json): trainings/Preview
-        public JsonResult PreviewDrills(int id)
+        public JsonResult PreviewDrillsHook(int id)
         {
             var training = db.training_terms.Where(a => a.ID == id)
                 .Include(a => a.training_patterns
@@ -92,7 +92,7 @@ namespace ClubAdministration.Controllers
                     //Load all patterns related to today
                     foreach (var pattern in patterns)
                     {
-                        string weekdaystr = "";
+                        //string weekdaystr = "";
                         //Check wether has any drill for this pattern or not
                         if (pattern.pattern.items.Count() > 0)
                         {
@@ -107,20 +107,20 @@ namespace ClubAdministration.Controllers
                             {
                                 //Load all drills related to even days
                                 lst.AddRange(pattern.pattern.items.Where(a => a.weekday == 9));
-                                weekdaystr = "[1,3,5,6]";
+                                //weekdaystr = "[1,3,5,6]";
                             }
 
                             else if (odd && (DayofWek) % 2 >= 1)
                             {
                                 //Load all drills related to odd days
                                 lst.AddRange(pattern.pattern.items.Where(a => a.weekday == 8));
-                                weekdaystr = "[0,2,4]";
+                                //weekdaystr = "[0,2,4]";
                             }
 
                             //Load all drills related to this day and all days drills
                             lst.AddRange(pattern.pattern.items.Where(a => a.weekday == (DayofWek - 5) || a.weekday == 10));
                             if (DayofWek == 14)
-                                weekdaystr = "";
+                                //weekdaystr = "";
 
                             foreach (var drill in lst)
                             {
@@ -147,6 +147,62 @@ namespace ClubAdministration.Controllers
                 //plans.Add(day);
             }
             return new JsonResult { Data = plans, JsonRequestBehavior = JsonRequestBehavior.AllowGet} ;
+        }
+
+        public JsonResult PreviewDrills(int id)
+        {
+            var training = db.training_terms.Where(a => a.ID == id)
+                .Include(a => a.training_patterns
+                .Select(aa => aa.pattern.items.Select(c => c.drill)))
+                .FirstOrDefault();
+
+            var plans = new List<training_plan_preview>();
+
+            var patterns = training.training_patterns.OrderBy(a => a.s_date).OrderBy(a => a.orders);
+            //Load all patterns related to today
+            foreach (var pattern in patterns)
+            {
+                //Check wether has any drill for this pattern or not
+                if (pattern.pattern.items.Count() > 0)
+                {
+                    foreach (var item in pattern.pattern.items)
+                    {
+                        var eventItem = new training_plan_preview();
+                        //Check wether is this event recurring or not
+                        if (item.periodic)
+                        {
+                            if (item.weekday == 8)
+                            {
+                                eventItem.daysofWeek = "['0','2','4']";
+                            }
+                            else if (item.weekday == 9)
+                            {
+                                eventItem.daysofWeek = "['1','3','5','6']";
+                            }
+                            else if (item.weekday == 10)
+                            {
+                                eventItem.daysofWeek = "";
+                            }
+                            else
+                                eventItem.daysofWeek = ((item.weekday - 2) >= 0)? "['" + (item.weekday -2) + "']" : "['6']";
+
+                            eventItem.recureStart = BaseDate.GetDateFromDateOffsetSystemStartDate(pattern.s_date);
+                            eventItem.recureEnd = BaseDate.GetDateFromDateOffsetSystemStartDate(pattern.e_date);
+                            eventItem.classification = item.ID.ToString() + "_" + item.pattern_id + "_" + item.drill_id;
+                        }                    
+                        else
+                        {
+                            eventItem.drill_dt = pattern.s_date;
+                        }
+                        eventItem.drill_id = item.drill_id;
+                        eventItem.drill_title = item.drill.drill_title;
+                        eventItem.startTime = pattern.training.start_time;
+                        eventItem.endTime = pattern.training.end_time;
+                        plans.Add(eventItem);
+                    }
+                }
+            }
+            return new JsonResult { Data = plans, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         // POST: trainings/Plans

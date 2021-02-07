@@ -1,5 +1,5 @@
 ﻿@model ClubAdministration.Models.training_terms
-@{ 
+@{
     ViewBag.Title = "ايجاد كلاس آموزشي";
 }
 @using (Html.BeginForm())
@@ -20,12 +20,17 @@
             </div>
 
             <div class="form-group row font-weight-bold">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
+                    @Html.Label("گروه سني", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownList("level_id", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.level_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12 col-md-4">
                     @Html.Label("تاريخ شروع كلاس", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @id = "start_date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                     @Html.Label("تاريخ پايان كلاس", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.end_date, new { htmlAttributes = new { @id = "end_date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.end_date, "", new { @class = "text-danger" })
@@ -33,11 +38,6 @@
             </div>
 
             <div class="form-group row font-weight-bold">
-                <div class="col-sm-12 col-md-4">
-                    @Html.Label("گروه سني", htmlAttributes: new { @class = "control-label" })
-                    @Html.DropDownList("level_id", null, htmlAttributes: new { @class = "form-control " })
-                    @Html.ValidationMessageFor(model => model.level_id, "", new { @class = "text-danger" })
-                </div>
                 <div class="col-sm-12 col-md-4">
                     @Html.Label("ساعت شروع كلاس", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.start_time, new { htmlAttributes = new { @id = "start_time", @class = "form-control" } })
@@ -83,22 +83,46 @@
         </div>
     </div>
 }
+<link rel="stylesheet" href="~/Scripts/timepicker/jquery.timepicker.min.css">
+<script src="~/Scripts/timepicker/jquery.timepicker.min.js"></script>
 <script src="~/Scripts/datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
 <script type="text/javascript">
-        $('#start_date').MdPersianDateTimePicker({
-            englishNumber: true,
-            enableTimePicker: true,
-            groupId : 'dateselectorMain',
-            dateFormat : 'yyyy/MM/dd-HH:mm:ss',
-            targetTextSelector: '#start_date', 
-            fromDate: true,
-        });
-        $('#end_date').MdPersianDateTimePicker({
-            englishNumber: true,
-            enableTimePicker: true,
-            targetTextSelector: '#end_date', 
-            groupId: 'dateselectorMain',
-            dateFormat : 'yyyy/MM/dd-HH:mm:ss',
-            toDate : true,
-        });
+    $('#start_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        targetTextSelector: '#start_date',
+        fromDate: true,
+    });
+    $('#end_date').MdPersianDateTimePicker({
+        englishNumber: true,
+        enableTimePicker: true,
+        targetTextSelector: '#end_date',
+        groupId: 'dateselectorMain',
+        dateFormat: 'yyyy/MM/dd-HH:mm:ss',
+        toDate: true,
+    });
+    $('#start_time').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: '6:00am',
+        maxTime: '23:59pm',
+        defaultTime: '11',
+        startTime: '6:00am',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+    $('#end_time').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: '6:00am',
+        maxTime: '23:59pm',
+        defaultTime: '11',
+        startTime: '6:00am',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
 </script>
