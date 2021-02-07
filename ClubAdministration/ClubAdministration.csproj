@@ -912,6 +912,21 @@
     <Content Include="Views\trainings\Plans.cshtml" />
     <Content Include="Views\trainings\Preview.cshtml" />
     <Content Include="Views\components\_calendarView.cshtml" />
+    <Content Include="Views\groups\Create.cshtml" />
+    <Content Include="Views\groups\Delete.cshtml" />
+    <Content Include="Views\groups\Details.cshtml" />
+    <Content Include="Views\groups\Edit.cshtml" />
+    <Content Include="Views\groups\Index.cshtml" />
+    <Content Include="Views\roles\Create.cshtml" />
+    <Content Include="Views\roles\Delete.cshtml" />
+    <Content Include="Views\roles\Details.cshtml" />
+    <Content Include="Views\roles\Edit.cshtml" />
+    <Content Include="Views\roles\Index.cshtml" />
+    <Content Include="Views\permissions\Create.cshtml" />
+    <Content Include="Views\permissions\Delete.cshtml" />
+    <Content Include="Views\permissions\Details.cshtml" />
+    <Content Include="Views\permissions\Edit.cshtml" />
+    <Content Include="Views\permissions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
