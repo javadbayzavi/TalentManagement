@@ -22,8 +22,14 @@ namespace ClubAdministration.Controllers.system
         [HttpGet]
         public ActionResult Index()
         {
+            var security_overview = new security_overviews()
+            {
+                groups = db.groups.Take(10).ToList(),
+                roles = db.roles.Take(10).ToList(),
+                permissions = db.permissions.Take(10).ToList()
+            };
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View();
+            return View(security_overview);
         }
 
         public JsonResult getPermissions()

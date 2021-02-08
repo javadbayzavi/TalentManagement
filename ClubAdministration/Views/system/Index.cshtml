@@ -11,43 +11,105 @@
 
     <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
         <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">مديريت تنظيمات نرم افزار <span style="font-weight:bold;color:brown">@ViewBag.training</span></h2>
-        <div class="px-2">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#security" role="tab" aria-controls="security" aria-selected="true">امنيت</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#club" role="tab" aria-controls="club" aria-selected="false">باشگاه</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#modules" role="tab" aria-controls="modules" aria-selected="false">ماژول‌ها</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#menus" role="tab" aria-controls="menus" aria-selected="false">منوها</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="security" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="row">
+        <div class="px-2 accordion">
+            <div class="row my-4">
+                <div class="col-12 text-right">
+                    <a class="card-link" data-toggle="collapse" href="#club">
+                        باشگاه
+                    </a>
+                    <hr class="my-2 bg-light" />
+                </div>
+                <div class="col-12">
+                    <div class="row" id="club">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-12 text-right">
+                    <a class="card-link" data-toggle="collapse" href="#security">
+                        امنيت
+                    </a>
+                    <hr class="my-2 bg-light" />
+                </div>
+                <div class="col-12">
+                    <div class="row show" id="security">
                         <div class="col-2">
-                            @Html.Partial("~/Views/system/_groupView.cshtml", Model.groups)
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">كاربران</h5>
+                                    <p class="card-text">در اين بخش‌ مديريت كاربران نرم افزار انجام مي شود</p>
+                                    <a href="~/users/" class="btn btn-primary">بيشتر...</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-2">
-                            @Html.Partial("~/Views/system/_permissionView.cshtml",Model.permissions)
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">گروه‌هاي كاربري</h5>
+                                    <p class="card-text">در اين بخش‌ مديريت گرو‌هاي كاربري نرم افزار انجام مي‌شود</p>
+                                    <a href="~/groups/" class="btn btn-primary">بيشتر...</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-2">
-                            @Html.Partial("~/Views/system/_roleView.cshtml", Model.roles)
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">نقش‌ها</h5>
+                                    <p class="card-text">در اين بخش مديريت نقش‌هاي كاربري نرم افزار انجام مي شود</p>
+                                    <a href="~/roles/" class="btn btn-primary">بيشتر...</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">دسترسي‌ها</h5>
+                                    <p class="card-text">در اين بخش‌ دسترسي‌هاي كاربري نرم افزار انجام مي شود</p>
+                                    <a href="~/permissions/" class="btn btn-primary">بيشتر...</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">اعطاي دسترسي</h5>
+                                    <p class="card-text">در اين بخش‌ مديريت كاربران نرم افزار انجام مي شود</p>
+                                    <a href="~/users/" class="btn btn-primary">بيشتر...</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">عضويت گرو‌ها</h5>
+                                    <p class="card-text">در اين بخش‌ مديريت كاربران نرم افزار انجام مي شود</p>
+                                    <a href="~/users/" class="btn btn-primary">بيشتر...</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="club" role="tabpanel" aria-labelledby="profile-tab">
-
+            </div>
+            <div class="row my-4">
+                <div class="col-12 text-right">
+                    <a class="card-link" data-toggle="collapse" href="#services">
+                        سرويس‌ها
+                    </a>
+                    <hr class="my-2 bg-light" />
                 </div>
-                <div class="tab-pane fade" id="modules" role="tabpanel" aria-labelledby="contact-tab">
-
-                </div>
-                <div class="tab-pane fade" id="menus" role="tabpanel" aria-labelledby="contact-tab">
-
+                <div class="col-12">
+                    <div class="row" id="services">
+                        <div class="col-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">منوها</h5>
+                                    <p class="card-text">در اين بخش‌ مديريت منوهاي نرم افزار انجام مي شود</p>
+                                    <a href="~/menus/" class="btn btn-primary">بيشتر...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
