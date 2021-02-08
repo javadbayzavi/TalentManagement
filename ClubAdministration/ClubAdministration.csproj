@@ -437,6 +437,7 @@
     <Compile Include="Controllers\players\playersControllerTraining.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerMain.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerCoaches.cs" />
+    <Compile Include="Controllers\system\systemController.cs" />
     <Compile Include="Controllers\system\permissionsController.cs" />
     <Compile Include="Controllers\system\groupsController.cs" />
     <Compile Include="Controllers\system\menusController.cs" />
@@ -462,6 +463,9 @@
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
     <Compile Include="Library\widgets\forms\HtmlExtentions.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-Perimission.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-Roles.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-Groups.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-TrainingPlan.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillPatternItem.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-DrillPattern.cs" />
@@ -531,6 +535,7 @@
     <Compile Include="Models\players\player_sessions.cs" />
     <Compile Include="Models\players\player_registerations.cs" />
     <Compile Include="Models\players\player_techniques.cs" />
+    <Compile Include="Models\ViewModels\security_overviews.cs" />
     <Compile Include="Models\ViewModels\drillinputmodel.cs" />
     <Compile Include="Models\ViewModels\navigations.cs" />
     <Compile Include="Models\ViewModels\players_invoices.cs" />
@@ -912,21 +917,24 @@
     <Content Include="Views\trainings\Plans.cshtml" />
     <Content Include="Views\trainings\Preview.cshtml" />
     <Content Include="Views\components\_calendarView.cshtml" />
-    <Content Include="Views\groups\Create.cshtml" />
     <Content Include="Views\groups\Delete.cshtml" />
     <Content Include="Views\groups\Details.cshtml" />
     <Content Include="Views\groups\Edit.cshtml" />
     <Content Include="Views\groups\Index.cshtml" />
-    <Content Include="Views\roles\Create.cshtml" />
     <Content Include="Views\roles\Delete.cshtml" />
     <Content Include="Views\roles\Details.cshtml" />
     <Content Include="Views\roles\Edit.cshtml" />
     <Content Include="Views\roles\Index.cshtml" />
+    <Content Include="Views\groups\Create.cshtml" />
     <Content Include="Views\permissions\Create.cshtml" />
     <Content Include="Views\permissions\Delete.cshtml" />
     <Content Include="Views\permissions\Details.cshtml" />
     <Content Include="Views\permissions\Edit.cshtml" />
     <Content Include="Views\permissions\Index.cshtml" />
+    <Content Include="Views\system\Index.cshtml" />
+    <Content Include="Views\system\_groupView.cshtml" />
+    <Content Include="Views\system\_roleView.cshtml" />
+    <Content Include="Views\system\_permissionView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

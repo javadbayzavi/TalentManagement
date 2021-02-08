@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClubAdministration.Models.system.groups>
+﻿@model ClubAdministration.Models.ViewModels.security_overviews
 
 @{
     ViewBag.Title = "پنل مديريت نرم افزار  " + ViewBag.training;
@@ -30,13 +30,13 @@
                 <div class="tab-pane fade show active" id="security" role="tabpanel" aria-labelledby="home-tab">
                     <div class="row">
                         <div class="col-2">
-                            @Html.Partial("~/Views/system/_groupView.cshtml")
+                            @Html.Partial("~/Views/system/_groupView.cshtml", Model.groups)
                         </div>
                         <div class="col-2">
-                            @Html.Partial("~/Views/system/_permissionView.cshtml")
+                            @Html.Partial("~/Views/system/_permissionView.cshtml",Model.permissions)
                         </div>
                         <div class="col-2">
-                            @Html.Partial("~/Views/system/_roleView.cshtml")
+                            @Html.Partial("~/Views/system/_roleView.cshtml", Model.roles)
                         </div>
                     </div>
                 </div>

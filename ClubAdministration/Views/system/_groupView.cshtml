@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<ClubAdministration.Models.system.groups>
 
-<div id="groupPanel">
+<div id="groupPanel" class="col-2">
     @foreach (var item in Model)
     {
-        @Html.ActionLink(item.title, "groups", new { controller = "groups" })
+        @Html.ActionLink(item.title, "groups", new { id = item.ID, controller = "groups" })
     }
 </div>
 
