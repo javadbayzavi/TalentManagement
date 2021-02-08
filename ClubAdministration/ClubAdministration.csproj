@@ -935,6 +935,7 @@
     <Content Include="Views\system\_groupView.cshtml" />
     <Content Include="Views\system\_roleView.cshtml" />
     <Content Include="Views\system\_permissionView.cshtml" />
+    <Content Include="Views\roles\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
