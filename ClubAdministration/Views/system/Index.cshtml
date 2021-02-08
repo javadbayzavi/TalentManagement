@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ClubAdministration.Models.system.groups>
+
+@{
+    ViewBag.Title = "پنل مديريت نرم افزار  " + ViewBag.training;
+}
+
+@using (Html.BeginForm("Index", "system", new { id = ViewBag.training_id }, FormMethod.Post, new { id = "trainingsform", name = "trainingsform" }))
+{
+    @Html.AntiForgeryToken()
+    @widgets.common.ribbon.Show_Ribbon(Url, "system.dashboard.default", "پنل مديريت نرم افزار  ", null)
+
+    <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">مديريت تنظيمات نرم افزار <span style="font-weight:bold;color:brown">@ViewBag.training</span></h2>
+        <div class="px-2">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#security" role="tab" aria-controls="security" aria-selected="true">امنيت</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#club" role="tab" aria-controls="club" aria-selected="false">باشگاه</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#modules" role="tab" aria-controls="modules" aria-selected="false">ماژول‌ها</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#menus" role="tab" aria-controls="menus" aria-selected="false">منوها</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="security" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-2">
+                            @Html.Partial("~/Views/system/_groupView.cshtml")
+                        </div>
+                        <div class="col-2">
+                            @Html.Partial("~/Views/system/_permissionView.cshtml")
+                        </div>
+                        <div class="col-2">
+                            @Html.Partial("~/Views/system/_roleView.cshtml")
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="club" role="tabpanel" aria-labelledby="profile-tab">
+
+                </div>
+                <div class="tab-pane fade" id="modules" role="tabpanel" aria-labelledby="contact-tab">
+
+                </div>
+                <div class="tab-pane fade" id="menus" role="tabpanel" aria-labelledby="contact-tab">
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,11 +1,11 @@
-﻿@model ClubAdministration.Models.agelevel
+﻿@model ClubAdministration.Models.system.permissions
 
 @{
-    ViewBag.Title = "حذف" + " " + Model.level;
+    ViewBag.Title = "حذف" + " " + Model.title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "agelevels.delete.default", "آيا از حذف" + (" " + Model.level) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
-@using (Html.BeginForm("Delete", "agelevels", FormMethod.Post, new { @name = "agelevelsform" }))
+@widgets.common.ribbon.Show_Ribbon(Url, "permissions.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
+@using (Html.BeginForm("Delete", "permissions", FormMethod.Post, new { @name = "permissionsform" }))
 {
     @Html.AntiForgeryToken()
     <div class="mt-2 rounded-bottom shadow-sm mb-4">
@@ -22,10 +22,10 @@
                 </tr>
                 <tr>
                     <td>
-                        گروه سني
+                        دسترسي كاربري
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.level)
+                        @Html.DisplayFor(model => model.title)
                     </td>
                 </tr>
             </table>

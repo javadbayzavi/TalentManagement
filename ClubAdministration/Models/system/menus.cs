@@ -18,6 +18,10 @@ namespace ClubAdministration.Models.system
         [StringLength(150)]
         public string title { get; set; }
 
+        [Required]
+        [StringLength(500)]
+        public string url { get; set; }
+
         public string target { get; set; }
 
         public string palceholder { get; set; }

@@ -1,6 +1,6 @@
-﻿@model ClubAdministration.Models.agelevel
+﻿@model ClubAdministration.Models.system.permissions
 
-@widgets.common.ribbon.Show_Ribbon(Url, "agelevels.details.default", "جزئيات گروه سني " + (" " + Model.level), rootParams: new { id = Model.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "permissions.details.default", "جزئيات دسترسي " + (" " + Model.title), rootParams: new { id = Model.ID })
 
 <div class="mt-2 rounded-bottom shadow-sm mb-4">
     <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
@@ -16,10 +16,10 @@
             </tr>
             <tr>
                 <td>
-                    گروه سني
+                    دسترسي كاربري
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.level)
+                    @Html.DisplayFor(model => model.title)
                 </td>
             </tr>
         </table>

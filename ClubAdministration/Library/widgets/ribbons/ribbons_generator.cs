@@ -234,6 +234,26 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "materials.details.default":
                     return materials_details_default(rootParams);
 
+                case "groups.list.default":
+                    return groups_list_default(rootParams);
+                case "groups.details.default":
+                    return groups_details_default(rootParams);
+                case "groups.delete.default":
+                    return groups_delete_default(rootParams);
+
+                case "roles.list.default":
+                    return roles_list_default(rootParams);
+                case "roles.details.default":
+                    return roles_details_default(rootParams);
+                case "roles.delete.default":
+                    return roles_delete_default(rootParams);
+
+                case "permissions.list.default":
+                    return permissions_list_default(rootParams);
+                case "permissions.details.default":
+                    return permissions_details_default(rootParams);
+                case "permissions.delete.default":
+                    return permissions_delete_default(rootParams);
 
                 default:
                     return new List<Models.ViewModels.ribbons>();
