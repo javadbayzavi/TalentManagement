@@ -24,7 +24,7 @@ namespace ClubAdministration.Controllers.system
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
             ViewBag.menuid = id;
             return View(db.menus
-                .Where(a => a.parent == id && a.title.Contains(this.Setting.PageSetting.SearchItem)));
+                .Where(a => a.module_id == id && a.title.Contains(this.Setting.PageSetting.SearchItem)).Include(a => a.module));
         }
 
         // POST: menus/items
@@ -58,8 +58,9 @@ namespace ClubAdministration.Controllers.system
         // GET: menus/Createitem
         public ActionResult Createitem(int id)
         {
-            ViewBag.parent = new SelectList(db.menus.Where(a => a.parent == id), "ID", "title");
-
+            var ss = new SelectList(db.menus.Where(a => a.module_id == id), "ID", "title");
+            ViewBag.parent = new SelectList(db.menus.Where(a => a.module_id == id), "ID", "title");
+            ViewBag.module_id = id;
             return View();
         }
 
@@ -68,7 +69,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Createitem([Bind(Include = "ID,title,target,palceholder,parent,menuClass,isDefault,url")] menus menu)
+        public ActionResult Createitem([Bind(Include = "ID,title,target,palceholder,parent,isDefault,url,module_id")] menus menu)
         {
 
             //1. Convert the entry to Db Model
@@ -87,7 +88,7 @@ namespace ClubAdministration.Controllers.system
                 //TODO: This action need to be deeply reviewed
                 db.menus.Add(menu);
                 db.SaveChanges();
-                return RedirectToAction("items");
+                return RedirectToAction("items" , new { id = menu.module_id });
             }
 
             return View(menu);
@@ -104,6 +105,7 @@ namespace ClubAdministration.Controllers.system
             }
 
             var entry = db.menus.Find(id);
+            ViewBag.module_id = id;
 
             ViewBag.parent = new SelectList(db.menus.Where(a => a.parent == parent), "ID", "title", entry.parent);
 
@@ -132,7 +134,7 @@ namespace ClubAdministration.Controllers.system
                 }
                 db.Entry(menu).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("items", new { id = menu.module_id });
             }
             return View(menu);
         }
