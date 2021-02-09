@@ -1,0 +1,59 @@
+﻿@model ClubAdministration.Models.system.menus
+
+@{ 
+    ViewBag.Title = "ويرايش " + Model.title;
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">جزئیات منو</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group row">
+                <div class="col-4 font-weight-bold">
+                    @Html.Label("دسترسي كاربري", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-4">
+                    @Html.Label("آدرس", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.url, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.url, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-4">
+                    @Html.Label("آيتم پيش‌فرض", htmlAttributes: new { @class = "control-label col" })
+                    @Html.CheckBoxFor(model => model.isDefault, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4 font-weight-bold">
+                    @Html.Label("محل بارگيري", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.target, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.target, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-4">
+                    @Html.Label("توضيحات منو", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.palceholder, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.palceholder, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-4">
+                    @Html.Label("نام منو", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.menuClass, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.menuClass, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ذخيره  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "Index", null, new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}

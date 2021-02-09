@@ -24,7 +24,7 @@ namespace ClubAdministration.Controllers.system
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
             return View(db.menus
-                .Where(a => a.title .Contains(this.Setting.PageSetting.SearchItem)));
+                .Where(a => a.parent == 0 && a.title.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
         [HttpPost]
@@ -57,6 +57,8 @@ namespace ClubAdministration.Controllers.system
         // GET: menus/Create
         public ActionResult Create()
         {
+            //ViewBag.parent = new SelectList(db.menus, "ID", "title");
+
             return View();
         }
 
@@ -65,12 +67,22 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title,target,palceholder,parentmenuClass,isDefault")] menus menu)
+        public ActionResult Create([Bind(Include = "ID,title,target,palceholder,parent,menuClass,isDefault,url")] menus menu)
         {
 
             //1. Convert the entry to Db Model
             if (ModelState.IsValid == true)
             {
+                //Check to set only one default menu item for app
+                if (menu.isDefault)
+                {
+                    var prevdefault = db.menus.Where(a => a.isDefault).FirstOrDefault();
+                    if (prevdefault != null)
+                    {
+                        prevdefault.isDefault = false;
+                        db.Entry(prevdefault).State = EntityState.Modified;
+                    }
+                }
                 //TODO: This action need to be deeply reviewed
                 db.menus.Add(menu);
                 db.SaveChanges();
@@ -90,6 +102,9 @@ namespace ClubAdministration.Controllers.system
             }
 
             var entry = db.menus.Find(id);
+
+           //ViewBag.parent = new SelectList(db.menus, "ID", "title", entry.parent);
+
             return View(entry);
         }
 
@@ -98,11 +113,21 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title,target,palceholder,parentmenuClass,isDefault")] menus menu)
+        public ActionResult Edit([Bind(Include = "ID,title,target,palceholder,parent,menuClass,isDefault,url")] menus menu)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
             {
+                //Check to set only one default menu item for app
+                if (menu.isDefault)
+                {
+                    var prevdefault = db.menus.Where(a => a.isDefault).FirstOrDefault();
+                    if (prevdefault != null)
+                    {
+                        prevdefault.isDefault = false;
+                        db.Entry(prevdefault).State = EntityState.Modified;
+                    }
+                }
                 db.Entry(menu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,6 +147,20 @@ namespace ClubAdministration.Controllers.system
             if (menu == null)
             {
                 return HttpNotFound();
+            }
+            bool chiddefault = db.menus.Any(a => a.parent == menu.ID && a.isDefault);
+            bool hasChild = db.menus.Any(a => a.parent == menu.ID);
+
+            if (menu.isDefault || chiddefault)
+            {
+                Session["TACTION_RESULT"] = "امكان حذف منو پيش فرض وجود ندارد. يكي از آيتم هاي منو انتخابي براي پيش فرض نرم افزار انتخاب شده است.";
+                return RedirectToAction("Index");
+            }
+
+            if(hasChild)
+            {
+                Session["TACTION_RESULT"] = "اين منو تعدادي گزينه  فعال دارد و امكان حذف آن وجود ندارد";
+                return RedirectToAction("Index");
             }
             return View(menu);
         }

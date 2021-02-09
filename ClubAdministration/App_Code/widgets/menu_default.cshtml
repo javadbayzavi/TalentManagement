@@ -1,0 +1,9 @@
+﻿@helper Show_Menu_Default(bool closed)
+{
+
+    string red = "red";
+    string green = "green";
+
+    <span style="color:@((closed) ? green : red)">@((closed) ? "بله" : "خير")</span>
+}
+

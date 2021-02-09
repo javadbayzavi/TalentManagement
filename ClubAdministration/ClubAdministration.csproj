@@ -437,6 +437,7 @@
     <Compile Include="Controllers\players\playersControllerTraining.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerMain.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerCoaches.cs" />
+    <Compile Include="Controllers\system\menusControllerItems.cs" />
     <Compile Include="Controllers\system\systemController.cs" />
     <Compile Include="Controllers\system\permissionsController.cs" />
     <Compile Include="Controllers\system\groupsController.cs" />
@@ -463,6 +464,7 @@
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
     <Compile Include="Library\widgets\forms\HtmlExtentions.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-Menus.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Perimission.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Roles.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Groups.cs" />
@@ -649,6 +651,7 @@
     <Content Include="App_Code\widgets\drill_periodic.cshtml" />
     <Content Include="App_Code\widgets\drill_weekday.cshtml" />
     <Content Include="App_Code\widgets\drill_hour.cshtml" />
+    <Content Include="App_Code\widgets\menu_default.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -936,6 +939,11 @@
     <Content Include="Views\system\_roleView.cshtml" />
     <Content Include="Views\system\_permissionView.cshtml" />
     <Content Include="Views\roles\Create.cshtml" />
+    <Content Include="Views\menus\Create.cshtml" />
+    <Content Include="Views\menus\Delete.cshtml" />
+    <Content Include="Views\menus\Details.cshtml" />
+    <Content Include="Views\menus\Edit.cshtml" />
+    <Content Include="Views\menus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

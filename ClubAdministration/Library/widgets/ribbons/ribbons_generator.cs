@@ -255,6 +255,13 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "permissions.delete.default":
                     return permissions_delete_default(rootParams);
 
+                case "menus.list.default":
+                    return menus_list_default(rootParams);
+                case "menus.details.default":
+                    return menus_details_default(rootParams);
+                case "menus.delete.default":
+                    return menus_delete_default(rootParams);
+
                 default:
                     return new List<Models.ViewModels.ribbons>();
             }
