@@ -4,7 +4,7 @@
     ViewBag.Title = "حذف" + " " + Model.title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "menus.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", new { id = Model.ID } , new { id = Model.parent })
+@widgets.common.ribbon.Show_Ribbon(Url, "menus.items.delete", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", new { id = Model.ID } , new { id = Model.parent })
 @using (Html.BeginForm("Delete", "menus", FormMethod.Post, new { @name = "menusform" }))
 {
     @Html.AntiForgeryToken()
@@ -50,14 +50,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(model => model.target)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        نام منو
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.menuClass)
                     </td>
                 </tr>
                 <tr>

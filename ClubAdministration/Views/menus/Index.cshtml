@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClubAdministration.Models.system.menus>
+﻿@model IEnumerable<ClubAdministration.Models.system.menu_modules>
 
 @{
     ViewBag.Title = "مديريت منو‌ها";
@@ -29,9 +29,6 @@
                         <th class="d-sm-table-cell text-center">
                             نام منو
                         </th>
-                        <th class="d-sm-table-cell text-center">
-                            پيش‌فرض؟
-                        </th>
                         <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
                             عمليات
                         </th>
@@ -54,9 +51,6 @@
                         </td>
                         <td class="d-sm-table-cell text-center">
                             @(item.menuClass)
-                        </td>
-                        <td class="d-sm-table-cell text-center">
-                            @widgets.menu_default.Show_Menu_Default(item.isDefault)
                         </td>
                         <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
                             @Html.ActionLink("ويرايش", "Edit", new { id = item.ID }) |

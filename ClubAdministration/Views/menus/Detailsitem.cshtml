@@ -1,6 +1,6 @@
 ﻿@model ClubAdministration.Models.system.menus
 
-@widgets.common.ribbon.Show_Ribbon(Url, "menus.details.default", "جزئيات منو " + (" " + Model.title), rootParams: new { id = Model.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "menus.items.details", "جزئيات منو " + (" " + Model.title), rootParams: new { id = Model.ID })
 
 <div class="mt-2 rounded-bottom shadow-sm mb-4">
     <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
@@ -44,14 +44,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.target)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    نام منو
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.menuClass)
                 </td>
             </tr>
             <tr>

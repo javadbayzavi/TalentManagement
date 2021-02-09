@@ -493,6 +493,7 @@
     <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\drills\drill_template.cs" />
+    <Compile Include="Models\system\menu_modules.cs" />
     <Compile Include="Models\system\roles_group.cs" />
     <Compile Include="Models\system\role_permissions.cs" />
     <Compile Include="Models\system\users_groups.cs" />

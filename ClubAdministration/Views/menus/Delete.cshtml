@@ -1,4 +1,4 @@
-﻿@model ClubAdministration.Models.system.menus
+﻿@model ClubAdministration.Models.system.menu_modules
 
 @{
     ViewBag.Title = "حذف" + " " + Model.title;
@@ -30,42 +30,10 @@
                 </tr>
                 <tr>
                     <td>
-                        آدرس
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.url)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        پيش فرض؟
-                    </td>
-                    <td>
-                        @widgets.menu_default.Show_Menu_Default(Model.isDefault)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        محل بارگيري
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.target)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         نام منو
                     </td>
                     <td>
                         @Html.DisplayFor(model => model.menuClass)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        توضيحات منو
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.palceholder)
                     </td>
                 </tr>
             </table>

@@ -23,8 +23,8 @@ namespace ClubAdministration.Controllers.system
         public ActionResult Index()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.menus
-                .Where(a => a.parent == 0 && a.title.Contains(this.Setting.PageSetting.SearchItem)));
+            return View(db.menu_modules
+                .Where(a => a.title.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
         [HttpPost]
@@ -43,7 +43,7 @@ namespace ClubAdministration.Controllers.system
                 Session["TACTION_RESULT"] = "مشكل در نمايش منو وجود دارد";
                 return this.RedirectToAction("Index");
             }
-            var menu = db.menus.Find(id);
+            var menu = db.menu_modules.Find(id);
 
             if (menu == null)
             {
@@ -67,29 +67,19 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title,target,palceholder,parent,menuClass,isDefault,url")] menus menu)
+        public ActionResult Create([Bind(Include = "ID,title,menuClass")] menu_modules module)
         {
 
             //1. Convert the entry to Db Model
             if (ModelState.IsValid == true)
             {
-                //Check to set only one default menu item for app
-                if (menu.isDefault)
-                {
-                    var prevdefault = db.menus.Where(a => a.isDefault).FirstOrDefault();
-                    if (prevdefault != null)
-                    {
-                        prevdefault.isDefault = false;
-                        db.Entry(prevdefault).State = EntityState.Modified;
-                    }
-                }
                 //TODO: This action need to be deeply reviewed
-                db.menus.Add(menu);
+                db.menu_modules.Add(module);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(menu);
+            return View(module);
         }
 
         // GET: menus/Edit/5
@@ -101,7 +91,7 @@ namespace ClubAdministration.Controllers.system
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var entry = db.menus.Find(id);
+            var entry = db.menu_modules.Find(id);
 
            //ViewBag.parent = new SelectList(db.menus, "ID", "title", entry.parent);
 
@@ -113,26 +103,16 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title,target,palceholder,parent,menuClass,isDefault,url")] menus menu)
+        public ActionResult Edit([Bind(Include = "ID,title,menuClass")] menu_modules module)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
             {
-                //Check to set only one default menu item for app
-                if (menu.isDefault)
-                {
-                    var prevdefault = db.menus.Where(a => a.isDefault).FirstOrDefault();
-                    if (prevdefault != null)
-                    {
-                        prevdefault.isDefault = false;
-                        db.Entry(prevdefault).State = EntityState.Modified;
-                    }
-                }
-                db.Entry(menu).State = EntityState.Modified;
+                db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(menu);
+            return View(module);
         }
 
         // GET: menus/Delete/5
@@ -143,26 +123,19 @@ namespace ClubAdministration.Controllers.system
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            menus menu = db.menus.Find(id);
-            if (menu == null)
+            menu_modules module = db.menu_modules.Find(id);
+            if (module == null)
             {
                 return HttpNotFound();
             }
-            bool chiddefault = db.menus.Any(a => a.parent == menu.ID && a.isDefault);
-            bool hasChild = db.menus.Any(a => a.parent == menu.ID);
+            bool chiddefault = db.menus.Any(a => a.module_id == module.ID && a.isDefault);
 
-            if (menu.isDefault || chiddefault)
+            if (chiddefault)
             {
                 Session["TACTION_RESULT"] = "امكان حذف منو پيش فرض وجود ندارد. يكي از آيتم هاي منو انتخابي براي پيش فرض نرم افزار انتخاب شده است.";
                 return RedirectToAction("Index");
             }
-
-            if(hasChild)
-            {
-                Session["TACTION_RESULT"] = "اين منو تعدادي گزينه  فعال دارد و امكان حذف آن وجود ندارد";
-                return RedirectToAction("Index");
-            }
-            return View(menu);
+            return View(module);
         }
 
         // POST: menus/Delete/5
@@ -171,8 +144,8 @@ namespace ClubAdministration.Controllers.system
         public ActionResult DeleteConfirmed(int id)
         {
             //TODO: This action need to be deeply reviewed
-            var menu = db.menus.Find(id);
-            db.menus.Remove(menu);
+            var module = db.menu_modules.Find(id);
+            db.menu_modules.Remove(module);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

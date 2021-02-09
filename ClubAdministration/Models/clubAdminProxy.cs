@@ -54,6 +54,7 @@ namespace ClubAdministration.Models
         public virtual DbSet<metrics> metrics { get; set; }
         public virtual DbSet<metric_instances> metric_instances { get; set; }
         public virtual DbSet<metric_values> metric_values { get; set; }
+        public virtual DbSet<menu_modules> menu_modules { get; set; }
         public virtual DbSet<menus> menus { get; set; }
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<groups> groups { get; set; }

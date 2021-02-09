@@ -8,7 +8,7 @@ namespace ClubAdministration.Models.system
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class menus
+    public partial class menu_modules
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
@@ -19,19 +19,9 @@ namespace ClubAdministration.Models.system
         public string title { get; set; }
 
         [Required]
-        [StringLength(500)]
-        public string url { get; set; }
+        [StringLength(150)]
+        public string menuClass { get; set; }
 
-        public string target { get; set; }
-
-        public string palceholder { get; set; }
-
-        [Required]
-        public int parent { get; set; }
-
-        [ForeignKey("module_id")]
-        public menu_modules module { get; set; }
-        public int module_id { get; set; }
-        public bool isDefault { get; set; }
+        public virtual ICollection<menus> items { get; set; }
     }
 }

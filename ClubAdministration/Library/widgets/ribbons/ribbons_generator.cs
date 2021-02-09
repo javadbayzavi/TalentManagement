@@ -262,6 +262,13 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "menus.delete.default":
                     return menus_delete_default(rootParams);
 
+                case "menus.items.default":
+                    return menus_items_default(rootParams);
+                case "menus.items.details":
+                    return menus_items_details(rootParams);
+                case "menus.items.delete":
+                    return menus_items_delete(rootParams);
+
                 default:
                     return new List<Models.ViewModels.ribbons>();
             }

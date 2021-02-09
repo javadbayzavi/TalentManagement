@@ -5,7 +5,7 @@
 }
 @using (Html.BeginForm("Index", "menus", FormMethod.Post, new { id = "menusfrm" }))
 {
-    @widgets.common.ribbon.Show_Ribbon(Url, "menus.list.default", "مديريت منوها")
+    @widgets.common.ribbon.Show_Ribbon(Url, "menus.items.default", "مديريت آيتم‌هاي منو", new { id = ViewBag.menuid })
 
     @widgets.common.search.Show_Search_Form(ViewBag.search)
 
@@ -25,9 +25,6 @@
                         </th>
                         <th class="d-sm-table-cell text-center">
                             عنوان
-                        </th>
-                        <th class="d-sm-table-cell text-center">
-                            نام منو
                         </th>
                         <th class="d-sm-table-cell text-center">
                             پيش‌فرض؟
@@ -51,9 +48,6 @@
                         </th>
                         <td class="d-sm-table-cell text-center">
                             @(item.title)
-                        </td>
-                        <td class="d-sm-table-cell text-center">
-                            @(item.menuClass)
                         </td>
                         <td class="d-sm-table-cell text-center">
                             @widgets.menu_default.Show_Menu_Default(item.isDefault)

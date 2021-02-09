@@ -22,8 +22,9 @@ namespace ClubAdministration.Controllers.system
         public ActionResult items(int id)
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
+            ViewBag.menuid = id;
             return View(db.menus
-                .Where(a => a.ID == id && a.title.Contains(this.Setting.PageSetting.SearchItem)));
+                .Where(a => a.parent == id && a.title.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
         // POST: menus/items
@@ -86,7 +87,7 @@ namespace ClubAdministration.Controllers.system
                 //TODO: This action need to be deeply reviewed
                 db.menus.Add(menu);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("items");
             }
 
             return View(menu);

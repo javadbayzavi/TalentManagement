@@ -115,7 +115,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 title = "آيتم‌ها",
                 placeholder = "آيتم‌هاي منو",
                 postback = false,
-                rootparam = rootParams[0],
+                rootparam = null,
                 selectionneeded = true,
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
