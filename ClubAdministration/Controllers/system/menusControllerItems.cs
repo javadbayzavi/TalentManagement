@@ -33,7 +33,7 @@ namespace ClubAdministration.Controllers.system
         [ValidateAntiForgeryToken]
         public ActionResult itemsPostBack(int id)
         {
-            return this.Index();
+            return this.items(id);
         }
 
         // GET: menus/Detailsitem/5
