@@ -29,8 +29,9 @@
             <div class="form-group row">
                 <div class="col-4">
                     @Html.Label("منوي بالادستي", htmlAttributes: new { @class = "control-label col" })
-                    @Html.DropDownList("parent", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("parent", null,"يك گزينه را انتخاب كنيد", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.parent, "", new { @class = "text-danger" })
+                    @Html.Hidden("parent",0)
                 </div>
                 <div class="col-4">
                     @Html.Label("آيتم پيش‌فرض", htmlAttributes: new { @class = "control-label col" })

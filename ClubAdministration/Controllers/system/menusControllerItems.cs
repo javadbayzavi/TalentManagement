@@ -37,19 +37,19 @@ namespace ClubAdministration.Controllers.system
         }
 
         // GET: menus/Detailsitem/5
-        public ActionResult Detailsitem(int? id, int parent)
+        public ActionResult Detailsitem(int? id)
         {
             if (id == null)
             {
                 Session["TACTION_RESULT"] = "مشكل در نمايش آيتم منو وجود دارد";
-                return this.RedirectToAction("items", new { id = parent });
+                return this.RedirectToAction("Index");
             }
             var menu = db.menus.Find(id);
 
             if (menu == null)
             {
                 Session["TACTION_RESULT"] = "آيتم منو درخواستي در سيستم ثبت نشده است";
-                return this.RedirectToAction("Index", new { id = parent });
+                return this.RedirectToAction("Index");
             }
 
             return View(menu);
@@ -58,7 +58,6 @@ namespace ClubAdministration.Controllers.system
         // GET: menus/Createitem
         public ActionResult Createitem(int id)
         {
-            var ss = new SelectList(db.menus.Where(a => a.module_id == id), "ID", "title");
             ViewBag.parent = new SelectList(db.menus.Where(a => a.module_id == id), "ID", "title");
             ViewBag.module_id = id;
             return View();
@@ -69,7 +68,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Createitem([Bind(Include = "ID,title,target,palceholder,parent,isDefault,url,module_id")] menus menu)
+        public ActionResult Createitem([Bind(Include = "title,target,palceholder,parent,isDefault,url,module_id")] menus menu)
         {
 
             //1. Convert the entry to Db Model
@@ -95,19 +94,19 @@ namespace ClubAdministration.Controllers.system
         }
 
         // GET: menus/Edititem/5
-        public ActionResult Edititem(int? id, int parent)
+        public ActionResult Edititem(int? id)
         {
             //TODO: This action need to be deeply reviewed
             if (id == null)
             {
                 Session["TACTION_RESULT"] = "مشكل در نمايش آيتم منو وجود دارد";
-                return this.RedirectToAction("items", new { id = parent });
+                return this.RedirectToAction("Index");
             }
 
             var entry = db.menus.Find(id);
             ViewBag.module_id = id;
 
-            ViewBag.parent = new SelectList(db.menus.Where(a => a.parent == parent), "ID", "title", entry.parent);
+            ViewBag.parent = new SelectList(db.menus.Where(a => a.module_id == entry.module_id), "ID", "title", entry.parent);
 
             return View(entry);
         }
@@ -136,7 +135,7 @@ namespace ClubAdministration.Controllers.system
                 db.SaveChanges();
                 return RedirectToAction("items", new { id = menu.module_id });
             }
-            return View(menu);
+            return Edititem(menu.ID);
         }
 
         // GET: menus/Deleteitem/5
@@ -150,7 +149,7 @@ namespace ClubAdministration.Controllers.system
             menus menu = db.menus.Find(id);
             if (menu == null)
             {
-                return HttpNotFound();
+                return this.RedirectToAction("Index");
             }
             return View(menu);
         }
@@ -162,9 +161,10 @@ namespace ClubAdministration.Controllers.system
         {
             //TODO: This action need to be deeply reviewed
             var menu = db.menus.Find(id);
+            id = menu.module_id;
             db.menus.Remove(menu);
             db.SaveChanges();
-            return RedirectToAction("items");
+            return RedirectToAction("items", new {id});
         }
     }
 }
