@@ -70,7 +70,7 @@ namespace ClubAdministration.Controllers.system
         [ValidateAntiForgeryToken]
         public ActionResult Createitem([Bind(Include = "title,target,palceholder,parent,isDefault,url,module_id")] menus menu)
         {
-
+            
             //1. Convert the entry to Db Model
             if (ModelState.IsValid == true)
             {
