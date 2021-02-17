@@ -97,7 +97,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 postback = false,
                 rootparam = null,
                 selectionneeded = true,
-            });
+            });  
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
                 action = "Deleteitem",
