@@ -24,4 +24,4 @@ namespace ClubAdministration.Models.system
 
         public virtual ICollection<menus> items { get; set; }
     }
-}
+}  
