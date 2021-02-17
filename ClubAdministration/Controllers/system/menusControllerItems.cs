@@ -36,7 +36,7 @@ namespace ClubAdministration.Controllers.system
             return this.items(id);
         }
 
-        // GET: menus/Detailsitem/5
+        // GET: menus/Detailsitem/5      
         public ActionResult Detailsitem(int? id)
         {
             if (id == null)
