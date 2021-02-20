@@ -25,7 +25,7 @@ namespace ClubAdministration.Models
 
         // The frequency of the metric object
         public int frequency { get; set;}
-       
+          
         public int metric_id { get; set; }
         [ForeignKey("metric_id")]
         public metrics metric { get; set; }

@@ -16,6 +16,6 @@ namespace ClubAdministration.Models.system
         //Things like Ball-Control
         [Required]
         [StringLength(150)]
-        public string title { get; set; }
+        public string title { get; set; }   
     }
 }
