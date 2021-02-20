@@ -22,7 +22,7 @@ namespace ClubAdministration.Models
         
         // Direction of the metric (Asc , Desc)
         public int direction { get; set; }
-        
+          
         // The Upper Bound of the metric definition
         public string upperBound { get; set;}
 
