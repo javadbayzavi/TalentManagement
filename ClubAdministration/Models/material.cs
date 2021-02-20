@@ -13,7 +13,7 @@ namespace ClubAdministration.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Required]
+        [Required]  
         [StringLength(350)]
         //the purpose of the drill
         public string name { get; set; }

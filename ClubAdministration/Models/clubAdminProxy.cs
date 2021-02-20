@@ -12,7 +12,7 @@ namespace ClubAdministration.Models
             : base("name=clubadmins")
         {
         }
-
+        
         public virtual DbSet<club_deposite> club_deposite { get; set; }
         public virtual DbSet<player_bodyshapes> player_bodyshapes { get; set; }
         public virtual DbSet<player_contacts> player_contacts { get; set; }

@@ -14,7 +14,7 @@ namespace ClubAdministration.Models
         {
             payments = new HashSet<club_deposite>();
         }
-
+          
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
