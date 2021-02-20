@@ -17,7 +17,7 @@ namespace ClubAdministration.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Required]
+        [Required]  
         [StringLength(300)]
         public string asset_name { get; set; }
 
