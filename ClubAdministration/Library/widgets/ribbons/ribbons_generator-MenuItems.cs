@@ -99,7 +99,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 selectionneeded = true,
             });  
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
-            {
+            {  
                 action = "Deleteitem",
                 controller = "menus",
                 title = "حذف",
