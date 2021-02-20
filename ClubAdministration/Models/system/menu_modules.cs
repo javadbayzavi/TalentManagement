@@ -22,6 +22,6 @@ namespace ClubAdministration.Models.system
         [StringLength(150)]
         public string menuClass { get; set; }
 
-        public virtual ICollection<menus> items { get; set; }
+        public virtual ICollection<menus> items { get; set; }   
     }
 }  

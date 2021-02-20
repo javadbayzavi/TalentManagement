@@ -29,7 +29,7 @@ namespace ClubAdministration.Models.system
         [Required]
         public int parent { get; set; }
 
-        [ForeignKey("module_id")]
+        [ForeignKey("module_id")]  
         public menu_modules module { get; set; }
         public int module_id { get; set; }
         public bool isDefault { get; set; }

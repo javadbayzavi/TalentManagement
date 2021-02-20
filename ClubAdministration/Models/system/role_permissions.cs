@@ -17,5 +17,5 @@ namespace ClubAdministration.Models.system
         [Required]
         [StringLength(150)]
         public string title { get; set; }
-    }
+    }   
 }
