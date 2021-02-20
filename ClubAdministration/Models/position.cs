@@ -11,7 +11,7 @@ namespace ClubAdministration.Models
     public partial class position
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int ID { get; set; }  
 
         [Required]
         [StringLength(350)]
