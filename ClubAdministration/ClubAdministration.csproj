@@ -1721,7 +1721,7 @@
     <Content Include="Views\menus\Detailsitem.cshtml" />
     <Content Include="Views\menus\Edititem.cshtml" />
     <Content Include="Views\menus\items.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\admin\_LayoutAdmin.cshtml" />
     <Content Include="Views\admin\.babelrc" />
     <Content Include="Views\admin\.eslintignore" />
     <Content Include="Views\admin\.eslintrc" />
@@ -1887,6 +1887,7 @@
     <Content Include="Views\admin\plugins\popper\umd\popper.js.map" />
     <Content Include="Views\admin\plugins\popper\umd\popper.min.js.map" />
     <Content Include="Views\admin\README.md" />
+    <Content Include="Views\Shared\admin\_sidemenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
