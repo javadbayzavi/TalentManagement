@@ -10,7 +10,7 @@ namespace ClubAdministration.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("~/Views/Shared/admin/_LayoutAdmin.cshtml");
         }
 
         public ActionResult About()
