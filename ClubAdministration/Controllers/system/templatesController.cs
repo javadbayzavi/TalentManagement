@@ -18,12 +18,12 @@ namespace ClubAdministration.Controllers.system
     {
         private clubAdminProxy db = new clubAdminProxy();
 
-        // GET: users
+        // GET: templates
         [HttpGet]
         public ActionResult Index()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.users
+            return View(db.templates
                 .Where(a => a.title .Contains(this.Setting.PageSetting.SearchItem)));
         }
 
@@ -35,52 +35,52 @@ namespace ClubAdministration.Controllers.system
             return this.Index();
         }
 
-        // GET: users/Details/5
+        // GET: templates/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                Session["TACTION_RESULT"] = "مشكل در نمايش كاربر وجود دارد";
+                Session["TACTION_RESULT"] = "مشكل در نمايش قالب وجود دارد";
                 return this.RedirectToAction("Index");
             }
-            var user = db.users.Find(id);
+            var group = db.templates.Find(id);
 
-            if (user == null)
+            if (group == null)
             {
-                Session["TACTION_RESULT"] = "كاربر درخواستي در سيستم ثبت نشده است";
+                Session["TACTION_RESULT"] = "قالب درخواستي در سيستم ثبت نشده است";
                 return this.RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(group);
         }
 
-        // GET: users/Create
+        // GET: templates/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: users/Create
+        // POST: templates/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title,user_name,name_family")] users user)
+        public ActionResult Create([Bind(Include = "ID,title")] templates template)
         {
 
             //1. Convert the entry to Db Model
             if (ModelState.IsValid == true)
             {
                 //TODO: This action need to be deeply reviewed
-                db.users.Add(user);
+                db.templates.Add(template);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(template);
         }
 
-        // GET: users/Edit/5
+        // GET: templates/Edit/5
         public ActionResult Edit(int? id)
         {
             //TODO: This action need to be deeply reviewed
@@ -89,29 +89,28 @@ namespace ClubAdministration.Controllers.system
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //Load the drill type entry
-            var entry = db.users.Find(id);
+            var entry = db.templates.Find(id);
             return View(entry);
         }
 
-        // POST: users/Edit/5
+        // POST: templates/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title")] users user)
+        public ActionResult Edit([Bind(Include = "ID,title")] templates template)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(template).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            return View(template);
         }
 
-        // GET: users/Delete/5
+        // GET: templates/Delete/5
         public ActionResult Delete(int? id)
         {
             //TODO: This action need to be deeply reviewed
@@ -119,22 +118,22 @@ namespace ClubAdministration.Controllers.system
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            users user = db.users.Find(id);
-            if (user == null)
+            groups group = db.groups.Find(id);
+            if (group == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(group);
         }
 
-        // POST: users/Delete/5
+        // POST: templates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             //TODO: This action need to be deeply reviewed
-            var user = db.users.Find(id);
-            db.users.Remove(user);
+            var template = db.templates.Find(id);
+            db.templates.Remove(template);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

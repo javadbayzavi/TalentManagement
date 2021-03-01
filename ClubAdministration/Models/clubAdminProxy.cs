@@ -57,6 +57,7 @@ namespace ClubAdministration.Models
         public virtual DbSet<menu_modules> menu_modules { get; set; }
         public virtual DbSet<menus> menus { get; set; }
         public virtual DbSet<roles> roles { get; set; }
+        public virtual DbSet<templates> templates { get; set; }
         public virtual DbSet<groups> groups { get; set; }
         public virtual DbSet<permissions> permissions { get; set; }
         public virtual DbSet<users> users { get; set; }

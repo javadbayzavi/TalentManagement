@@ -89,7 +89,7 @@ namespace ClubAdministration.Controllers.system
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var entry = db.positions.Find(id);
+            var entry = db.groups.Find(id);
             return View(entry);
         }
 

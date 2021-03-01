@@ -1,0 +1,34 @@
+﻿@model ClubAdministration.Models.system.groups
+
+@{
+    ViewBag.Title = "حذف" + " " + Model.title;
+}
+
+@widgets.common.ribbon.Show_Ribbon(Url, "groups.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
+@using (Html.BeginForm("Delete", "groups", FormMethod.Post, new { @name = "groupsform" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="mt-2 rounded-bottom shadow-sm mb-4">
+        <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
+        <div class="rounded-bottom px-2 py-2 border border-top-0 ">
+            <table class="table table-striped table-responsive-sm">
+                <tr>
+                    <td>
+                        كد شناسايي
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ID)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        گروه كاربري
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.title)
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
