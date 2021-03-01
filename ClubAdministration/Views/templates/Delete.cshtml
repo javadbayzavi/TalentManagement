@@ -4,8 +4,8 @@
     ViewBag.Title = "حذف" + " " + Model.title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "groups.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
-@using (Html.BeginForm("Delete", "groups", FormMethod.Post, new { @name = "groupsform" }))
+@widgets.common.ribbon.Show_Ribbon(Url, "templates.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
+@using (Html.BeginForm("Delete", "templates", FormMethod.Post, new { @name = "templatesform" }))
 {
     @Html.AntiForgeryToken()
     <div class="mt-2 rounded-bottom shadow-sm mb-4">
@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <td>
-                        گروه كاربري
+                        قالب
                     </td>
                     <td>
                         @Html.DisplayFor(model => model.title)
