@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClubAdministration.Library.Core.Pages;
+using ClubAdministration.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ClubAdministration.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

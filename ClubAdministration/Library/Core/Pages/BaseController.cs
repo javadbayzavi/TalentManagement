@@ -1,11 +1,17 @@
-﻿using ClubAdministration.Library.Core.Defaults;
+﻿using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using ClubAdministration.Library.Core.Defaults;
 using ClubAdministration.Library.Core.Sessions;
+using ClubAdministration.Models;
 using System.Web;
 using System.Web.Mvc;
 namespace ClubAdministration.Library.Core.Pages
 {
     public class BaseController : Controller
     {
+        private clubAdminProxy db = new clubAdminProxy();
         public string Controller { get; set; }
         public string Action { get; set; }
         public string Area { get; set; }
@@ -52,7 +58,8 @@ namespace ClubAdministration.Library.Core.Pages
             //}
 
             //Load current selected theme for this controller's view
-            this.Theme = "professional";
+            var item = db.templates.Where(i => i.isdefault == true && i.admin == true).FirstOrDefault().address;
+            this.Theme = item;
 
             //Set current theme into Session
             Session[ReservedKeys.ThemeRoot] = this.Theme;
