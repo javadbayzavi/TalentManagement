@@ -26,6 +26,15 @@
                         <th class="d-sm-table-cell text-center">
                             نام قالب
                         </th>
+                        <th class="d-sm-table-cell text-center">
+                            آدرس
+                        </th>
+                        <th class="d-sm-table-cell text-center">
+                            پيش‌فرض
+                        </th>
+                        <th class="d-sm-table-cell text-center">
+                            بخش مديريت
+                        </th>
                         <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
                             عمليات
                         </th>
@@ -45,6 +54,15 @@
                         </th>
                         <td class="d-sm-table-cell text-center">
                             @(item.title)
+                        </td>
+                        <td class="d-sm-table-cell text-center">
+                            @(item.address)
+                        </td>
+                        <td class="d-sm-table-cell text-center">
+                            @widgets.drill_periodic.Show_Drill_Periodic(item.isdefault)
+                        </td>
+                        <td class="d-sm-table-cell text-center">
+                            @widgets.drill_periodic.Show_Drill_Periodic(item.admin)
                         </td>
                         <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
                             @Html.ActionLink("ويرايش", "Edit", new { id = item.ID }) |

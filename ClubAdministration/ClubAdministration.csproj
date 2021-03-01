@@ -437,6 +437,7 @@
     <Compile Include="Controllers\players\playersControllerTraining.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerMain.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerCoaches.cs" />
+    <Compile Include="Controllers\system\templatesController.cs" />
     <Compile Include="Controllers\system\menusControllerItems.cs" />
     <Compile Include="Controllers\system\systemController.cs" />
     <Compile Include="Controllers\system\permissionsController.cs" />
@@ -464,6 +465,7 @@
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
     <Compile Include="Library\widgets\forms\HtmlExtentions.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-Templates.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-MenuItems.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Menus.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Perimission.cs" />
@@ -493,6 +495,7 @@
     <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\drills\drill_template.cs" />
+    <Compile Include="Models\system\templates.cs" />
     <Compile Include="Models\system\menu_modules.cs" />
     <Compile Include="Models\system\roles_group.cs" />
     <Compile Include="Models\system\role_permissions.cs" />
@@ -1888,6 +1891,11 @@
     <Content Include="Views\admin\plugins\popper\umd\popper.min.js.map" />
     <Content Include="Views\admin\README.md" />
     <Content Include="Views\Shared\admin\_sidemenu.cshtml" />
+    <Content Include="Views\templates\Create.cshtml" />
+    <Content Include="Views\templates\Delete.cshtml" />
+    <Content Include="Views\templates\Details.cshtml" />
+    <Content Include="Views\templates\Edit.cshtml" />
+    <Content Include="Views\templates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

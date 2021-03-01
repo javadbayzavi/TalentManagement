@@ -15,6 +15,14 @@ namespace ClubAdministration.Models.system
 
         [Required]
         [StringLength(150)]
-        public string title { get; set; }   
+        public string title { get; set; }
+
+        [Required]
+        [StringLength(150)]
+        public string address { get; set; }
+
+        public bool isdefault { get; set; }
+
+        public bool admin { get; set; }
     }
 }

@@ -47,7 +47,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 postback = true,
                 rootparam = rootParams[0],
                 selectionneeded = false,
-                hostform = "groupsform",
+                hostform = "templatesform",
                 placeholder = "حذف قالب",
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()

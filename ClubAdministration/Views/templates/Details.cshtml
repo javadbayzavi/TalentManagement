@@ -22,6 +22,30 @@
                     @Html.DisplayFor(model => model.title)
                 </td>
             </tr>
+            <tr>
+                <td>
+                    آدرس
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.address)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    پيش‌فرض؟
+                </td>
+                <td>
+                    @widgets.drill_periodic.Show_Drill_Periodic(Model.isdefault)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    بخش مديريت
+                </td>
+                <td>
+                    @widgets.drill_periodic.Show_Drill_Periodic(Model.admin)
+                </td>
+            </tr>
         </table>
     </div>
 </div>
