@@ -62,7 +62,7 @@ namespace ClubAdministration.Library.widgets.ribbons
             });
             return ribbons;
         }
-
+        
         private static List<Models.ViewModels.ribbons> menus_items_default(params object[] rootParams)
         {
 

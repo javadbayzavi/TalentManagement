@@ -5,7 +5,7 @@
 }
 @using (Html.BeginForm("Index", "menus", FormMethod.Post, new { id = "menusfrm" }))
 {
-    @widgets.common.ribbon.Show_Ribbon(Url, "menus.items.default", "مديريت آيتم‌هاي منو", new { parent = ViewBag.menuid })
+    @widgets.common.ribbon.Show_Ribbon(Url, "menus.items.default", "مديريت آيتم‌هاي منو", new { id = ViewBag.menuid })
 
     @widgets.common.search.Show_Search_Form(ViewBag.search) 
 
