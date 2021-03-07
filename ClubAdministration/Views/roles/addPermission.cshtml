@@ -1,0 +1,70 @@
+﻿@model ClubAdministration.Models.system.role_permissions
+
+@{ 
+    ViewBag.Title = "افزودن دسترسي‌ها";
+    var role = (ClubAdministration.Models.system.roles)ViewBag.role;
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal p-0 mb-2 shadow-sm">
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">افزودن دسترسي‌ها</h4>
+        <div class="container-fluid border rounded-bottom border-top-0 m-0">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group row font-weight-bold mt-2">
+                <div class="col-sm-12 col-md-6">
+                    @Html.Label("دسترسي‌ها", htmlAttributes: new { @class = "control-label " })
+                    @Html.TextBox("txtsksrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#permission_id')" })
+                    <ul class="list-group p-1 scrollablecontainer" id="drillskilss">
+                        @foreach (SelectListItem item in (System.Web.Mvc.SelectList)ViewBag.permissions_id)
+                        {
+                            <li class="list-group-item list-group-item-action">
+                                @Html.CheckBox("permission_id", item.Selected, new { value = item.Value }) @(item.Text)
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group row border mx-1 rounded">
+                <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
+                    <input type="submit" value="  ايجاد  " class="btn btn-primary px-5 m-2" />
+                </div>
+                <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
+                    @Html.ActionLink("بازگشت به ليست", "permissions", new { id = role.ID },  new { @class = "btn btn-outline-warning px-5 m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+    $("input[type=radio]").each(function () {
+        $(this).on("change", function () {
+            $(this).parent().addClass("bg-info");
+            $(this).parent().siblings().removeClass("bg-info");
+        });
+    });
+    $("input[type=checkbox]").each(function () {
+        $(this).on("change", function () {
+            if (this.checked) {
+                $(this).parent().parent().parent().addClass("bg-info");
+                $(this).parent().next().addClass("d-block").removeClass("d-none");
+            }
+            else {
+                $(this).parent().parent().parent().removeClass("bg-info");
+                $(this).parent().next().addClass("d-none").removeClass("d-block");
+            }
+        });
+    });
+    });
+
+    function searchAPI(target, list) {
+        var value = $(target).val().toLowerCase();
+        $(list + " > li").each(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    }
+
+</script>

@@ -14,7 +14,7 @@ namespace ClubAdministration.Models.system
         public int ID { get; set; }
 
         //Things like Ball-Control
-        public string user_id { get; set; }
+        public int user_id { get; set; }
 
         [ForeignKey("user_id")]
         public users user { get; set; }

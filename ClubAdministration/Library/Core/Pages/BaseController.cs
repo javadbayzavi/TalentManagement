@@ -58,8 +58,8 @@ namespace ClubAdministration.Library.Core.Pages
             //}
 
             //Load current selected theme for this controller's view
-            var item = db.templates.Where(i => i.isdefault == true && i.admin == true).FirstOrDefault().address;
-            this.Theme = item;
+            //var item = db.templates.Where(i => i.isdefault == true && i.admin == true).FirstOrDefault().address;
+            //this.Theme = item;
 
             //Set current theme into Session
             Session[ReservedKeys.ThemeRoot] = this.Theme;

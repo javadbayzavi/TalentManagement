@@ -543,6 +543,7 @@
     <Compile Include="Models\players\player_sessions.cs" />
     <Compile Include="Models\players\player_registerations.cs" />
     <Compile Include="Models\players\player_techniques.cs" />
+    <Compile Include="Models\ViewModels\role_permissionsinput.cs" />
     <Compile Include="Models\ViewModels\security_overviews.cs" />
     <Compile Include="Models\ViewModels\drillinputmodel.cs" />
     <Compile Include="Models\ViewModels\navigations.cs" />
@@ -1897,6 +1898,11 @@
     <Content Include="Views\templates\Details.cshtml" />
     <Content Include="Views\templates\Edit.cshtml" />
     <Content Include="Views\templates\Index.cshtml" />
+    <Content Include="Views\roles\addPermission.cshtml" />
+    <Content Include="Views\roles\deletePermission.cshtml" />
+    <Content Include="Views\roles\detailsPermission.cshtml" />
+    <Content Include="Views\roles\editPermission.cshtml" />
+    <Content Include="Views\roles\permissions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

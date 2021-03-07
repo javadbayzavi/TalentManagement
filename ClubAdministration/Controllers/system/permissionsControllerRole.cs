@@ -11,7 +11,7 @@ using ClubAdministration.Library.Core.Pages;
 using ClubAdministration.Models;
 using ClubAdministration.Models.system;
 
-namespace ClubAdministration.Controllers
+namespace ClubAdministration.Controllers.system
 {
     //List of all commands
     //GET roles/permissions Show the list of
@@ -28,7 +28,7 @@ namespace ClubAdministration.Controllers
                 .Where(a => a.permission.title.Contains(this.Setting.PageSetting.SearchItem) ||
                 a.permission.command.Contains(this.Setting.PageSetting.SearchItem));
             var role = db.roles.Find(id);
-            ViewBag.role = role.title;
+            ViewBag.role = role;
 
             return View(permissions);
         }
