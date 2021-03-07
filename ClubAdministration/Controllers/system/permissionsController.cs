@@ -24,7 +24,8 @@ namespace ClubAdministration.Controllers.system
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
             return View(db.permissions
-                .Where(a => a.title.Contains(this.Setting.PageSetting.SearchItem)));
+                .Where(a => a.title.Contains(this.Setting.PageSetting.SearchItem) ||
+                a.command.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
         [HttpPost]

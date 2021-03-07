@@ -14,8 +14,15 @@ namespace ClubAdministration.Models.system
         public int ID { get; set; }
 
         //Things like Ball-Control
-        [Required]
-        [StringLength(150)]
-        public string title { get; set; }
+        public string role_id { get; set; }
+
+        [ForeignKey("role_id")]
+        public roles role { get; set; }
+
+        public int permission_id { get; set; }
+
+        [ForeignKey("permission_id")]
+        public permissions permission { get; set; }
+
     }   
 }
