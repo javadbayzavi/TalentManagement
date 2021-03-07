@@ -16,7 +16,7 @@ namespace ClubAdministration.Controllers
 {
     public partial class trainingsController : BaseController
     {
-        private clubAdminProxy db = new clubAdminProxy();
+        //private clubAdminProxy db = new clubAdminProxy();
 
         // GET: trainingsController
         [HttpGet]

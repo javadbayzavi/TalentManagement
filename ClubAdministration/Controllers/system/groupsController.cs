@@ -16,7 +16,7 @@ namespace ClubAdministration.Controllers.system
 {
     public partial class groupsController : BaseController
     {
-        private clubAdminProxy db = new clubAdminProxy();
+        //private clubAdminProxy db = new clubAdminProxy();
 
         // GET: groups
         [HttpGet]

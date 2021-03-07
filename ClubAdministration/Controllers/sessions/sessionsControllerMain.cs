@@ -13,7 +13,7 @@ namespace ClubAdministration.Controllers
 {
     public partial class sessionsController : BaseController
     {
-        private clubAdminProxy db = new clubAdminProxy();
+        //private clubAdminProxy db = new clubAdminProxy();
 
         // GET: sessions
         public ActionResult Index()

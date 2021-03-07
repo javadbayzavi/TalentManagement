@@ -15,7 +15,7 @@ namespace ClubAdministration.Controllers
 {
     public partial class agelevelsController : BaseController
     {
-        private clubAdminProxy db = new clubAdminProxy();
+        //private clubAdminProxy db = new clubAdminProxy();
 
         // GET: agelevels
         [HttpGet]

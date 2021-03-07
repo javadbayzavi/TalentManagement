@@ -9,70 +9,87 @@ using System.Web.Mvc;
 using ClubAdministration.Library.Core.Defaults;
 using ClubAdministration.Library.Core.Pages;
 using ClubAdministration.Models;
+using ClubAdministration.Models.system;
 
 namespace ClubAdministration.Controllers
 {
     //List of all commands
-    //GET players/Subscriptions Show the list of
+    //GET roles/permissions Show the list of
     public partial class rolesController : BaseController
     {
-        //GET roles/Subscriptions/5 Return the subscriptions for player with ID 5
+        //GET roles/permissions/5 Return the subscriptions for player with ID 5
         public ActionResult permissions(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var permissions = db.role_permissions.Where(e => e.player_id == id).ToList()
-                .Where(aa => aa.training_terms.term_title.Contains(this.Setting.PageSetting.SearchItem));
-            var pl = db.players.Find(id);
-            ViewBag.fullname = pl.name + " " + pl.familiy;
-            ViewBag.pl_id = pl.ID;
+            var permissions = db.role_permissions.Where(e => e.role_id == id).Include(a => a.permission).Include(a => a.role)
+                .Where(a => a.permission.title.Contains(this.Setting.PageSetting.SearchItem) ||
+                a.permission.command.Contains(this.Setting.PageSetting.SearchItem));
+            var role = db.roles.Find(id);
+            ViewBag.role = role.title;
 
             return View(permissions);
         }
 
+        [HttpPost, ActionName("permissions")]
+        public ActionResult permissionsPostBack(int id)
+        {
+            return this.permissions(id);
+        }
 
-        //GET roles/Subscribe/5/edit  Show the creation form for subscribing player with ID 5 to new classes
+        //GET roles/addPermission/5/edit  Show the creation form for subscribing player with ID 5 to new classes
         public ActionResult addPermission(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var player = db.players.Find(id);
+            var role = db.roles.Find(id);
 
-            if (player == null)
+            if (role == null)
             {
                 return HttpNotFound();
             }
 
-            int today = BaseDate.CalculateDateDiffInMinutes(DateTime.Today);
-            var trtrm = db.training_terms
-                .Where(a =>
-                a.e_date > today &&
-                a.player_registerations.Any(pl => pl.player_id == player.ID) == false &&
-                a.player_registerations.Count < a.max_player
-                ).ToList();
+            ViewBag.permissions_id = new SelectList(db.permissions, "ID", "title");
 
-            ViewBag.training_id = new SelectList(trtrm, "ID", "term_title");
-
-            ViewBag.player = player;
+            ViewBag.role = role;
             return View();
         }
 
         //POST roles/addPermission/5 
         [HttpPost, ActionName("addPermission")]
         [ValidateAntiForgeryToken]
-        public ActionResult addPermission([Bind(Include = "player_id,training_id,registeration_date,resignation_date")] player_registerations subscription)
+        public ActionResult addPermission([Bind(Include = "role_id,permission_id")] role_permissionsinput r_p)
         {
+            string[] permissions = this.Request["permissions_id"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                            .Where(a => a != "false").ToArray(); 
             if (ModelState.IsValid)
             {
-                db.player_registerations.Add(subscription);
+                for (int index = 0; index < permissions.Length; index++)
+                {
+                    //Check for repeatitve entry
+                    if (db.role_permissions.Any(a => a.role_id == r_p.role_id && a.permission_id == Int32.Parse(permissions[index])))
+                    {
+                        continue;
+                    }
+
+                    db.role_permissions.Add(
+                        new role_permissions()
+                        {
+                            permission_id = Int32.Parse(permissions[index]),
+                            role_id  = r_p.role_id
+                        }
+                        );
+                }
+
                 db.SaveChanges();
-                return RedirectToAction("Subscriptions", new { id = subscription.player_id });
+
+                return RedirectToAction("permissions", new { id = r_p.role_id });
             }
-            return RedirectToAction("Subscriptions", new { id = subscription.player_id });
+            return RedirectToAction("permissions", new { id = r_p.role_id });
         }
 
         public ActionResult editPermission(int? id)
@@ -81,42 +98,36 @@ namespace ClubAdministration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            player_registerations p_r;
-            p_r = db.player_registerations.Find(id);
+            role_permissions r_p;
+            r_p = db.role_permissions.Find(id);
 
 
-            ViewBag.training_id = new SelectList(db.training_terms, "ID", "term_title", p_r.training_id);
+            ViewBag.permission_id = new SelectList(db.permissions, "ID", "title", r_p.permission_id);
 
 
-            return View(p_r);
+            return View(r_p);
         }
 
         //POST roles/editPermission
         [HttpPost, ActionName("editPermission")]
         [ValidateAntiForgeryToken]
-        public ActionResult editPermission([Bind(Include = "ID,player_id,training_id,registeration_date,resignation_date")] player_registerations subscripti)
+        public ActionResult editPermission([Bind(Include = "ID,role_id,permission_id")] role_permissions r_p)
         {
-            //It must be check for various conditions:
-            //1.start date must be bigger than the class start date
-            //2.end date must be smaller than the class end date
-            //3. start date must be smaller than end date
-            var trn = db.training_terms.Find(subscripti.training_id);
-            if (subscripti.re_date < trn.s_date ||
-                subscripti.re_date > trn.e_date ||
-                subscripti.re_date > subscripti.ree_date ||
-                subscripti.ree_date > trn.e_date)
-            {
-                Session["TACTION_RESULT"] = "تاريخ هاي ورودي را كنترل كنيد";
-                return this.RedirectToAction("Resubscribe", subscripti); 
-            }
 
             if(ModelState.IsValid)
             {
-                db.Entry(subscripti).State = EntityState.Modified;
+                //Check for repeatitve entry
+                if (db.role_permissions.Any(a => a.role_id == r_p.role_id && a.permission_id == r_p.permission_id))
+                {
+                    return RedirectToAction("permissions", new { id = r_p.role_id });
+                }
+
+                db.Entry(r_p).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Subscriptions", new { id = subscripti.player_id });
+
+                return RedirectToAction("permissions", new { id = r_p.role_id });
             }
-            return View(subscripti);
+            return View(r_p);
         }
         //GET: roles/deletePermission/5 Show the unsubscription confirmation for palyer subcription with subscription id 5
         public ActionResult deletePermission(int? id)
@@ -125,12 +136,12 @@ namespace ClubAdministration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            player_registerations subcri = db.player_registerations.Find(id);
-            if (subcri == null)
+            role_permissions r_p = db.role_permissions.Find(id);
+            if (r_p == null)
             {
                 return HttpNotFound();
             }
-            return View(subcri);
+            return View(r_p);
         }
 
         //POST: roles/deletePermission/5 Delete player subscription with ID 5
@@ -138,11 +149,11 @@ namespace ClubAdministration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult deletePermissionConfirmed(int id)
         {
-            var subscribe = db.player_registerations.Find(id);
-            int player_id = subscribe.player_id.GetValueOrDefault();
-            db.player_registerations.Remove(subscribe);
+            var role_per = db.role_permissions.Find(id);
+            int role_id = role_per.role_id;
+            db.role_permissions.Remove(role_per);
             db.SaveChanges();
-            return RedirectToAction("permissions", new { id = player_id });
+            return RedirectToAction("permissions", new { id = role_id });
         }
 
         //GET roles/Subscriptions/5 Return the subscriptions for player with ID 5

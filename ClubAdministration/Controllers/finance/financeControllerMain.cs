@@ -13,7 +13,7 @@ namespace ClubAdministration.Controllers
 {
     public partial class financeController : BaseController
     {
-        private clubAdminProxy db = new clubAdminProxy();
+        //private clubAdminProxy db = new clubAdminProxy();
 
         // GET: financeController
         public ActionResult Index()

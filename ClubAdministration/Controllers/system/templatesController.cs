@@ -16,7 +16,7 @@ namespace ClubAdministration.Controllers.system
 {
     public partial class templatesController : BaseController
     {
-        private clubAdminProxy db = new clubAdminProxy();
+        //private clubAdminProxy db = new clubAdminProxy();
 
         // GET: templates
         [HttpGet]

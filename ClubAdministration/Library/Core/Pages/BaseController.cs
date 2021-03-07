@@ -11,7 +11,7 @@ namespace ClubAdministration.Library.Core.Pages
 {
     public class BaseController : Controller
     {
-        private clubAdminProxy db = new clubAdminProxy();
+        protected clubAdminProxy db = new clubAdminProxy();
         public string Controller { get; set; }
         public string Action { get; set; }
         public string Area { get; set; }

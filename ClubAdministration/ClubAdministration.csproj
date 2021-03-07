@@ -437,6 +437,7 @@
     <Compile Include="Controllers\players\playersControllerTraining.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerMain.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerCoaches.cs" />
+    <Compile Include="Controllers\system\permissionsControllerRole.cs" />
     <Compile Include="Controllers\system\templatesController.cs" />
     <Compile Include="Controllers\system\menusControllerItems.cs" />
     <Compile Include="Controllers\system\systemController.cs" />
@@ -495,11 +496,11 @@
     <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\drills\drill_template.cs" />
+    <Compile Include="Models\system\user_groups.cs" />
+    <Compile Include="Models\system\group_roles.cs" />
     <Compile Include="Models\system\templates.cs" />
     <Compile Include="Models\system\menu_modules.cs" />
-    <Compile Include="Models\system\roles_group.cs" />
     <Compile Include="Models\system\role_permissions.cs" />
-    <Compile Include="Models\system\users_groups.cs" />
     <Compile Include="Models\system\users.cs" />
     <Compile Include="Models\system\permissions.cs" />
     <Compile Include="Models\system\groups.cs" />
