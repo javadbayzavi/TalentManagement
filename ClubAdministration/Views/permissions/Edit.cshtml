@@ -14,14 +14,19 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group row">
-                <div class="col-6 font-weight-bold">
+                <div class="col-4 font-weight-bold">
                     @Html.Label("دسترسي", htmlAttributes: new { @class = "control-label col" })
                     @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-6">
+                <div class="col-4 font-weight-bold">
+                    @Html.Label("دستور", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.command, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.command, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-4 font-weight-bold">
                     @Html.Label("دسترسي بالادستي", htmlAttributes: new { @class = "control-label col" })
-                    @Html.DropDownList("parent", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("parent", null, "يك گزينه را انتخاب كنيد", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.parent, "", new { @class = "text-danger" })
                 </div>
             </div>
