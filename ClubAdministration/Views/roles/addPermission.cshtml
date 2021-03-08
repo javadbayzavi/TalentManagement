@@ -27,7 +27,7 @@
                     @Html.Label("دسترسي‌ها", htmlAttributes: new { @class = "control-label " })
                     @Html.TextBox("txtsksrch", null, new { placeholder = "جستجو...", onkeyup = "searchAPI(this,'#permissions')" })
                     <ul class="list-group p-1 scrollablecontainer" id="permissions">
-                        @foreach (SelectListItem item in (System.Web.Mvc.SelectList)ViewBag.permissions_id)
+                        @foreach (SelectListItem item in (System.Web.Mvc.SelectList)ViewBag.permission_id)
                         {
                             <li class="list-group-item list-group-item-action">
                                 @Html.CheckBox("permissionsid", item.Selected, new { value = item.Value }) @(item.Text)

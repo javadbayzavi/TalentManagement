@@ -53,17 +53,16 @@ namespace ClubAdministration.Controllers.system
                 return HttpNotFound();
             }
 
-            var perms = new SelectList(db.permissions, "ID", "title");
-
-            foreach (var item in perms)
-            {
-                int perId = Int32.Parse(item.Value);
-
-                if(db.role_permissions.Any(a => a.permission_id == perId && a.role_id == role.ID))
+            var perms = db.permissions.Select(a => 
+                new SelectListItem()
                 {
-                    item.Selected = true;
+                    Text = a.title,
+                    Value = a.ID.ToString(),
+                    Selected = a.roles.Any(aa => aa.role_id == role.ID && aa.permission_id == a.ID)
                 }
-            }
+                ); 
+                new SelectList(db.permissions, "ID", "title");
+
 
             ViewBag.permission_id = perms;
             ViewBag.role = role;

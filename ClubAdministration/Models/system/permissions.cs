@@ -19,5 +19,7 @@ namespace ClubAdministration.Models.system
         public string title { get; set; }
         public string command { get; set; }
         public int parent { get; set; }
+
+        public virtual ICollection<role_permissions> roles { get; set; }
     }
 }
