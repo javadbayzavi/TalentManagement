@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "مديريت منو‌ها";
 }
-@using (Html.BeginForm("Index", "menus", FormMethod.Post, new { id = "menusfrm" }))
+@using (Html.BeginForm("Index", "menus", new { id = ViewBag.menuid }, FormMethod.Post, new { id = "menusfrm" }))
 {
     @widgets.common.ribbon.Show_Ribbon(Url, "menus.items.default", "مديريت آيتم‌هاي منو", new { id = ViewBag.menuid })
 

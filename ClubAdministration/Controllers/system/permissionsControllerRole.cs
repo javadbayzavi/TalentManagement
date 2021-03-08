@@ -64,14 +64,15 @@ namespace ClubAdministration.Controllers.system
         [ValidateAntiForgeryToken]
         public ActionResult addPermission([Bind(Include = "role_id,permission_id")] role_permissionsinput r_p)
         {
-            string[] permissions = this.Request["permissions_id"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+            string[] permissions = this.Request["permissionsid"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                             .Where(a => a != "false").ToArray(); 
             if (ModelState.IsValid)
             {
                 for (int index = 0; index < permissions.Length; index++)
                 {
+                    int perID = Int32.Parse(permissions[index]);
                     //Check for repeatitve entry
-                    if (db.role_permissions.Any(a => a.role_id == r_p.role_id && a.permission_id == Int32.Parse(permissions[index])))
+                    if (db.role_permissions.Any(a => a.role_id == r_p.role_id && a.permission_id == perID))
                     {
                         continue;
                     }
@@ -90,44 +91,6 @@ namespace ClubAdministration.Controllers.system
                 return RedirectToAction("permissions", new { id = r_p.role_id });
             }
             return RedirectToAction("permissions", new { id = r_p.role_id });
-        }
-
-        public ActionResult editPermission(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            role_permissions r_p;
-            r_p = db.role_permissions.Find(id);
-
-
-            ViewBag.permission_id = new SelectList(db.permissions, "ID", "title", r_p.permission_id);
-
-
-            return View(r_p);
-        }
-
-        //POST roles/editPermission
-        [HttpPost, ActionName("editPermission")]
-        [ValidateAntiForgeryToken]
-        public ActionResult editPermission([Bind(Include = "ID,role_id,permission_id")] role_permissions r_p)
-        {
-
-            if(ModelState.IsValid)
-            {
-                //Check for repeatitve entry
-                if (db.role_permissions.Any(a => a.role_id == r_p.role_id && a.permission_id == r_p.permission_id))
-                {
-                    return RedirectToAction("permissions", new { id = r_p.role_id });
-                }
-
-                db.Entry(r_p).State = EntityState.Modified;
-                db.SaveChanges();
-
-                return RedirectToAction("permissions", new { id = r_p.role_id });
-            }
-            return View(r_p);
         }
         //GET: roles/deletePermission/5 Show the unsubscription confirmation for palyer subcription with subscription id 5
         public ActionResult deletePermission(int? id)

@@ -256,6 +256,13 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "roles.delete.default":
                     return roles_delete_default(rootParams);
 
+                case "roles.permissions.list":
+                    return roles_permissions_list(rootParams);
+                case "roles.permissions.details":
+                    return roles_permissions_details(rootParams);
+                case "roles.permissions.delete":
+                    return roles_permissions_delete(rootParams);
+
                 case "permissions.list.default":
                     return permissions_list_default(rootParams);
                 case "permissions.details.default":

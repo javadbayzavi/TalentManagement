@@ -7,7 +7,7 @@
 }
 @using (Html.BeginForm("permissions", "roles", new { id = role.ID }, FormMethod.Post, new { id = "rolesfrm" }))
 {
-    @widgets.common.ribbon.Show_Ribbon(Url, "roles.permissions.default", "مديريت دسترسي‌هاي كاربري")
+    @widgets.common.ribbon.Show_Ribbon(Url, "roles.permissions.list", "مديريت دسترسي‌هاي كاربري", new { id = role.ID })
 
     @widgets.common.search.Show_Search_Form(ViewBag.search)
 
