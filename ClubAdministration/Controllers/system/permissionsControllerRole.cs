@@ -53,8 +53,19 @@ namespace ClubAdministration.Controllers.system
                 return HttpNotFound();
             }
 
-            ViewBag.permissions_id = new SelectList(db.permissions, "ID", "title");
+            var perms = new SelectList(db.permissions, "ID", "title");
 
+            foreach (var item in perms)
+            {
+                int perId = Int32.Parse(item.Value);
+
+                if(db.role_permissions.Any(a => a.permission_id == perId && a.role_id == role.ID))
+                {
+                    item.Selected = true;
+                }
+            }
+
+            ViewBag.permission_id = perms;
             ViewBag.role = role;
             return View();
         }
