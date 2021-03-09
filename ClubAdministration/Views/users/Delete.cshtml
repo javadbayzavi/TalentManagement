@@ -1,11 +1,11 @@
-﻿@model ClubAdministration.Models.system.groups
+﻿@model ClubAdministration.Models.system.user_groups
 
 @{
     ViewBag.Title = "حذف" + " " + Model.title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "groups.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
-@using (Html.BeginForm("Delete", "groups", FormMethod.Post, new { @name = "groupsform" }))
+@widgets.common.ribbon.Show_Ribbon(Url, "users.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
+@using (Html.BeginForm("Delete", "users", FormMethod.Post, new { @name = "usersform" }))
 {
     @Html.AntiForgeryToken()
     <div class="mt-2 rounded-bottom shadow-sm mb-4">
@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <td>
-                        گروه كاربري
+                        كاربر
                     </td>
                     <td>
                         @Html.DisplayFor(model => model.title)
