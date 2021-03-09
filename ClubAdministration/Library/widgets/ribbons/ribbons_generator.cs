@@ -255,6 +255,13 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "groups.users.delete":
                     return groups_users_delete(rootParams);
 
+                case "users.list.default":
+                    return users_list_default(rootParams);
+                case "users.details.default":
+                    return users_details_default(rootParams);
+                case "users.delete.default":
+                    return users_delete_default(rootParams);
+
                 case "users.groups.list":
                     return users_groups_list(rootParams);
                 case "users.groups.details":
