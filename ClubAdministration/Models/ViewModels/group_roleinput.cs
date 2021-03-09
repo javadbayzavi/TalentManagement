@@ -1,4 +1,4 @@
-namespace ClubAdministration.Models.system
+namespace ClubAdministration.Models.ViewModels
 {
     using ClubAdministration.Library.Core.Defaults;
     using ClubAdministration.Library.Utilities;
