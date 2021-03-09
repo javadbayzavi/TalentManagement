@@ -174,7 +174,6 @@ E:\Projects\ClubAdministration\Develop\ClubAdministration\bin\System.Web.Http.xm
 E:\Projects\ClubAdministration\Develop\ClubAdministration\bin\System.Web.Http.WebHost.xml
 E:\Projects\ClubAdministration\Develop\ClubAdministration\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\Projects\ClubAdministration\Develop\ClubAdministration\obj\Debug\ClubAdministration.csproj.CopyComplete
-E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.csprojAssemblyReference.cache
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.dll
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.pdb
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\ClubAdministration.dll.config
@@ -293,7 +292,6 @@ E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Microsoft.Extensions.
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Microsoft.Extensions.WebEncoders.dll
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Microsoft.Net.Http.Headers.dll
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Microsoft.Win32.Registry.dll
-E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Newtonsoft.Json.Bson.dll
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.AspNet.dll
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.AspNet.Middleware.dll
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.Core.dll
@@ -366,8 +364,6 @@ E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Microsoft.Extensions.
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Microsoft.Extensions.WebEncoders.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Microsoft.Net.Http.Headers.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Microsoft.Win32.Registry.xml
-E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Newtonsoft.Json.Bson.pdb
-E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\Newtonsoft.Json.Bson.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.AspNet.xml
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.AspNet.Middleware.pdb
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\bin\React.AspNet.Middleware.xml

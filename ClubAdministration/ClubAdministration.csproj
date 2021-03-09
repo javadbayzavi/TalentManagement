@@ -437,7 +437,8 @@
     <Compile Include="Controllers\players\playersControllerTraining.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerMain.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerCoaches.cs" />
-    <Compile Include="Controllers\system\permissionsControllerRole.cs" />
+    <Compile Include="Controllers\system\groupsControllerRole.cs" />
+    <Compile Include="Controllers\system\rolesControllerPermission.cs" />
     <Compile Include="Controllers\system\templatesController.cs" />
     <Compile Include="Controllers\system\menusControllerItems.cs" />
     <Compile Include="Controllers\system\systemController.cs" />
@@ -466,6 +467,7 @@
     <Compile Include="Library\Utilities\DateCompare.cs" />
     <Compile Include="Library\Utilities\DateConvertor.cs" />
     <Compile Include="Library\widgets\forms\HtmlExtentions.cs" />
+    <Compile Include="Library\widgets\ribbons\ribbons_generator-GroupRole.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-RolePermission.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-Templates.cs" />
     <Compile Include="Library\widgets\ribbons\ribbons_generator-MenuItems.cs" />
@@ -544,6 +546,7 @@
     <Compile Include="Models\players\player_sessions.cs" />
     <Compile Include="Models\players\player_registerations.cs" />
     <Compile Include="Models\players\player_techniques.cs" />
+    <Compile Include="Models\ViewModels\group_roleinput.cs" />
     <Compile Include="Models\ViewModels\role_permissionsinput.cs" />
     <Compile Include="Models\ViewModels\security_overviews.cs" />
     <Compile Include="Models\ViewModels\drillinputmodel.cs" />
@@ -1904,6 +1907,11 @@
     <Content Include="Views\roles\detailsPermission.cshtml" />
     <Content Include="Views\roles\editPermission.cshtml" />
     <Content Include="Views\roles\permissions.cshtml" />
+    <Content Include="Views\groups\addRole.cshtml" />
+    <Content Include="Views\groups\deleteRole.cshtml" />
+    <Content Include="Views\groups\detailsRole.cshtml" />
+    <Content Include="Views\groups\editRole.cshtml" />
+    <Content Include="Views\groups\roles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

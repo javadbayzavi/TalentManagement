@@ -110,6 +110,16 @@ namespace ClubAdministration.Library.widgets.ribbons
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
+                action = "roles",
+                controller = "groups",
+                title = "نقش‌ها",
+                placeholder = "نمایش اطلاعات نقش‌ها",
+                postback = false,
+                rootparam = null,
+                selectionneeded = true,
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
                 action = "Index",
                 controller = "groups",
                 title = "به‌روزآوري",

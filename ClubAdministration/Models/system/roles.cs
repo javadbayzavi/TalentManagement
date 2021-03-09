@@ -17,6 +17,8 @@ namespace ClubAdministration.Models.system
         [Required]
         [StringLength(150)]
         public string title { get; set; }
+
         public virtual ICollection<role_permissions> permissions { get; set; }
+        public virtual ICollection<group_roles> groups { get; set; }
     }
 }
