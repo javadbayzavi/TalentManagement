@@ -1,6 +1,6 @@
-﻿@model ClubAdministration.Models.system.groups
+﻿@model ClubAdministration.Models.system.role_permissions
 
-@widgets.common.ribbon.Show_Ribbon(Url, "roles.details.default", "جزئيات نقش " + (" " + Model.title), rootParams: new { id = Model.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "roles.permissions.details", "جزئيات دسترسي " + (" " + Model.permission.title), new { id = Model.ID }, new { id = Model.role.ID })
 
 <div class="mt-2 rounded-bottom shadow-sm mb-4">
     <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
@@ -16,10 +16,18 @@
             </tr>
             <tr>
                 <td>
-                    نقش كاربري
+                    عنوان دسترسي
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.title)
+                    @Html.DisplayFor(model => model.permission.title)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    دستور
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.permission.command)
                 </td>
             </tr>
         </table>

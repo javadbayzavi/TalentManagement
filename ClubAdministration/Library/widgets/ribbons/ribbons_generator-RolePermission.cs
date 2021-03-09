@@ -42,17 +42,6 @@ namespace ClubAdministration.Library.widgets.ribbons
             List<ClubAdministration.Models.ViewModels.ribbons> ribbons = new List<ClubAdministration.Models.ViewModels.ribbons>();
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
-                action = "ediPermission",
-                controller = "roles",
-                title = "ويرايش",
-                postback = false,
-                rootparam = rootParams[0],
-                selectionneeded = false,
-                hostform = "",
-                placeholder = "ويرايش اطلاعات دسترسي",
-            });
-            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
-            {
                 action = "permissions",
                 controller = "roles",
                 title = "بازگشت",
@@ -77,16 +66,6 @@ namespace ClubAdministration.Library.widgets.ribbons
                 selectionneeded = false,
                 hostform = "",
                 placeholder = "ثبت دسترسي جدید"
-            });
-            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
-            {
-                action = "editPermission",
-                controller = "roles",
-                title = "ویرایش",
-                placeholder = "ویرایش اطلاعات دسترسي",
-                postback = false,
-                rootparam = null,
-                selectionneeded = true,
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {

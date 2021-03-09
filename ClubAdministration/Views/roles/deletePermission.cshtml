@@ -1,11 +1,11 @@
-﻿@model ClubAdministration.Models.system.roles
+﻿@model ClubAdministration.Models.system.role_permissions
 
 @{
-    ViewBag.Title = "حذف" + " " + Model.title;
+    ViewBag.Title = "حذف" + " " + Model.permission.title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "roles.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
-@using (Html.BeginForm("Delete", "roles", FormMethod.Post, new { @name = "rolesform" }))
+@widgets.common.ribbon.Show_Ribbon(Url, "roles.permissions.delete", "آيا از حذف" + (" " + Model.permission.title) + " مطمئن هستيد؟", new { id = Model.ID },new { id = Model.role.ID })
+@using (Html.BeginForm("deletePermission", "roles", FormMethod.Post, new { @name = "rolesform" }))
 {
     @Html.AntiForgeryToken()
     <div class="mt-2 rounded-bottom shadow-sm mb-4">
@@ -22,10 +22,18 @@
                 </tr>
                 <tr>
                     <td>
-                        نقش كاربري
+                        عنوان دسترسي
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.title)
+                        @Html.DisplayFor(model => model.permission.title)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        دستور
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.permission.command)
                     </td>
                 </tr>
             </table>

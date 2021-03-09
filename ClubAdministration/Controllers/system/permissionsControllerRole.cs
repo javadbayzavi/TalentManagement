@@ -32,6 +32,24 @@ namespace ClubAdministration.Controllers.system
 
             return View(permissions);
         }
+        //GET: roles/deletePermission/5 Show the unsubscription confirmation for palyer subcription with subscription id 5
+        public ActionResult detailsPermission(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            role_permissions r_p = db.role_permissions.Where(a => a.ID == id).Include(a => a.permission).Include(a => a.role).FirstOrDefault();
+
+            if (r_p == null)
+            {
+                //TODO : define styled error response through logging
+                return HttpNotFound();
+            }
+
+            return View(r_p);
+        }
 
         [HttpPost, ActionName("permissions")]
         public ActionResult permissionsPostBack(int id)
@@ -61,7 +79,7 @@ namespace ClubAdministration.Controllers.system
                     Selected = a.roles.Any(aa => aa.role_id == role.ID && aa.permission_id == a.ID)
                 }
                 ); 
-                new SelectList(db.permissions, "ID", "title");
+                //new SelectList(db.permissions, "ID", "title");
 
 
             ViewBag.permission_id = perms;
@@ -109,7 +127,9 @@ namespace ClubAdministration.Controllers.system
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            role_permissions r_p = db.role_permissions.Find(id);
+
+            role_permissions r_p = db.role_permissions.Where(a => a.ID == id).Include(a => a.permission).Include(a => a.role).FirstOrDefault();
+
             if (r_p == null)
             {
                 return HttpNotFound();
