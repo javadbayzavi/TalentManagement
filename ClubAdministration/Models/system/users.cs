@@ -17,5 +17,7 @@ namespace ClubAdministration.Models.system
         [Required]
         [StringLength(150)]
         public string title { get; set; }
+
+        public ICollection<user_groups> groups { get; set; }
     }
 }

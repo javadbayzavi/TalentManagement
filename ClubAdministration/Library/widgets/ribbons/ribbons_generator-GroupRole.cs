@@ -31,7 +31,7 @@ namespace ClubAdministration.Library.widgets.ribbons
                 rootparam = rootParams[1],
                 selectionneeded = false,
                 hostform = "",
-                placeholder = "بازگشت به ليست دسترسي‌ها"
+                placeholder = "بازگشت به ليست نقش‌ها"
             });
             return ribbons;
         }

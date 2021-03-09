@@ -120,6 +120,16 @@ namespace ClubAdministration.Library.widgets.ribbons
             });
             ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
             {
+                action = "users",
+                controller = "groups",
+                title = "كاربر‌ها",
+                placeholder = "نمایش اطلاعات كاربر‌ها",
+                postback = false,
+                rootparam = null,
+                selectionneeded = true,
+            });
+            ribbons.Add(new ClubAdministration.Models.ViewModels.ribbons()
+            {
                 action = "Index",
                 controller = "groups",
                 title = "به‌روزآوري",

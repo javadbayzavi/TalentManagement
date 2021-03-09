@@ -13,9 +13,9 @@ namespace ClubAdministration.Models.ViewModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        public int user_id { get; set; }
+        public string user_id { get; set; }
 
-        public string group_id { get; set; }
+        public int group_id { get; set; }
 
     }   
 }
