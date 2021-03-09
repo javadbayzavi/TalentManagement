@@ -81,7 +81,7 @@ namespace ClubAdministration.Controllers.system
 
 
             ViewBag.role_id = roles;
-            ViewBag.role = group;
+            ViewBag.group = group;
             return View();
         }
 

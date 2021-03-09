@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "افزودن نقش‌ها";
-    var role = (ClubAdministration.Models.system.groups)ViewBag.role;
+    var group = (ClubAdministration.Models.system.groups)ViewBag.group;
 }
 <style>
     .scrollablecontainer {
@@ -34,7 +34,7 @@
                             </li>
                         }
                     </ul>
-                    <input type="hidden" name="role_id" id="role_id" value="@role.ID" />
+                    <input type="hidden" name="group_id" id="group_id" value="@group.ID" />
                 </div>
             </div>
             <div class="form-group row border mx-1 rounded">
@@ -42,7 +42,7 @@
                     <input type="submit" value="  ايجاد  " class="btn btn-primary px-5 m-2" />
                 </div>
                 <div class="col-sm-12 text-sm-left text-md-right col-md-6 p-0">
-                    @Html.ActionLink("بازگشت به ليست", "roles", new { id = role.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
+                    @Html.ActionLink("بازگشت به ليست", "roles", new { id = group.ID }, new { @class = "btn btn-outline-warning px-5 m-2" })
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@
     ViewBag.Title = "حذف" + " " + Model.role.title;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "groups.roles.delete", "آيا از حذف" + (" " + Model.role.title) + " مطمئن هستيد؟", new { id = Model.ID },new { id = Model.role.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "groups.roles.delete", "آيا از حذف" + (" " + Model.role.title) + " مطمئن هستيد؟", new { id = Model.ID },new { id = Model.group.ID })
 @using (Html.BeginForm("deleteRole", "groups", FormMethod.Post, new { @name = "groupsform" }))
 {
     @Html.AntiForgeryToken()
