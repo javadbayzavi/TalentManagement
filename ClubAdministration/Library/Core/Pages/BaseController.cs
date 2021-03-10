@@ -68,20 +68,20 @@ namespace ClubAdministration.Library.Core.Pages
         }
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //base.OnActionExecuting(filterContext);
-            //if (this.Authorised == false)
-            //{
-            //    if (Session[ReservedKeys.isAuthenticated].ToString() == "1")
-            //    {
-            //        Session["NotificationMessage"] = Message.AuthorizeError;
-            //        filterContext.Result = new RedirectResult("~/Index/Index", true);
-            //    }
-            //    else
-            //    {
-            //        filterContext.Result = new RedirectResult("~/Login/Login", true);
-            //    }
-            //    return;
-            //}
+            base.OnActionExecuting(filterContext);
+            if (this.Authorised == false)
+            {
+                if (Session[ReservedKeys.isAuthenticated].ToString() == "1")
+                {
+                    Session[ReservedKeys.TransactionResult] = "LoginFailed";
+                    filterContext.Result = new RedirectResult("~/Index/Index", true);
+                }
+                else
+                {
+                    filterContext.Result = new RedirectResult("~/Login/Login", true);
+                }
+                return;
+            }
         }
         protected override bool DisableAsyncSupport
         {

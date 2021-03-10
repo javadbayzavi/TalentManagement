@@ -23,7 +23,7 @@ namespace ClubAdministration.Controllers
         {
             if (id == null)
             {
-                Session["TACTION_RESULT"] = lang.trainingShowError;
+                Session[ReservedKeys.TransactionResult] = lang.trainingShowError;
                 return this.RedirectToAction("Index");
             }
 
@@ -31,7 +31,7 @@ namespace ClubAdministration.Controllers
 
             if (training == null)
             {
-                Session["TACTION_RESULT"] = lang.trainingNotFound;
+                Session[ReservedKeys.TransactionResult] = lang.trainingNotFound;
                 return this.RedirectToAction("Index");
             }
 

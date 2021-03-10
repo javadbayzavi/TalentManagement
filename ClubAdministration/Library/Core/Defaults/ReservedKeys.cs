@@ -28,6 +28,7 @@ namespace ClubAdministration.Library.Core.Defaults
         public const string EditAction = "Edit";
         public const string UpdateAction = "Update";
         public const string SystemConnectionString = "SystemConnectionString";
+        public const string TransactionResult = "TACTION_RESULT";
 
     }
 }
