@@ -74,7 +74,7 @@ namespace ClubAdministration.Controllers.system
             var users = db.users.Select(a => 
                 new SelectListItem()
                 {
-                    Text = a.fullName,
+                    Text = a.name + " " + a.family + "(" + a.user_name + ")",
                     Value = a.ID.ToString(),
                     Selected = a.groups.Any(aa => aa.group_id == group.ID && aa.user_id == a.ID)
                 }
