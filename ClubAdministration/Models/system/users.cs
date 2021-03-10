@@ -16,7 +16,25 @@ namespace ClubAdministration.Models.system
         //Things like Ball-Control
         [Required]
         [StringLength(150)]
-        public string title { get; set; }
+        public string name { get; set; }
+
+        public string family { get; set; }
+
+        public string user_name { get; set; }
+
+        //Determine the originitiy of the user {local, remote (google,facebook)}
+        public int user_host { get; set; }
+
+        public string mobile_phone { get; set; }
+
+        [NotMapped]
+        public string fullName 
+        { 
+            get
+            {
+                return this.name + " " + this.family;
+            }
+        }
 
         public ICollection<user_groups> groups { get; set; }
     }

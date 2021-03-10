@@ -1,10 +1,10 @@
-﻿@model ClubAdministration.Models.system.user_groups
+﻿@model ClubAdministration.Models.system.users
 
 @{
-    ViewBag.Title = "حذف" + " " + Model.title;
+    ViewBag.Title = "حذف" + " " + Model.fullName;
 }
 
-@widgets.common.ribbon.Show_Ribbon(Url, "users.delete.default", "آيا از حذف" + (" " + Model.title) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "users.delete.default", "آيا از حذف" + (" " + Model.fullName) + " مطمئن هستيد؟", rootParams: new { id = Model.ID })
 @using (Html.BeginForm("Delete", "users", FormMethod.Post, new { @name = "usersform" }))
 {
     @Html.AntiForgeryToken()
@@ -25,7 +25,15 @@
                         كاربر
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.title)
+                        @Html.DisplayFor(model => model.fullName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        كاربر
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.user_name)
                     </td>
                 </tr>
             </table>

@@ -15,7 +15,7 @@ using ClubAdministration.Models.ViewModels;
 namespace ClubAdministration.Controllers.system
 {
     //List of all commands
-    //GET roles/permissions Show the list of
+    //GET users/groups Show the list of
     public partial class usersController : BaseController
     {
         //GET users/groups/5 Return the subscriptions for player with ID 5
@@ -32,7 +32,7 @@ namespace ClubAdministration.Controllers.system
 
             return View(groups);
         }
-        //GET: users/deleteRole/5 Show the unsubscription confirmation for palyer subcription with subscription id 5
+        //GET: users/detailsGroup/5 Show the unsubscription confirmation for palyer subcription with subscription id 5
         public ActionResult detailsGroup(int? id)
         {
             if (id == null)
@@ -115,9 +115,9 @@ namespace ClubAdministration.Controllers.system
 
                 db.SaveChanges();
 
-                return RedirectToAction("groups", new { id = r_p.group_id });
+                return RedirectToAction("groups", new { id = r_p.user_id });
             }
-            return RedirectToAction("groups", new { id = r_p.group_id });
+            return RedirectToAction("groups", new { id = r_p.user_id });
         }
         //GET: users/deleteGroup/5 Show the unsubscription confirmation for palyer subcription with subscription id 5
         public ActionResult deleteGroup(int? id)
@@ -142,10 +142,10 @@ namespace ClubAdministration.Controllers.system
         public ActionResult deleteGroupConfirmed(int id)
         {
             var group_per = db.user_groups.Find(id);
-            int group_id = group_per.user_id;
+            int user_id = group_per.user_id;
             db.user_groups.Remove(group_per);
             db.SaveChanges();
-            return RedirectToAction("groups", new { id = group_id });
+            return RedirectToAction("groups", new { id = user_id });
         }
 
     }

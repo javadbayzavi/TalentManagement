@@ -24,7 +24,9 @@ namespace ClubAdministration.Controllers.system
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
             return View(db.users
-                .Where(a => a.title .Contains(this.Setting.PageSetting.SearchItem)));
+                .Where(a => a.name.Contains(this.Setting.PageSetting.SearchItem) ||
+                a.family.Contains(this.Setting.PageSetting.SearchItem)||
+                a.user_name.Contains(this.Setting.PageSetting.SearchItem)));
         }
 
         [HttpPost]
@@ -65,7 +67,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title,user_name,name_family")] users user)
+        public ActionResult Create([Bind(Include = "ID,name,family,user_name,mobile_phone")] users user)
         {
 
             //1. Convert the entry to Db Model
@@ -99,7 +101,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title")] users user)
+        public ActionResult Edit([Bind(Include = "ID,name,family,user_name,mobile_phone")] users user)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)

@@ -26,7 +26,7 @@ namespace ClubAdministration.Controllers.system
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var users = db.user_groups.Where(e => e.group_id == id).Include(a => a.user).Include(a => a.group)
-                .Where(a => a.user.title.Contains(this.Setting.PageSetting.SearchItem));
+                .Where(a => a.user.name.Contains(this.Setting.PageSetting.SearchItem));
             var group = db.groups.Find(id);
             ViewBag.group = group;
 
@@ -74,7 +74,7 @@ namespace ClubAdministration.Controllers.system
             var users = db.users.Select(a => 
                 new SelectListItem()
                 {
-                    Text = a.title,
+                    Text = a.fullName,
                     Value = a.ID.ToString(),
                     Selected = a.groups.Any(aa => aa.group_id == group.ID && aa.user_id == a.ID)
                 }

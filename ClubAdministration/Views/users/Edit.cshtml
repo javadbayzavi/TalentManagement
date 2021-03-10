@@ -1,7 +1,7 @@
-﻿@model ClubAdministration.Models.system.groups
+﻿@model ClubAdministration.Models.system.users
 
 @{ 
-    ViewBag.Title = "ويرايش " + Model.title;
+    ViewBag.Title = "ويرايش " + Model.fullName;
 }
 
 @using (Html.BeginForm()) 
@@ -9,15 +9,32 @@
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ID)
     <div class="form-horizontal p-0 mb-2 shadow-sm">
-        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">جزئیات گروه</h4>
+        <h4 class="bg-light border text-center p-2 py-3 m-0 rounded-top">جزئیات كاربر</h4>
         <div class="container-fluid border rounded-bottom border-top-0 m-0">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group row">
                 <div class="col font-weight-bold">
-                    @Html.Label("گروه", htmlAttributes: new { @class = "control-label col" })
-                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.title , "", new { @class = "text-danger" })
+                    @Html.Label("نام", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col font-weight-bold">
+                    @Html.Label("نام خانوادگي", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.family, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.family, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col font-weight-bold">
+                    @Html.Label("موبايل", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.mobile_phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.mobile_phone, "", new { @class = "text-danger" })
+                </div>
+                <div class="col font-weight-bold">
+                    @Html.Label("نام كاربري", htmlAttributes: new { @class = "control-label col" })
+                    @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row border mx-1 rounded">

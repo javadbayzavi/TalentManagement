@@ -1,6 +1,6 @@
 ﻿@model ClubAdministration.Models.system.user_groups
 
-@widgets.common.ribbon.Show_Ribbon(Url, "groups.users.details", "جزئيات كاربر " + (" " + Model.user.title), new { id = Model.ID }, new { id = Model.group.ID })
+@widgets.common.ribbon.Show_Ribbon(Url, "groups.users.details", "جزئيات كاربر " + (" " + Model.user.fullName), new { id = Model.ID }, new { id = Model.group.ID })
 
 <div class="mt-2 rounded-bottom shadow-sm mb-4">
     <h3 class="text-center rounded-top p-3 border bg-light m-0">اطلاعات پايه</h3>
@@ -19,7 +19,7 @@
                     عنوان  كاربر
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.user.title)
+                    @Html.DisplayFor(model => model.user.fullName) (@Model.user.user_name)
                 </td>
             </tr>
         </table>

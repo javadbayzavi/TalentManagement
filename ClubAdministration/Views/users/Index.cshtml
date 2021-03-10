@@ -1,18 +1,18 @@
-﻿@model IEnumerable<ClubAdministration.Models.system.groups>
+﻿@model IEnumerable<ClubAdministration.Models.system.users>
 
 @{
-    ViewBag.Title = "مديريت گرو‌ه‌هاي كاربري";
+    ViewBag.Title = "مديريت كاربر‌ها";
 }
-@using (Html.BeginForm("Index", "groups", FormMethod.Post, new { id = "groupsfrm" }))
+@using (Html.BeginForm("Index", "users", FormMethod.Post, new { id = "usersfrm" }))
 {
-    @widgets.common.ribbon.Show_Ribbon(Url, "groups.list.default", "مديريت گرو‌ه‌هاي كاربري")
+    @widgets.common.ribbon.Show_Ribbon(Url, "users.list.default", "مديريت كاربر‌ها")
 
     @widgets.common.search.Show_Search_Form(ViewBag.search)
 
     @Html.AntiForgeryToken();
 
     <div class="border rounded p-0 mb-3 mt-2 shadow-sm text-center" style="font-size:0.8em">
-        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">گرو‌هاي كاربري</h2>
+        <h2 class="bg-light shadow-sm border-bottom mb-3 rounded-top pt-3 pb-3">كاربران</h2>
         <div class="px-2">
             <table class=" table table-hover table-responsive-sm text-center w-100">
                 <thead class="thead-dark">
@@ -24,7 +24,10 @@
                             #
                         </th>
                         <th class="d-sm-table-cell text-center">
-                            گروه كاربري
+                            كاربر
+                        </th>
+                        <th class="d-sm-table-cell text-center">
+                            نام كاربري
                         </th>
                         <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
                             عمليات
@@ -44,7 +47,10 @@
                             @(indexe++)
                         </th>
                         <td class="d-sm-table-cell text-center">
-                            @(item.title)
+                            @(item.fullName)
+                        </td>
+                        <td class="d-sm-table-cell text-center">
+                            @(item.user_name)
                         </td>
                         <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
                             @Html.ActionLink("ويرايش", "Edit", new { id = item.ID }) |
