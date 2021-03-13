@@ -82,6 +82,7 @@ namespace ClubAdministration.Controllers.system
             return View(permission);
         }
 
+
         // GET: permissions/Edit/5
         public ActionResult Edit(int? id)
         {
