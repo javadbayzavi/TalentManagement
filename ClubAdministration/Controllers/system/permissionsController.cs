@@ -25,7 +25,7 @@ namespace ClubAdministration.Controllers.system
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
             return View(db.permissions
                 .Where(a => a.title.Contains(this.Setting.PageSetting.SearchItem) ||
-                a.command.Contains(this.Setting.PageSetting.SearchItem)));
+                a.command.Contains(this.Setting.PageSetting.SearchItem)).Include(a => a.component).Include(a => a.zone));
         }
 
         [HttpPost]
@@ -58,7 +58,9 @@ namespace ClubAdministration.Controllers.system
         // GET: permissions/Create
         public ActionResult Create()
         {
-            ViewBag.parent = new SelectList(db.permissions.ToList(), "title", "ID");
+            ViewBag.parent = new SelectList(db.permissions.ToList(), "ID", "title");
+            ViewBag.zones = new SelectList(db.zones.ToList(), "ID", "title");
+            ViewBag.components = new SelectList(db.components.ToList(), "ID", "title");
             return View();
         }
 
@@ -67,7 +69,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title,parent,command")] permissions permission)
+        public ActionResult Create([Bind(Include = "ID,title,parent,command,zone_id,component_id")] permissions permission)
         {
 
             //1. Convert the entry to Db Model
@@ -94,7 +96,9 @@ namespace ClubAdministration.Controllers.system
 
             var entry = db.permissions.Find(id);
 
-            ViewBag.permissions = new SelectList(db.permissions.ToList(), "title", "ID", entry.parent);
+            ViewBag.parent = new SelectList(db.permissions.ToList(), "ID", "title", entry.parent);
+            ViewBag.zones = new SelectList(db.zones.ToList(), "ID", "title", entry.zone_id);
+            ViewBag.components = new SelectList(db.components.ToList(), "ID", "title", entry.component_id);
 
             return View(entry);
         }
@@ -104,7 +108,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title,parent,command")] permissions permission)
+        public ActionResult Edit([Bind(Include = "ID,title,parent,command,zone_id,component_id")] permissions permission)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)

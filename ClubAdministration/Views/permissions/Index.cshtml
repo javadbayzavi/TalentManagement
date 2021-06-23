@@ -24,7 +24,13 @@
                             #
                         </th>
                         <th class="d-sm-table-cell text-center">
-                            گروه كاربري
+                            دسترسي
+                        </th>
+                        <th class="d-sm-table-cell text-center">
+                            كامپوننت
+                        </th>
+                        <th class="d-sm-table-cell text-center">
+                            محدوده دسترسي
                         </th>
                         <th class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
                             عمليات
@@ -45,6 +51,12 @@
                         </th>
                         <td class="d-sm-table-cell text-center">
                             @(item.title)
+                        </td>
+                        <td class="d-sm-table-cell text-center">
+                            @(item.component.title)
+                        </td>
+                        <td class="d-sm-table-cell text-center">
+                            @(item.zone.title)
                         </td>
                         <td class="d-sm-table-cell d-md-none d-lg-none d-xl-none text-center">
                             @Html.ActionLink("ويرايش", "Edit", new { id = item.ID }) |

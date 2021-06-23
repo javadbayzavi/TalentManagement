@@ -30,6 +30,18 @@
                     @Html.ValidationMessageFor(model => model.parent, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div class="form-group row">
+                <div class="col-4 font-weight-bold">
+                    @Html.Label("كامپوننت", htmlAttributes: new { @class = "control-label col" })
+                    @Html.DropDownList("components", null, "يك گزينه را انتخاب كنيد", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.component_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-4 font-weight-bold">
+                    @Html.Label("محدوده دسترسي", htmlAttributes: new { @class = "control-label col" })
+                    @Html.DropDownList("zones", null, "يك گزينه را انتخاب كنيد", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.zone_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
             <div class="form-group row border mx-1 rounded">
                 <div class="col-sm-12 text-sm-center col-md-6 text-md-left p-0">
                     <input type="submit" value="  ذخيره  " class="btn btn-primary px-5 m-2" />

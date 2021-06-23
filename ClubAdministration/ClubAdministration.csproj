@@ -504,6 +504,8 @@
     <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\drills\drill_template.cs" />
+    <Compile Include="Models\system\components.cs" />
+    <Compile Include="Models\system\zones.cs" />
     <Compile Include="Models\system\user_groups.cs" />
     <Compile Include="Models\system\group_roles.cs" />
     <Compile Include="Models\system\templates.cs" />
