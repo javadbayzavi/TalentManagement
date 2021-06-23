@@ -44,7 +44,8 @@ namespace ClubAdministration.Controllers.system
                 Session["TACTION_RESULT"] = "مشكل در نمايش دسترسي وجود دارد";
                 return this.RedirectToAction("Index");
             }
-            var permission = db.permissions.Find(id);
+
+            var permission = db.permissions.Where(a => a.ID == id).Include(a => a.component).Include(a => a.zone).FirstOrDefault();
 
             if (permission == null)
             {
@@ -128,7 +129,7 @@ namespace ClubAdministration.Controllers.system
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            permissions permission = db.permissions.Find(id);
+            permissions permission = db.permissions.Where(a => a.ID == id).Include(a => a.component).Include(a => a.zone).FirstOrDefault();
             if (permission == null)
             {
                 return HttpNotFound();
