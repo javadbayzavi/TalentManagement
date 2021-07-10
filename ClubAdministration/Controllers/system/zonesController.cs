@@ -18,12 +18,12 @@ namespace ClubAdministration.Controllers.system
     {
         //private clubAdminProxy db = new clubAdminProxy();
 
-        // GET: groups
+        // GET: zones
         [HttpGet]
         public ActionResult Index()
         {
             //TODO: This action needs to be optimized, because it fetchs all records from the db and then try to filter the result in app
-            return View(db.groups
+            return View(db.zones
                 .Where(a => a.title .Contains(this.Setting.PageSetting.SearchItem)));
         }
 
@@ -35,26 +35,26 @@ namespace ClubAdministration.Controllers.system
             return this.Index();
         }
 
-        // GET: groups/Details/5
+        // GET: zones/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                Session["TACTION_RESULT"] = "مشكل در نمايش گروه وجود دارد";
+                Session["TACTION_RESULT"] = "مشكل در نمايش محدوده وجود دارد";
                 return this.RedirectToAction("Index");
             }
-            var group = db.groups.Find(id);
+            var zone = db.zones.Find(id);
 
-            if (group == null)
+            if (zone == null)
             {
-                Session["TACTION_RESULT"] = "گروه درخواستي در سيستم ثبت نشده است";
+                Session["TACTION_RESULT"] = "محدوده درخواستي در سيستم ثبت نشده است";
                 return this.RedirectToAction("Index");
             }
 
-            return View(group);
+            return View(zone);
         }
 
-        // GET: groups/Create
+        // GET: zones/Create
         public ActionResult Create()
         {
             return View();
@@ -65,19 +65,19 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title")] groups group)
+        public ActionResult Create([Bind(Include = "ID,title")] zones zone)
         {
 
             //1. Convert the entry to Db Model
             if (ModelState.IsValid == true)
             {
                 //TODO: This action need to be deeply reviewed
-                db.groups.Add(group);
+                db.zones.Add(zone);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(group);
+            return View(zone);
         }
 
         // GET: groups/Edit/5
@@ -89,28 +89,28 @@ namespace ClubAdministration.Controllers.system
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var entry = db.groups.Find(id);
+            var entry = db.zones.Find(id);
             return View(entry);
         }
 
-        // POST: groups/Edit/5
+        // POST: zones/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title")] groups group)
+        public ActionResult Edit([Bind(Include = "ID,title")] zones zone)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)
             {
-                db.Entry(group).State = EntityState.Modified;
+                db.Entry(zone).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(group);
+            return View(zone);
         }
 
-        // GET: groups/Delete/5
+        // GET: zones/Delete/5
         public ActionResult Delete(int? id)
         {
             //TODO: This action need to be deeply reviewed
@@ -118,22 +118,22 @@ namespace ClubAdministration.Controllers.system
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            groups group = db.groups.Find(id);
-            if (group == null)
+            zones zone = db.zones.Find(id);
+            if (zone == null)
             {
                 return HttpNotFound();
             }
-            return View(group);
+            return View(zone);
         }
 
-        // POST: groups/Delete/5
+        // POST: zones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             //TODO: This action need to be deeply reviewed
-            var group = db.groups.Find(id);
-            db.groups.Remove(group);
+            var zone = db.zones.Find(id);
+            db.zones.Remove(zone);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
