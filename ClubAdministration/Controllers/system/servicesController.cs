@@ -66,7 +66,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title")] services service)
+        public ActionResult Create([Bind(Include = "ID,title,name")] services service)
         {
 
             //1. Convert the entry to Db Model
@@ -99,7 +99,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title")] services service)
+        public ActionResult Edit([Bind(Include = "ID,title,name")] services service)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)

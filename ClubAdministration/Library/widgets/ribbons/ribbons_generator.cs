@@ -241,6 +241,20 @@ namespace ClubAdministration.Library.widgets.ribbons
                 case "groups.delete.default":
                     return groups_delete_default(rootParams);
 
+                case "zones.list.default":
+                    return zones_list_default(rootParams);
+                case "zones.details.default":
+                    return zones_details_default(rootParams);
+                case "zones.delete.default":
+                    return zones_delete_default(rootParams);
+
+                case "services.list.default":
+                    return services_list_default(rootParams);
+                case "services.details.default":
+                    return services_details_default(rootParams);
+                case "services.delete.default":
+                    return services_delete_default(rootParams);
+
                 case "groups.roles.list":
                     return groups_roles_list(rootParams);
                 case "groups.roles.details":
