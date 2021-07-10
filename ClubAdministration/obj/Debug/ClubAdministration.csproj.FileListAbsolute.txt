@@ -404,4 +404,3 @@ E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministrat
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.drill.items.lang.fa.resources
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.club.plans.lang.resources
 E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.Resources.modules.club.plans.lang.fa.resources
-E:\Projects\ClubAdministration\TFVC\ClubAdministration\obj\Debug\ClubAdministration.csprojAssemblyReference.cache

@@ -24,9 +24,9 @@ namespace ClubAdministration.Models.system
         public zones zone { get; set; }
         public int zone_id { get; set; }
 
-        [ForeignKey("component_id")]
-        public components component { get; set; }
-        public int component_id { get; set; }
+        [ForeignKey("service_id")]
+        public services service { get; set; }
+        public int service_id { get; set; }
 
         public virtual ICollection<role_permissions> roles { get; set; }
     }

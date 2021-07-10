@@ -63,7 +63,7 @@ namespace ClubAdministration.Models
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<user_groups> user_groups { get; set; }
         public virtual DbSet<role_permissions> role_permissions { get; set; }
-        public virtual DbSet<components> components { get; set; }
+        public virtual DbSet<services> services { get; set; }
         public virtual DbSet<zones> zones { get; set; }
         public virtual DbSet<group_roles> group_roles { get; set; }
 

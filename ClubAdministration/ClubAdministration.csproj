@@ -437,6 +437,8 @@
     <Compile Include="Controllers\players\playersControllerTraining.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerMain.cs" />
     <Compile Include="Controllers\sessions\sessionsControllerCoaches.cs" />
+    <Compile Include="Controllers\system\zonesController.cs" />
+    <Compile Include="Controllers\system\servicesController.cs" />
     <Compile Include="Controllers\system\groupsControllerUser.cs" />
     <Compile Include="Controllers\system\usersControllerGroup.cs" />
     <Compile Include="Controllers\system\groupsControllerRole.cs" />
@@ -504,7 +506,7 @@
     <Compile Include="Models\coaches\certificates_levels.cs" />
     <Compile Include="Models\club_assets.cs" />
     <Compile Include="Models\drills\drill_template.cs" />
-    <Compile Include="Models\system\components.cs" />
+    <Compile Include="Models\system\services.cs" />
     <Compile Include="Models\system\zones.cs" />
     <Compile Include="Models\system\user_groups.cs" />
     <Compile Include="Models\system\group_roles.cs" />
@@ -1934,6 +1936,11 @@
     <Content Include="Views\users\Details.cshtml" />
     <Content Include="Views\users\Edit.cshtml" />
     <Content Include="Views\users\Index.cshtml" />
+    <Content Include="Views\services\Create.cshtml" />
+    <Content Include="Views\services\Delete.cshtml" />
+    <Content Include="Views\services\Details.cshtml" />
+    <Content Include="Views\services\Edit.cshtml" />
+    <Content Include="Views\services\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1946,6 +1953,7 @@
     <Folder Include="Resources\modules\player\" />
     <Folder Include="Resources\modules\session\" />
     <Folder Include="Resources\modules\staff\" />
+    <Folder Include="Views\zones\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
