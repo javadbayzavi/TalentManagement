@@ -1941,6 +1941,11 @@
     <Content Include="Views\services\Details.cshtml" />
     <Content Include="Views\services\Edit.cshtml" />
     <Content Include="Views\services\Index.cshtml" />
+    <Content Include="Views\zones\Index.cshtml" />
+    <Content Include="Views\zones\Edit.cshtml" />
+    <Content Include="Views\zones\Details.cshtml" />
+    <Content Include="Views\zones\Delete.cshtml" />
+    <Content Include="Views\zones\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1953,7 +1958,6 @@
     <Folder Include="Resources\modules\player\" />
     <Folder Include="Resources\modules\session\" />
     <Folder Include="Resources\modules\staff\" />
-    <Folder Include="Views\zones\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
