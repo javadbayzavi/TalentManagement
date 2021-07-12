@@ -466,6 +466,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Library\Core\Defaults\BaseDate.cs" />
+    <Compile Include="Library\Core\Security\ZoneRegistryControl.cs" />
+    <Compile Include="Library\Core\Security\ServiceRegistryControl.cs" />
+    <Compile Include="Library\Core\Security\ServiceValidator.cs" />
+    <Compile Include="Library\Core\Security\ZoneObserver.cs" />
     <Compile Include="Library\Core\Security\PermissionValidator.cs" />
     <Compile Include="Library\Core\Sessions\SessionManager.cs" />
     <Compile Include="Library\Utilities\DateCompare.cs" />

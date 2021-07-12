@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using ClubAdministration.Library.Core.Defaults;
 using ClubAdministration.Library.Core.Sessions;
+using ClubAdministration.Library.Core.Security;
 using ClubAdministration.Models;
 using System.Web;
 using System.Web.Mvc;
 namespace ClubAdministration.Library.Core.Pages
 {
+    [ZoneObserver("BaseController")]
     public class BaseController : Controller
     {
         protected clubAdminProxy db = new clubAdminProxy();
@@ -28,6 +30,9 @@ namespace ClubAdministration.Library.Core.Pages
             this.Controller = ControllerContext.RouteData.Values[ReservedKeys.Controller].ToString();
             this.Action = ControllerContext.RouteData.Values[ReservedKeys.Action].ToString();
             this.Setting = new ControllerSetting(this);
+
+            this.identifyuser();
+
             //this.initUserSession();
 
             //TODO: this item need to be studied in more dept
@@ -90,6 +95,12 @@ namespace ClubAdministration.Library.Core.Pages
         protected void loadPermission()
         {
 
+        }
+
+        public void identifyuser()
+        {
+            string ip = Request.UserHostAddress;
+            this.loadPermission();
         }
     }
 }
