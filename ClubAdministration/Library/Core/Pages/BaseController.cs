@@ -8,6 +8,8 @@ using ClubAdministration.Library.Core.Security;
 using ClubAdministration.Models;
 using System.Web;
 using System.Web.Mvc;
+using System;
+
 namespace ClubAdministration.Library.Core.Pages
 {
     [ZoneObserver("BaseController")]
@@ -99,7 +101,24 @@ namespace ClubAdministration.Library.Core.Pages
 
         public void identifyuser()
         {
-            string ip = Request.UserHostAddress;
+            string userip = Request.UserHostAddress;
+            if (Request.UserHostAddress != null)
+            {
+                Int64 macinfo = new Int64();
+                string macSrc = macinfo.ToString("X");
+                if (macSrc == "0")
+                {
+                    if (userip == "127.0.0.1")
+                    {
+                        Response.Write("visited Localhost!");
+                    }
+                    else
+                    {
+                        Response.Write("visited Remote!");
+                    }
+                }
+            }
+
             this.loadPermission();
         }
     }
