@@ -58,6 +58,8 @@ namespace ClubAdministration.Controllers.system
         // GET: services/Create
         public ActionResult Create()
         {
+            var parent = new SelectList(db.services.ToList(), "ID", "title");
+            ViewBag.parent = parent;
             return View();
         }
 
@@ -66,7 +68,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title,name")] services service)
+        public ActionResult Create([Bind(Include = "ID,title,name,parent")] services service)
         {
 
             //1. Convert the entry to Db Model
@@ -91,6 +93,8 @@ namespace ClubAdministration.Controllers.system
             }
 
             var entry = db.services.Find(id);
+            var parent = new SelectList(db.services.ToList(), "ID", "title",entry.parent);
+            ViewBag.parent = parent;
             return View(entry);
         }
 
@@ -99,7 +103,7 @@ namespace ClubAdministration.Controllers.system
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title,name")] services service)
+        public ActionResult Edit([Bind(Include = "ID,title,name,parent")] services service)
         {
             //TODO: This action need to be deeply reviewed
             if (ModelState.IsValid)

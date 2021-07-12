@@ -20,5 +20,8 @@ namespace ClubAdministration.Models.system
 
         //name of the application service
         public string name { get; set; }
+
+        //Top level service item
+        public int parent { get; set; }
     }
 }

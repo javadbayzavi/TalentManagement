@@ -13,15 +13,20 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group row">
-                <div class="col font-weight-bold">
+                <div class="col-12 font-weight-bold">
                     @Html.Label("عنوان", htmlAttributes: new { @class = "control-label col" })
                     @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
                 </div>
-                <div class="col font-weight-bold">
+                <div class="col-6 font-weight-bold">
                     @Html.Label("نام(انحصاري)", htmlAttributes: new { @class = "control-label col" })
                     @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-6 font-weight-bold">
+                    @Html.Label("سرويس بالادستي", htmlAttributes: new { @class = "control-label col" })
+                    @Html.DropDownList("parent", null, "يك گزينه را انتخاب كنيد", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.parent, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row border mx-1 rounded">
