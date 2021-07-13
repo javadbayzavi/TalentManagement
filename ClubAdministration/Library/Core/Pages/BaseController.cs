@@ -94,12 +94,31 @@ namespace ClubAdministration.Library.Core.Pages
         {
             get { return true; }
         }
-        protected void loadPermission()
+        protected void loadPermission(string userid)
         {
-
+            //load permissions from db
         }
 
         public void identifyuser()
+        {
+            if(this.Session[ReservedKeys.UserSessionName] != null)
+            {
+                //User Authenticated
+
+            }
+            else
+            {
+                //User unAuthenticated
+            }
+
+            //Identify permission
+            //1. Identify user Indetity
+            //2. Identify user zone
+            //3. Identify user service
+
+            this.loadPermission("");
+        }
+        public void indentifyzone()
         {
             string userip = Request.UserHostAddress;
             if (Request.UserHostAddress != null)
@@ -118,8 +137,12 @@ namespace ClubAdministration.Library.Core.Pages
                     }
                 }
             }
-
-            this.loadPermission();
         }
+        public void indentifyservice()
+        {
+            //Check the requested controller and underlying actions with registered service
+
+        }
+
     }
 }
